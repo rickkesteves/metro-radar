@@ -593,7 +593,7 @@ useEffect(() => {
           {/* BOTÕES */}
           <div className="flex gap-3">
             <button
-              onClick={() => router.push("/historico")}
+              onClick={() => router.push(`/historico?user_id=${user?.id}&email=${user?.email}&name=${user?.name}`)}
               className="w-1/2 bg-gray-100 py-3 rounded-lg text-[14px] font-medium"
             >
               Ver Histórico
