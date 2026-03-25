@@ -10,6 +10,14 @@ import toast, { Toaster } from "react-hot-toast"
 import { ExternalLink, FileText, BookOpen, Info } from "lucide-react"
 
 export default function NovaAnalise() {
+  const [userId, setUserId] = useState<string | null>(null)
+
+useEffect(() => {
+  if (typeof window !== "undefined") {
+    const id = new URLSearchParams(window.location.search).get("user_id")
+    setUserId(id)
+  }
+}, [])
   const [bairrosLista, setBairrosLista] = useState<string[]>([])
   const [step, setStep] = useState(1)
   const [loading, setLoading] = useState(0)
@@ -463,17 +471,20 @@ export default function NovaAnalise() {
   }, [step])
 
   async function salvarAnalise() {
+
+    if (!userId) {
+      alert("Usuário não identificado")
+      return
+    }
+  
     const resultado = {
-      top3: [
-        { nome: "Condomínio Jardim das Flores", bairro: "Papagaio", score: 92 },
-        { nome: "Villa dos Pássaros", bairro: "Papagaio", score: 88 },
-        { nome: "Casas do Vale", bairro: "Papagaio", score: 84 },
-      ],
+      top3: empreendimentos.slice(0, 3),
     }
   
     const { error } = await supabase.from("analises").insert([
       {
-        nome: data.nome,
+        user_id: userId,
+        nome: data.nome || `Análise ${new Date().toLocaleDateString()}`,
         renda: data.renda,
         entrada: data.entrada,
         urgencia: data.urgencia,
@@ -481,6 +492,7 @@ export default function NovaAnalise() {
         tipo: data.tipo,
         preco: data.preco,
         resultado,
+        created_at: new Date().toISOString()
       },
     ])
   
