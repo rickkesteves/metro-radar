@@ -10,12 +10,17 @@ import toast, { Toaster } from "react-hot-toast"
 import { ExternalLink, FileText, BookOpen, Info } from "lucide-react"
 
 export default function NovaAnalise() {
-  const [userId, setUserId] = useState<string | null>(null)
+  const [user, setUser] = useState<any>(null)
 
 useEffect(() => {
   if (typeof window !== "undefined") {
-    const id = new URLSearchParams(window.location.search).get("user_id")
-    setUserId(id)
+    const params = new URLSearchParams(window.location.search)
+
+    setUser({
+      id: params.get("user_id"),
+      email: params.get("email"),
+      name: params.get("name"),
+    })
   }
 }, [])
   const [bairrosLista, setBairrosLista] = useState<string[]>([])
@@ -472,7 +477,7 @@ useEffect(() => {
 
   async function salvarAnalise() {
 
-    if (!userId) {
+    if (!user?.id) {
       alert("Usuário não identificado")
       return
     }
@@ -483,7 +488,9 @@ useEffect(() => {
   
     const { error } = await supabase.from("analises").insert([
       {
-        user_id: userId,
+        user_id: user?.id,
+        user_email: user?.email,
+        user_name: user?.name,
         nome: data.nome || `Análise ${new Date().toLocaleDateString()}`,
         renda: data.renda,
         entrada: data.entrada,
@@ -847,7 +854,11 @@ const temMelhorFora =
         </div>
   
         <div id="resultado-pdf">
-  
+        {user?.name && (
+  <p className="text-sm text-gray-500 mb-1">
+    Olá, {user.name} 👋
+  </p>
+)}
           <h1 className="text-3xl font-semibold text-[#0f172a] mb-2">
             Seu ranking personalizado
           </h1>
