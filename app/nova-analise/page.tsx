@@ -489,8 +489,6 @@ useEffect(() => {
     const { error } = await supabase.from("analises").insert([
       {
         user_id: user?.id,
-        user_email: user?.email,
-        user_name: user?.name,
         nome: data.nome || `Análise ${new Date().toLocaleDateString()}`,
         renda: data.renda,
         entrada: data.entrada,
