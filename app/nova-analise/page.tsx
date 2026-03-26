@@ -10,8 +10,15 @@ import toast, { Toaster } from "react-hot-toast"
 import { ExternalLink, FileText, BookOpen, Info } from "lucide-react"
 
 export default function NovaAnalise() {
+  const [mensagemIndex, setMensagemIndex] = useState(0)
   const [user, setUser] = useState<any>(null)
-
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setMensagemIndex((prev) => (prev < 4 ? prev + 1 : prev))
+    }, 1800)
+  
+    return () => clearInterval(interval)
+  }, [])
 useEffect(() => {
   console.log("HREF:", window.location.href)
   console.log("SEARCH:", window.location.search)
@@ -830,8 +837,7 @@ useEffect(() => {
       "Calculando ranking ideal para você...",
     ]
   
-    const [mensagemIndex, setMensagemIndex] = useState(0)
-
+    const mensagemAtual = mensagens[mensagemIndex]
 useEffect(() => {
   const interval = setInterval(() => {
     setMensagemIndex((prev) =>
