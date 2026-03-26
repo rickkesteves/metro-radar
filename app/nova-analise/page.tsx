@@ -1191,7 +1191,7 @@ return (
       return (
         <div
           key={i}
-          className="flex gap-4 bg-white border border-gray-100 rounded-2xl p-4 shadow-sm hover:shadow-md transition g-white border border-gray-200 rounded-2xl p-4 hover:shadow-md transition"
+          className="flex gap-4 bg-white border border-gray-100 rounded-2xl p-4 shadow-sm hover:shadow-md transition"
         >
 
           {/* IMAGEM */}
