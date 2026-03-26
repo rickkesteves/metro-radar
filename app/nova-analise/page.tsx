@@ -656,7 +656,7 @@ useEffect(() => {
         <div className="bg-white rounded-2xl p-6 space-y-6 shadow-sm border border-gray-100">
   
           <div>
-            <h2 className="text-[20px] font-medium text-[#1E293B]">
+            <h2 className="text-[18px] font-semibold text-[#0f172a]">
               Bairros de interesse
             </h2>
             <p className="text-[16px] text-[#64748B]">
@@ -673,13 +673,16 @@ useEffect(() => {
               <button
                 key={b}
                 onClick={() => toggleBairro(b)}
-                className={`px-4 py-2 border rounded-lg ${
+                className={`px-4 py-2 rounded-full text-[14px] font-medium border transition ${
                   (data.bairros || []).includes(b)
-                    ? "bg-[#1E293B] text-white"
-                    : ""
+                    ? "bg-[#0f172a] text-white border-[#0f172a]"
+                    : "bg-white border-gray-200 text-gray-700 hover:bg-gray-50"
                 }`}
               >
-                {b}
+                <div className="flex items-center gap-1">
+                  {b}
+                  {(data.bairros || []).includes(b) && "✓"}
+                </div>
               </button>
             ))}
           </div>
@@ -689,8 +692,11 @@ useEffect(() => {
               <p className="text-[14px] text-[#64748B]">
                 Selecionados
               </p>
+              <p className="text-[13px] text-gray-400">
+                Nenhum bairro selecionado
+              </p>
   
-              <div className="flex gap-2 flex-wrap">
+              <div className="flex flex-wrap gap-3 mt-2">
                 {(data.bairros || []).map((b) => (
                   <div key={b} className="bg-gray-200 px-3 py-1 rounded text-sm">
                     {b} ✕
