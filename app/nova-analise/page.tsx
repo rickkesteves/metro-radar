@@ -536,11 +536,11 @@ useEffect(() => {
         <div className="text-center mb-10">
           <IconBox src="https://metrosquare.com.br/wp-content/uploads/2026/03/radar-1.svg" />
   
-          <h1 className="text-[26px] font-semibold tracking-tight text-[#1E293B]">
+          <h1 className="text-[26px] font-semibold tracking-tight text-[#0f172a]">
             Metro Radar
           </h1>
   
-          <p className="text-[16px] text-[#64748B]">
+          <p className="text-[15px] text-gray-500">
             Encontre os lançamentos ideais para seu perfil
           </p>
         </div>
@@ -548,10 +548,10 @@ useEffect(() => {
         <div className="bg-white border rounded-2xl p-6 space-y-6">
   
           <div>
-            <h2 className="text-[20px] font-medium text-[#1E293B]">
+            <h2 className="text-[18px] font-semibold text-[#0f172a]">
               Dados do Cliente
             </h2>
-            <p className="text-[16px] text-[#64748B]">
+            <p className="text-[13px] text-gray-400">
               Passo 1 de 3
             </p>
           </div>
@@ -563,7 +563,7 @@ useEffect(() => {
             { label: "Valor disponível para entrada", key: "entrada" }
           ].map((item, i) => (
             <div key={i}>
-              <label className="text-[14px] font-medium text-[#64748B]">
+              <label className="text-[13px] text-gray-500 font-medium">
                 {item.label}
               </label>
               <input

@@ -2,6 +2,9 @@ import "./globals.css"
 import Tabs from "@/components/Tabs"
 import { AnalysisProvider } from "@/context/AnalysisContext"
 import Script from "next/script"
+import { Inter } from 'next/font/google'
+
+const inter = Inter({ subsets: ['latin'] })
 
 export default function RootLayout({
   children,
@@ -10,9 +13,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
-      <body className="bg-[#F9FAFB] text-[#111827]">
+      <body className={`${inter.className} bg-[#F9FAFB] text-[#111827]`}>
 
-        {/* ✅ SCRIPT CORRETO */}
         <Script
           src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
           strategy="beforeInteractive"
