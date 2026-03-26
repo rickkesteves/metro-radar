@@ -659,7 +659,7 @@ useEffect(() => {
             <h2 className="text-[18px] font-semibold text-[#0f172a]">
               Bairros de interesse
             </h2>
-            <p className="text-[16px] text-[#64748B]">
+            <p className="text-[13px] text-gray-400">
               Passo 2 de 3
             </p>
           </div>
@@ -714,7 +714,7 @@ useEffect(() => {
           <div className="flex gap-3">
             <button
               onClick={() => setStep(1)}
-              className="w-1/2 bg-gray-100 py-3 rounded-lg"
+              className="w-1/2 bg-gray-100 py-3 rounded-lg text-[14px] font-medium"
             >
               Voltar
             </button>

@@ -21,7 +21,7 @@ export default function RootLayout({
         />
 
         <AnalysisProvider>
-          <div className="max-w-md mx-auto p-6">
+          <div className="max-w-md mx-auto px-4 py-8">
 
             <Tabs />
 
