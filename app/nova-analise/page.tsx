@@ -743,21 +743,26 @@ useEffect(() => {
   
         <IconBox src="https://metrosquare.com.br/wp-content/uploads/2026/03/home-6.svg" />
   
-        <h1 className="text-[24px] font-medium text-[#1E293B] text-center mb-6">
+        <h1 className="text-[26px] font-semibold tracking-tight text-[#0f172a] text-center mb-2">
           Tipo de Imóvel
         </h1>
+        <p className="text-[15px] text-gray-500 text-center mb-8">
+  Defina o tipo e faixa ideal para seu perfil
+</p>
   
         <div className="bg-white rounded-3xl p-7 shadow-sm border border-gray-100 space-y-7">
   
-          <p className="text-[14px] text-[#64748B]">Tipo de imóvel:</p>
+        <p className="text-[13px] font-medium text-gray-500">Tipo de imóvel</p>
   
           <div className="grid grid-cols-2 gap-3">
             {["Apartamento", "Casa", "Lote", "Misto"].map((t) => (
               <button
                 key={t}
                 onClick={() => setData({ tipo: t })}
-                className={`border p-4 rounded-lg ${
-                  data.tipo === t ? "bg-[#1E293B] text-white" : ""
+                className={`p-4 rounded-xl border text-[14px] font-medium transition ${
+                  data.tipo === t
+                    ? "bg-[#0f172a] text-white border-[#0f172a]"
+                    : "bg-white border-gray-200 text-gray-700 hover:bg-gray-50"
                 }`}
               >
                 {t}
@@ -765,7 +770,7 @@ useEffect(() => {
             ))}
           </div>
   
-          <p className="text-[14px] text-[#64748B]">Faixa de preço:</p>
+          <p className="text-[13px] font-medium text-gray-500">Faixa de preço</p>
   
           <div className="space-y-2">
             {[
@@ -777,8 +782,10 @@ useEffect(() => {
               <button
                 key={f}
                 onClick={() => setData({ preco: f })}
-                className={`w-full text-left px-4 py-3 border rounded-lg ${
-                  data.preco === f ? "bg-gray-100 border-[#1E293B]" : ""
+                className={`w-full text-left px-4 py-3 rounded-xl border text-[14px] font-medium transition ${
+                  data.preco === f
+                    ? "bg-gray-100 border-[#0f172a]"
+                    : "bg-white border-gray-200 text-gray-700 hover:bg-gray-50"
                 }`}
               >
                 {f}
@@ -789,7 +796,7 @@ useEffect(() => {
           <div className="flex gap-3">
             <button
               onClick={() => setStep(2)}
-              className="w-1/2 bg-gray-100 py-3 rounded-lg"
+              className="w-1/2 bg-white border border-gray-200 py-3 rounded-xl text-[15px] font-medium text-gray-700 hover:bg-gray-50 transition"
             >
               Voltar
             </button>
@@ -800,7 +807,7 @@ useEffect(() => {
                 setLoading(0)
                 setStep(4)
               }}
-              className="w-1/2 bg-[#1E293B] text-white py-3 rounded-lg"
+              className="w-1/2 bg-[#0f172a] text-white py-3 rounded-xl text-[15px] font-semibold transition hover:scale-[1.02] active:scale-[0.98]"
             >
               Analisar
             </button>
