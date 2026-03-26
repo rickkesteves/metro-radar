@@ -533,10 +533,10 @@ useEffect(() => {
     return (
       <div className="max-w-md mx-auto px-4 py-6">
   
-        <div className="text-center mb-8">
+        <div className="text-center mb-10">
           <IconBox src="https://metrosquare.com.br/wp-content/uploads/2026/03/radar-1.svg" />
   
-          <h1 className="text-[24px] font-medium text-[#1E293B]">
+          <h1 className="text-[26px] font-semibold tracking-tight text-[#1E293B]">
             Metro Radar
           </h1>
   
@@ -733,7 +733,7 @@ useEffect(() => {
           Tipo de Imóvel
         </h1>
   
-        <div className="bg-white border rounded-2xl p-6 space-y-6">
+        <div className="bg-white rounded-3xl p-7 shadow-sm border border-gray-100 space-y-6">
   
           <p className="text-[14px] text-[#64748B]">Tipo de imóvel:</p>
   
