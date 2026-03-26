@@ -913,41 +913,10 @@ const temMelhorFora =
     return (
       <>
       <Toaster position="top-right" />
-      <div className="max-w-md mx-auto px-4 py-8">
+      <div className="max-w-md mx-auto px-4 py-8 bg-[#f8fafc] min-h-screen">
   
         {/* BOTÕES */}
-        <div className="flex gap-2 mb-8 flex-wrap">
-          <button onClick={gerarPDF} className="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm transition">
-            📄 PDF
-          </button>
-  
-          <button onClick={salvarAnalise} className="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm transition">
-            💾 Salvar
-          </button>
-  
-          <button
-            onClick={() => {
-              reset()
-              setStep(1)
-            }}
-            className="px-4 py-2 bg-[#1E293B] hover:bg-[#0f172a] text-white rounded-lg text-sm transition"
-          >
-            Nova Análise
-          </button>
-          <button
-  onClick={() => {
-    if (!user?.id) return
-
-    router.push(
-      `/historico?user_id=${user.id}&email=${user.email}&name=${user.name}`
-    )
-  }}
-  className="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm transition"
->
-  Histórico
-</button>
-          
-        </div>
+        
   
         <div id="resultado-pdf">
 
@@ -977,14 +946,14 @@ const temMelhorFora =
   </div>
 
   <div className="mb-6 text-sm text-gray-500 space-y-1">
-    {qtdBoas >= 10 && <p>🔥 Muitas oportunidades dentro do seu perfil</p>}
+    {qtdBoas >= 10 && <p>🔥 Encontramos várias oportunidades ideais para você</p>}
     {qtdBoas >= 5 && qtdBoas < 10 && <p>👍 Boas opções disponíveis</p>}
     {qtdBoas > 0 && qtdBoas < 5 && <p>⚠ Apenas {qtdBoas} opções realmente compatíveis</p>}
     {qtdBoas === 0 && <p>Com alguns ajustes, você pode acessar boas oportunidades 👇</p>}
   </div>
 
           {temMelhorFora && (
-            <div className="mb-6 p-4 bg-yellow-50 border border-yellow-200 rounded-xl text-sm text-yellow-800">
+            <div className="mb-6 p-4 bg-amber-50 border border-amber-200 rounded-xl text-sm text-yellow-800">
               ⚠ Você escolheu {data.tipo}, mas existem imóveis com score maior em outros tipos. Vale a pena conferir 👇
             </div>
           )}
@@ -998,6 +967,11 @@ const tipoOk =
   String(item.tipo || "").toLowerCase().trim()
 
 return (
+  {i === 0 && (
+    <div className="text-xs font-semibold text-green-600 mb-2 ml-1">
+      MELHOR OPÇÃO PARA VOCÊ
+    </div>
+  )}
   <div
     key={item.id || i}
     className={`bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all overflow-hidden
@@ -1279,6 +1253,50 @@ return (
 
   </div>
 )}
+<div className="mt-10 flex flex-col gap-3">
+
+<button
+  onClick={() => {
+    reset()
+    setStep(1)
+  }}
+  className="bg-[#0f172a] text-white py-3 rounded-xl text-[15px] font-semibold"
+>
+  Nova análise
+</button>
+
+<div className="flex gap-3">
+
+  <button
+    onClick={salvarAnalise}
+    className="flex-1 bg-gray-100 py-2 rounded-lg text-sm hover:bg-gray-200 transition"
+  >
+    💾 Salvar
+  </button>
+
+  <button
+    onClick={gerarPDF}
+    className="flex-1 bg-gray-100 py-2 rounded-lg text-sm hover:bg-gray-200 transition"
+  >
+    📄 PDF
+  </button>
+
+</div>
+
+<button
+  onClick={() => {
+    if (!user?.id) return
+
+    router.push(
+      `/historico?user_id=${user.id}&email=${user.email}&name=${user.name}`
+    )
+  }}
+  className="bg-gray-100 py-2 rounded-lg text-sm hover:bg-gray-200 transition"
+>
+  Histórico
+</button>
+
+</div>
 </div> {/* FECHA resultado-pdf */}
 
 </div> {/* FECHA CONTAINER */}
