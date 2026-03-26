@@ -723,7 +723,7 @@ useEffect(() => {
               onClick={() => setStep(3)}
               className="w-1/2 bg-[#1E293B] text-white py-3 rounded-lg"
             >
-              Continuar
+              Continuar1
             </button>
           </div>
   
