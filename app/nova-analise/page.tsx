@@ -27,8 +27,10 @@ useEffect(() => {
   if (typeof window !== "undefined") {
     const params = new URLSearchParams(window.location.search)
 
+    const id = params.get("user_id")
+
     setUser({
-      id: params.get("user_id"),
+      id: id,
       email: params.get("email"),
       name: params.get("name"),
     })
@@ -488,7 +490,9 @@ useEffect(() => {
 
   async function salvarAnalise() {
 
-    if (!user?.id) {
+    const finalUserId = user?.id
+  
+    if (!finalUserId) {
       alert("Usuário não identificado")
       return
     }
@@ -496,13 +500,12 @@ useEffect(() => {
     const resultado = {
       top3: empreendimentos.slice(0, 3),
     }
-    console.log("INSERT:", {
-      user_id: user?.id,
-      nome: data.nome,
-    })
+  
+    console.log("SALVANDO USER:", finalUserId)
+  
     const { error } = await supabase.from("analises").insert([
       {
-        user_id: user?.id,
+        user_id: finalUserId,
         nome: data.nome || `Análise ${new Date().toLocaleDateString()}`,
         renda: data.renda,
         entrada: data.entrada,
