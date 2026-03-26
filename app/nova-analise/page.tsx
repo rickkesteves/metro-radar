@@ -531,7 +531,7 @@ useEffect(() => {
   // ======================
   if (step === 1) {
     return (
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-md mx-auto px-4 py-6">
   
         <div className="text-center mb-8">
           <IconBox src="https://metrosquare.com.br/wp-content/uploads/2026/03/radar-1.svg" />
@@ -641,7 +641,7 @@ useEffect(() => {
   // ======================
   if (step === 2) {
     return (
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-md mx-auto px-4 py-6">
   
         <div className="text-center mb-8">
           <IconBox src="https://metrosquare.com.br/wp-content/uploads/2026/03/map-pin-line-1.svg" />
@@ -651,7 +651,7 @@ useEffect(() => {
           </h1>
         </div>
   
-        <div className="bg-white border rounded-2xl p-6 space-y-6">
+        <div className="bg-white rounded-2xl p-6 space-y-6 shadow-sm border border-gray-100">
   
           <div>
             <h2 className="text-[20px] font-medium text-[#1E293B]">
@@ -723,7 +723,7 @@ useEffect(() => {
   // ======================
   if (step === 3) {
     return (
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-md mx-auto px-4 py-6">
   
         <IconBox src="https://metrosquare.com.br/wp-content/uploads/2026/03/home-6.svg" />
   
