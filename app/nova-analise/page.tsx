@@ -957,21 +957,28 @@ const temMelhorFora =
               ⚠ Você escolheu {data.tipo}, mas existem imóveis com score maior em outros tipos. Vale a pena conferir 👇
             </div>
           )}
-  
-  return (
-  <div key={item.id || i}>
+  {/* TOP 3 */}
+<div className="flex flex-col gap-4 mb-10">
+  {top3.map((item, i) => {
 
-    {i === 0 && (
-      <div className="text-xs font-semibold text-green-600 mb-2 ml-1">
-        MELHOR OPÇÃO PARA VOCÊ
-      </div>
-    )}
+    const tipoOk =
+      String(data.tipo || "").toLowerCase().trim() ===
+      String(item.tipo || "").toLowerCase().trim()
 
-    <div
-      className={`bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all overflow-hidden
-      ${i === 0 ? "border-green-500 shadow-lg scale-[1.02]" : "border-gray-200 hover:shadow-md"}
-      `}
-    >
+    return (
+      <div key={item.id || i}>
+
+        {i === 0 && (
+          <div className="text-xs font-semibold text-green-600 mb-2 ml-1">
+            MELHOR OPÇÃO PARA VOCÊ
+          </div>
+        )}
+
+        <div
+          className={`bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all overflow-hidden
+          ${i === 0 ? "border-green-500 shadow-lg scale-[1.02]" : "border-gray-200 hover:shadow-md"}
+          `}
+        >
     {/* IMAGEM */}
     <img
       src={item.imagem || "https://via.placeholder.com/400x300"}
