@@ -577,14 +577,14 @@ useEffect(() => {
                   })
                 }
                 placeholder={item.placeholder || "R$ 0,00"}
-                className="w-full mt-1 border rounded-lg px-4 py-3 text-[14px] text-[#64748B]"
+                className="w-full mt-1 px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-[15px] text-[#0f172a] focus:outline-none focus:ring-2 focus:ring-[#1E293B] focus:bg-white transition"
               />
             </div>
           ))}
   
           {/* URGÊNCIA ORIGINAL */}
           <div>
-            <label className="text-[14px] font-medium text-[#64748B] block mb-2">
+            <label className="text-[13px] font-medium text-gray-500 block mb-2">
               Urgência
             </label>
   
