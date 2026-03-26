@@ -838,58 +838,38 @@ useEffect(() => {
     ]
   
     const mensagemAtual = mensagens[mensagemIndex]
-useEffect(() => {
-  const interval = setInterval(() => {
-    setMensagemIndex((prev) =>
-      prev < mensagens.length - 1 ? prev + 1 : prev
-    )
-  }, 1800) // 👈 controla aqui (1.8s por mensagem)
-
-  return () => clearInterval(interval)
-}, [])
-
-const mensagemAtual = mensagens[mensagemIndex]
   
     return (
       <div className="flex flex-col items-center justify-center text-center py-16">
   
         {/* RADAR */}
-<div className="relative w-40 h-40 mb-10">
-
-{/* CÍRCULO EXTERNO */}
-<div className="absolute inset-0 rounded-full border border-gray-200" />
-
-{/* CÍRCULO INTERNO */}
-<div className="absolute inset-6 rounded-full border border-gray-100" />
-
-{/* CENTRO */}
-<div className="absolute w-2 h-2 bg-[#0f172a] rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
-
-{/* VARREDURA (SWEEP) */}
-<div className="absolute inset-0 rounded-full overflow-hidden">
-  <div className="w-full h-full origin-center animate-radar">
-    <div className="w-1/2 h-full bg-gradient-to-r from-[#0f172a]/20 to-transparent" />
-  </div>
-</div>
-
-{/* PONTOS */}
-<div className="absolute top-8 left-10 w-2 h-2 bg-[#0f172a] rounded-full animate-pulse" />
-<div className="absolute bottom-10 right-10 w-2 h-2 bg-[#0f172a] rounded-full animate-pulse" />
-<div className="absolute top-12 right-6 w-2 h-2 bg-[#0f172a] rounded-full animate-pulse" />
-
-</div>
+        <div className="relative w-40 h-40 mb-10">
   
-        {/* TEXTO PRINCIPAL */}
+          <div className="absolute inset-0 rounded-full border border-gray-200" />
+          <div className="absolute inset-6 rounded-full border border-gray-100" />
+  
+          <div className="absolute w-2 h-2 bg-[#0f172a] rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+  
+          <div className="absolute inset-0 rounded-full overflow-hidden">
+            <div className="w-full h-full origin-center animate-radar">
+              <div className="w-1/2 h-full bg-gradient-to-r from-[#0f172a]/20 to-transparent" />
+            </div>
+          </div>
+  
+          <div className="absolute top-8 left-10 w-2 h-2 bg-[#0f172a] rounded-full animate-pulse" />
+          <div className="absolute bottom-10 right-10 w-2 h-2 bg-[#0f172a] rounded-full animate-pulse" />
+          <div className="absolute top-12 right-6 w-2 h-2 bg-[#0f172a] rounded-full animate-pulse" />
+  
+        </div>
+  
         <h1 className="text-[20px] font-semibold text-[#0f172a] mb-2">
           Analisando mercado
         </h1>
   
-        {/* TEXTO DINÂMICO */}
         <p className="text-[14px] text-gray-500 mb-6">
           {mensagemAtual}
         </p>
   
-        {/* BARRA */}
         <div className="w-full max-w-xs bg-gray-200 h-2 rounded-full overflow-hidden">
           <div
             className="bg-[#0f172a] h-2 transition-all duration-300"
@@ -897,7 +877,6 @@ const mensagemAtual = mensagens[mensagemIndex]
           />
         </div>
   
-        {/* % */}
         <p className="text-sm text-gray-400 mt-2">
           {loading}%
         </p>
