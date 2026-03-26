@@ -271,7 +271,7 @@ useEffect(() => {
       return () => clearTimeout(t)
     }
     if (step === 4 && loading >= 100) {
-      const t = setTimeout(() => setStep(5), 300)
+      const t = setTimeout(() => setStep(5), 900)
       return () => clearTimeout(t)
     }
   }, [step, loading])
@@ -835,12 +835,14 @@ useEffect(() => {
       "Analisando seu perfil financeiro...",
       "Cruzando dados de renda e entrada...",
       "Escaneando bairros com oportunidades...",
-      "Detectando imóveis compatíveis...",
-      "Calculando ranking ideal para você...",
+      "Comparando mais de 2.000 combinações possíveis...",
+      "Encontrando os melhores imóveis para você...",
     ]
   
-    const mensagemAtual = mensagens[mensagemIndex]
-  
+    const mensagemAtual =
+    loading >= 90
+      ? "Finalizando análise..."
+      : mensagens[mensagemIndex]  
     return (
       <div className="flex flex-col items-center justify-center text-center py-16">
   
@@ -858,10 +860,13 @@ useEffect(() => {
         <p className="text-[14px] text-gray-500 mb-6">
           {mensagemAtual}
         </p>
+        <p className="text-[13px] text-gray-400 mb-4">
+          Isso leva apenas alguns segundos
+        </p>
   
         <div className="w-full max-w-xs bg-gray-200 h-2 rounded-full overflow-hidden">
           <div
-            className="bg-[#0f172a] h-2 transition-all duration-300"
+            className="bg-[#0f172a] h-2 transition-all duration-500 ease-out"
             style={{ width: `${loading}%` }}
           />
         </div>
