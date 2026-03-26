@@ -844,7 +844,7 @@ const temMelhorFora =
           >
             Nova Análise
           </button>
-  
+          console.log("USER NO CLICK:", user)
           <button
             onClick={() => router.push(`/historico?user_id=${user?.id}`)}
             className="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm transition"
