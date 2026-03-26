@@ -601,7 +601,7 @@ useEffect(() => {
               {["12", "24", "36", "none"].map((u) => (
                 <button
                   key={u}
-                  onClick={() => setData({ urgencia: u })
+                  onClick={() => setData({ urgencia: u })}
                   className={`px-4 py-3 rounded-xl text-[14px] font-medium border transition ${
                     data.urgencia === u
                       ? "bg-[#0f172a] text-white border-[#0f172a]"
