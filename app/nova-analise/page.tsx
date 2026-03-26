@@ -485,7 +485,10 @@ useEffect(() => {
     const resultado = {
       top3: empreendimentos.slice(0, 3),
     }
-  
+    console.log("INSERT:", {
+      user_id: user?.id,
+      nome: data.nome,
+    })
     const { error } = await supabase.from("analises").insert([
       {
         user_id: user?.id,
