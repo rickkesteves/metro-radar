@@ -9,7 +9,8 @@ export default function Historico() {
   const [analises, setAnalises] = useState<any[]>([])
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const id = new URLSearchParams(window.location.search).get("user_id")
+      const params = new URL(window.location.href).searchParams
+      const id = params.get("user_id")
       console.log("USER ID DA URL:", id) // 👈 AQUI
       setUserId(id)
     }
