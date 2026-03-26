@@ -913,7 +913,7 @@ const temMelhorFora =
     return (
       <>
       <Toaster position="top-right" />
-      <div className="max-w-6xl mx-auto px-4 py-8">
+      <div className="max-w-md mx-auto px-4 py-8">
   
         {/* BOTÕES */}
         <div className="flex gap-2 mb-8 flex-wrap">
@@ -955,15 +955,28 @@ const temMelhorFora =
     Olá, {user.name} 👋
   </p>
 )}
-          <h1 className="text-3xl font-semibold text-[#0f172a] mb-2">
-            Seu ranking personalizado
-          </h1>
+          <div className="text-center mb-10">
 
-          <p className="text-gray-500 mb-6">
-            Baseado no seu perfil financeiro e preferências
-          </p>
+<div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-[#0f172a] flex items-center justify-center">
+  <img
+    src="https://metrosquare.com.br/wp-content/uploads/2026/03/radar-1.svg"
+    className="w-6 h-6 invert"
+  />
+</div>
 
-          <div className="mb-6 text-sm text-gray-600">
+<h1 className="text-[26px] font-semibold tracking-tight text-[#0f172a]">
+  Seu ranking personalizado
+</h1>
+
+<p className="text-[15px] text-gray-500">
+  Baseado no seu perfil financeiro e preferências
+</p>
+
+</div>
+
+<p className="text-sm text-gray-500 mb-6">
+  Identificamos oportunidades próximas do seu perfil 👇
+</p>
             {qtdBoas >= 10 && "🔥 Muitas oportunidades dentro do seu perfil"}
             {qtdBoas >= 5 && qtdBoas < 10 && "👍 Boas opções disponíveis"}
             {qtdBoas > 0 && qtdBoas < 5 && `⚠ Apenas ${qtdBoas} opções realmente compatíveis`}
@@ -987,7 +1000,7 @@ const tipoOk =
 return (
   <div
     key={item.id || i}
-    className={`bg-white rounded-2xl border overflow-visible transition-all duration-300
+    className={`bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all overflow-hidden
     ${i === 0 ? "border-green-500 shadow-lg scale-[1.02]" : "border-gray-200 hover:shadow-md"}
     `}
   >
@@ -1011,12 +1024,12 @@ return (
           </p>
         </div>
 
-        <div className="bg-[#0f172a] text-white text-xs px-3 py-1 rounded-full">
+        <div className="bg-[#0f172a] text-white text-xs px-3 py-1.5 rounded-full shadow-sm">
           {item.score || 0}%
         </div>
       </div>
 
-      <div className="h-px bg-gray-100" />
+      <div className="h-px bg-gray-100 my-2" />
 
       {/* INFOS */}
       <div className="space-y-2 text-sm">
@@ -1155,7 +1168,7 @@ return (
 {outros.length > 0 && (
   <button
     onClick={() => setShowOutros(!showOutros)}
-    className="mb-6 bg-yellow-100 px-4 py-2 rounded-lg text-sm hover:bg-yellow-200 transition"
+    className="mb-6 bg-gray-100 px-4 py-2 rounded-lg text-sm hover:bg-gray-200 transition"
   >
     {showOutros
       ? "Ocultar outras opções"
@@ -1178,7 +1191,7 @@ return (
       return (
         <div
           key={i}
-          className="flex gap-4 bg-white border border-gray-200 rounded-2xl p-4 hover:shadow-md transition"
+          className="flex gap-4 bg-white border border-gray-100 rounded-2xl p-4 shadow-sm hover:shadow-md transition g-white border border-gray-200 rounded-2xl p-4 hover:shadow-md transition"
         >
 
           {/* IMAGEM */}
