@@ -545,7 +545,7 @@ useEffect(() => {
           </p>
         </div>
   
-        <div className="bg-white border rounded-2xl p-6 space-y-6">
+        <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 space-y-6">
   
           <div>
             <h2 className="text-[18px] font-semibold text-[#0f172a]">
@@ -645,7 +645,7 @@ useEffect(() => {
     return (
       <div className="max-w-md mx-auto px-4 py-6">
   
-        <div className="text-center mb-8">
+        <div className="text-center mb-10">
           <IconBox src="https://metrosquare.com.br/wp-content/uploads/2026/03/map-pin-line-1.svg" />
   
           <h1 className="text-[26px] font-semibold tracking-tight">
