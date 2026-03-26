@@ -56,7 +56,7 @@ export default function DetalheAnalise() {
         </button>
 
         <button
-          onClick={() => router.push("/historico")}
+          onClick={() => router.push(`/historico?user_id=${analise.user_id}`)}
           className="bg-gray-100 px-3 py-2 rounded"
         >
           Histórico

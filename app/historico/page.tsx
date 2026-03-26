@@ -20,7 +20,7 @@ export default function Historico() {
       const { data, error } = await supabase
         .from("analises")
         .select("*")
-        .eq("user_id", user?.id)
+        .eq("user_id", userId)
         .order("created_at", { ascending: false })
   
       if (error) {
