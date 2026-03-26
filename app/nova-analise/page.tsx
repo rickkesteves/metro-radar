@@ -721,9 +721,12 @@ useEffect(() => {
   
             <button
               onClick={() => setStep(3)}
-              className="w-1/2 bg-[#1E293B] text-white py-3 rounded-lg"
-            >
-              Continuar1
+              className={`w-1/2 py-3 rounded-xl text-[15px] font-semibold transition ${
+                step1Disabled
+                  ? "bg-gray-200 text-gray-400"
+                  : "bg-[#0f172a] text-white hover:scale-[1.02] active:scale-[0.98]"
+              }`}>
+              Continuar
             </button>
           </div>
   
