@@ -271,7 +271,7 @@ useEffect(() => {
       return () => clearTimeout(t)
     }
     if (step === 4 && loading >= 100) {
-      const t = setTimeout(() => setStep(5), 900)
+      const t = setTimeout(() => setStep(5), 1200)
       return () => clearTimeout(t)
     }
   }, [step, loading])
