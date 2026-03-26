@@ -593,10 +593,10 @@ useEffect(() => {
                 <button
                   key={u}
                   onClick={() => setData({ urgencia: u })}
-                  className={`border rounded-lg px-4 py-3 text-[16px] font-medium ${
+                  className={`px-4 py-3 rounded-xl text-[14px] font-medium border transition ${
                     data.urgencia === u
-                      ? "bg-gray-100 border-[#1E293B]"
-                      : "border-gray-200"
+                      ? "bg-[#0f172a] text-white border-[#0f172a]"
+                      : "bg-white border-gray-200 text-gray-700 hover:bg-gray-50"
                   }`}
                 >
                   {u === "none" ? "Sem urgência" : `Até ${u} meses`}
@@ -623,8 +623,10 @@ useEffect(() => {
             <button
               disabled={step1Disabled}
               onClick={() => setStep(2)}
-              className={`w-1/2 py-3 rounded-lg text-[14px] font-medium ${
-                step1Disabled ? "bg-gray-300" : "bg-[#1E293B] text-white"
+              className={`w-1/2 py-3 rounded-xl text-[15px] font-semibold transition ${
+                step1Disabled
+                  ? "bg-gray-200 text-gray-400"
+                  : "bg-[#0f172a] text-white hover:scale-[1.02] active:scale-[0.98]"
               }`}
             >
               Continuar
@@ -908,7 +910,7 @@ const temMelhorFora =
           )}
   
           {/* TOP 3 */}
-          <div className="grid md:grid-cols-3 gap-6 mb-10">
+          <div className="flex flex-col gap-4 mb-10">
           {top3.map((item, i) => {
 
 const tipoOk =
