@@ -1,16 +1,23 @@
 "use client"
 
 import { usePathname } from "next/navigation"
+import { useEffect, useState } from "react"
 
 export default function Tabs() {
   const pathname = usePathname()
+  const [userId, setUserId] = useState<string | null>(null)
 
-  // pega user_id da URL atual
-  let userId = ""
-
-  if (typeof window !== "undefined") {
+  useEffect(() => {
     const params = new URLSearchParams(window.location.search)
-    userId = params.get("user_id") || ""
+    const id = params.get("user_id")
+
+    console.log("TABS USER ID:", id)
+
+    setUserId(id)
+  }, [])
+
+  if (!userId) {
+    return null // evita render quebrado
   }
 
   const tabs = [
@@ -20,7 +27,6 @@ export default function Tabs() {
 
   return (
     <div className="flex gap-2 border-b border-gray-200 pb-2">
-
       {tabs.map((tab) => {
         const active = pathname === tab.href.split("?")[0]
 
@@ -38,7 +44,6 @@ export default function Tabs() {
           </a>
         )
       })}
-
     </div>
   )
 }
