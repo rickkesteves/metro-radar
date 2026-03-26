@@ -830,32 +830,48 @@ useEffect(() => {
       "Calculando ranking ideal para você...",
     ]
   
-    const mensagemAtual =
-      mensagens[Math.min(Math.floor(loading / 20), mensagens.length - 1)]
+    const [mensagemIndex, setMensagemIndex] = useState(0)
+
+useEffect(() => {
+  const interval = setInterval(() => {
+    setMensagemIndex((prev) =>
+      prev < mensagens.length - 1 ? prev + 1 : prev
+    )
+  }, 1800) // 👈 controla aqui (1.8s por mensagem)
+
+  return () => clearInterval(interval)
+}, [])
+
+const mensagemAtual = mensagens[mensagemIndex]
   
     return (
       <div className="flex flex-col items-center justify-center text-center py-16">
   
         {/* RADAR */}
-        <div className="relative w-40 h-40 mb-8">
-  
-          {/* CÍRCULO BASE */}
-          <div className="absolute inset-0 rounded-full border border-gray-200" />
-  
-          {/* ONDAS */}
-          <div className="absolute inset-0 rounded-full border border-gray-200 animate-ping opacity-20" />
-  
-          {/* LINHA GIRANDO */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-[2px] h-full bg-[#0f172a] origin-bottom animate-spin-slow" />
-          </div>
-  
-          {/* PONTOS */}
-          <div className="absolute top-6 left-10 w-2 h-2 bg-[#0f172a] rounded-full animate-pulse" />
-          <div className="absolute bottom-8 right-12 w-2 h-2 bg-[#0f172a] rounded-full animate-pulse" />
-          <div className="absolute top-10 right-6 w-2 h-2 bg-[#0f172a] rounded-full animate-pulse" />
-  
-        </div>
+<div className="relative w-40 h-40 mb-10">
+
+{/* CÍRCULO EXTERNO */}
+<div className="absolute inset-0 rounded-full border border-gray-200" />
+
+{/* CÍRCULO INTERNO */}
+<div className="absolute inset-6 rounded-full border border-gray-100" />
+
+{/* CENTRO */}
+<div className="absolute w-2 h-2 bg-[#0f172a] rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+
+{/* VARREDURA (SWEEP) */}
+<div className="absolute inset-0 rounded-full overflow-hidden">
+  <div className="w-full h-full origin-center animate-radar">
+    <div className="w-1/2 h-full bg-gradient-to-r from-[#0f172a]/20 to-transparent" />
+  </div>
+</div>
+
+{/* PONTOS */}
+<div className="absolute top-8 left-10 w-2 h-2 bg-[#0f172a] rounded-full animate-pulse" />
+<div className="absolute bottom-10 right-10 w-2 h-2 bg-[#0f172a] rounded-full animate-pulse" />
+<div className="absolute top-12 right-6 w-2 h-2 bg-[#0f172a] rounded-full animate-pulse" />
+
+</div>
   
         {/* TEXTO PRINCIPAL */}
         <h1 className="text-[20px] font-semibold text-[#0f172a] mb-2">

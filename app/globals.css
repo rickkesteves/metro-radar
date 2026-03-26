@@ -36,3 +36,17 @@ body {
 .animate-spin-slow {
   animation: spin-slow 2s linear infinite;
 }
+
+
+@keyframes radar {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-radar {
+  animation: radar 2.5s linear infinite;
+}
