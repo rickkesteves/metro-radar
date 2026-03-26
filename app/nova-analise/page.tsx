@@ -822,13 +822,64 @@ useEffect(() => {
   // STEP 4
   // ======================
   if (step === 4) {
+    const mensagens = [
+      "Analisando seu perfil financeiro...",
+      "Cruzando dados de renda e entrada...",
+      "Escaneando bairros com oportunidades...",
+      "Detectando imóveis compatíveis...",
+      "Calculando ranking ideal para você...",
+    ]
+  
+    const mensagemAtual =
+      mensagens[Math.min(Math.floor(loading / 20), mensagens.length - 1)]
+  
     return (
-      <div className="text-center mt-20">
-        <h1>Processando análise</h1>
-        <div className="w-full bg-gray-200 h-2 mt-4">
-          <div className="bg-black h-2" style={{ width: `${loading}%` }} />
+      <div className="flex flex-col items-center justify-center text-center py-16">
+  
+        {/* RADAR */}
+        <div className="relative w-40 h-40 mb-8">
+  
+          {/* CÍRCULO BASE */}
+          <div className="absolute inset-0 rounded-full border border-gray-200" />
+  
+          {/* ONDAS */}
+          <div className="absolute inset-0 rounded-full border border-gray-200 animate-ping opacity-20" />
+  
+          {/* LINHA GIRANDO */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-[2px] h-full bg-[#0f172a] origin-bottom animate-spin-slow" />
+          </div>
+  
+          {/* PONTOS */}
+          <div className="absolute top-6 left-10 w-2 h-2 bg-[#0f172a] rounded-full animate-pulse" />
+          <div className="absolute bottom-8 right-12 w-2 h-2 bg-[#0f172a] rounded-full animate-pulse" />
+          <div className="absolute top-10 right-6 w-2 h-2 bg-[#0f172a] rounded-full animate-pulse" />
+  
         </div>
-        <p>{loading}%</p>
+  
+        {/* TEXTO PRINCIPAL */}
+        <h1 className="text-[20px] font-semibold text-[#0f172a] mb-2">
+          Analisando mercado
+        </h1>
+  
+        {/* TEXTO DINÂMICO */}
+        <p className="text-[14px] text-gray-500 mb-6">
+          {mensagemAtual}
+        </p>
+  
+        {/* BARRA */}
+        <div className="w-full max-w-xs bg-gray-200 h-2 rounded-full overflow-hidden">
+          <div
+            className="bg-[#0f172a] h-2 transition-all duration-300"
+            style={{ width: `${loading}%` }}
+          />
+        </div>
+  
+        {/* % */}
+        <p className="text-sm text-gray-400 mt-2">
+          {loading}%
+        </p>
+  
       </div>
     )
   }
