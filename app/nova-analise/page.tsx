@@ -950,38 +950,38 @@ const temMelhorFora =
         </div>
   
         <div id="resultado-pdf">
-        {user?.name && (
-  <p className="text-sm text-gray-500 mb-1">
-    Olá, {user.name} 👋
-  </p>
-)}
-          <div className="text-center mb-10">
 
-<div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-[#0f172a] flex items-center justify-center">
-  <img
-    src="https://metrosquare.com.br/wp-content/uploads/2026/03/radar-1.svg"
-    className="w-6 h-6 invert"
-  />
-</div>
+  {user?.name && (
+    <p className="text-sm text-gray-500 mb-1">
+      Olá, {user.name} 👋
+    </p>
+  )}
 
-<h1 className="text-[26px] font-semibold tracking-tight text-[#0f172a]">
-  Seu ranking personalizado
-</h1>
+  <div className="text-center mb-10">
 
-<p className="text-[15px] text-gray-500">
-  Baseado no seu perfil financeiro e preferências
-</p>
+    <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-[#0f172a] flex items-center justify-center">
+      <img
+        src="https://metrosquare.com.br/wp-content/uploads/2026/03/radar-1.svg"
+        className="w-6 h-6 invert"
+      />
+    </div>
 
-</div>
+    <h1 className="text-[26px] font-semibold tracking-tight text-[#0f172a]">
+      Seu ranking personalizado
+    </h1>
 
-<p className="text-sm text-gray-500 mb-6">
-  Identificamos oportunidades próximas do seu perfil 👇
-</p>
-            {qtdBoas >= 10 && "🔥 Muitas oportunidades dentro do seu perfil"}
-            {qtdBoas >= 5 && qtdBoas < 10 && "👍 Boas opções disponíveis"}
-            {qtdBoas > 0 && qtdBoas < 5 && `⚠ Apenas ${qtdBoas} opções realmente compatíveis`}
-            {qtdBoas === 0 && "Com alguns ajustes, você pode acessar boas oportunidades 👇"}
-          </div>
+    <p className="text-[15px] text-gray-500">
+      Baseado no seu perfil financeiro e preferências
+    </p>
+
+  </div>
+
+  <div className="mb-6 text-sm text-gray-500 space-y-1">
+    {qtdBoas >= 10 && <p>🔥 Muitas oportunidades dentro do seu perfil</p>}
+    {qtdBoas >= 5 && qtdBoas < 10 && <p>👍 Boas opções disponíveis</p>}
+    {qtdBoas > 0 && qtdBoas < 5 && <p>⚠ Apenas {qtdBoas} opções realmente compatíveis</p>}
+    {qtdBoas === 0 && <p>Com alguns ajustes, você pode acessar boas oportunidades 👇</p>}
+  </div>
 
           {temMelhorFora && (
             <div className="mb-6 p-4 bg-yellow-50 border border-yellow-200 rounded-xl text-sm text-yellow-800">
