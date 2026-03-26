@@ -13,6 +13,17 @@ export default function NovaAnalise() {
   const [user, setUser] = useState<any>(null)
 
 useEffect(() => {
+  console.log("HREF:", window.location.href)
+  console.log("SEARCH:", window.location.search)
+
+  const params = new URL(window.location.href).searchParams
+  const id = params.get("user_id")
+
+  console.log("USER ID FINAL:", id)
+
+}, [])
+
+useEffect(() => {
   if (typeof window !== "undefined") {
     const params = new URLSearchParams(window.location.search)
 
