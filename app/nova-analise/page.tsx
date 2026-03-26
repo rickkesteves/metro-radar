@@ -648,7 +648,7 @@ useEffect(() => {
         <div className="text-center mb-8">
           <IconBox src="https://metrosquare.com.br/wp-content/uploads/2026/03/map-pin-line-1.svg" />
   
-          <h1 className="text-[24px] font-medium text-[#1E293B]">
+          <h1 className="text-[26px] font-semibold tracking-tight">
             Localização
           </h1>
         </div>
@@ -687,24 +687,29 @@ useEffect(() => {
             ))}
           </div>
   
-          {(data.bairros || []).length > 0 && (
-            <>
-              <p className="text-[14px] text-[#64748B]">
-                Selecionados
-              </p>
-              <p className="text-[13px] text-gray-400">
-                Nenhum bairro selecionado
-              </p>
-  
-              <div className="flex flex-wrap gap-3 mt-2">
-                {(data.bairros || []).map((b) => (
-                  <div key={b} className="bg-gray-200 px-3 py-1 rounded text-sm">
-                    {b} ✕
-                  </div>
-                ))}
-              </div>
-            </>
-          )}
+          <>
+  <p className="text-[14px] text-[#64748B]">
+    Selecionados
+  </p>
+
+  {(data.bairros || []).length === 0 ? (
+    <p className="text-[13px] text-gray-400">
+      Nenhum bairro selecionado
+    </p>
+  ) : (
+    <div className="flex flex-wrap gap-3 mt-2">
+      {(data.bairros || []).map((b) => (
+        <div
+          key={b}
+          className="flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-full text-sm text-gray-700"
+        >
+          {b}
+          ✕
+        </div>
+      ))}
+    </div>
+  )}
+</>
   
           <div className="flex gap-3">
             <button
@@ -739,7 +744,7 @@ useEffect(() => {
           Tipo de Imóvel
         </h1>
   
-        <div className="bg-white rounded-3xl p-7 shadow-sm border border-gray-100 space-y-6">
+        <div className="bg-white rounded-3xl p-7 shadow-sm border border-gray-100 space-y-7">
   
           <p className="text-[14px] text-[#64748B]">Tipo de imóvel:</p>
   
