@@ -8,6 +8,8 @@ import IconBox from "@/components/IconBox"
 import { useAnalysis } from "@/context/AnalysisContext"
 import toast, { Toaster } from "react-hot-toast"
 import { ExternalLink, FileText, BookOpen, Info } from "lucide-react"
+import Lottie from "lottie-react"
+import radarAnimation from "@/lotties/animabot.json"
 
 export default function NovaAnalise() {
   const [mensagemIndex, setMensagemIndex] = useState(0)
@@ -842,25 +844,12 @@ useEffect(() => {
     return (
       <div className="flex flex-col items-center justify-center text-center py-16">
   
-        {/* RADAR */}
-        <div className="relative w-40 h-40 mb-10">
-  
-          <div className="absolute inset-0 rounded-full border border-gray-200" />
-          <div className="absolute inset-6 rounded-full border border-gray-100" />
-  
-          <div className="absolute w-2 h-2 bg-[#0f172a] rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
-  
-          <div className="absolute inset-0 rounded-full overflow-hidden">
-            <div className="w-full h-full origin-center animate-radar">
-              <div className="w-1/2 h-full bg-gradient-to-r from-[#0f172a]/20 to-transparent" />
-            </div>
-          </div>
-  
-          <div className="absolute top-8 left-10 w-2 h-2 bg-[#0f172a] rounded-full animate-pulse" />
-          <div className="absolute bottom-10 right-10 w-2 h-2 bg-[#0f172a] rounded-full animate-pulse" />
-          <div className="absolute top-12 right-6 w-2 h-2 bg-[#0f172a] rounded-full animate-pulse" />
-  
-        </div>
+        {/* RADAR (AGORA LOTTIE) */}
+        <Lottie
+          animationData={radarAnimation}
+          loop
+          className="w-40 h-40 mb-6"
+        />
   
         <h1 className="text-[20px] font-semibold text-[#0f172a] mb-2">
           Analisando mercado
