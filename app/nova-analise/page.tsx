@@ -611,7 +611,9 @@ useEffect(() => {
               onClick={() => {
                 if (!user?.id) return
               
-                window.top.location.href = `/historico?user_id=${user.id}`
+                if (window.top) {
+                  window.top.location.href = `/historico?user_id=${user.id}`
+                }
               }}
               className="w-1/2 bg-gray-100 py-3 rounded-lg text-[14px] font-medium"
             >
