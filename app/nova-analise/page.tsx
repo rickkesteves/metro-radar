@@ -1144,13 +1144,37 @@ const temMelhorFora =
 </a>
 
 {/* TABELAS */}
-<button className="flex items-center justify-center gap-2 border border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-700 text-sm py-2 rounded-xl transition">
+<button
+  onClick={() => {
+    if (item.tabela_url) {
+      window.open(item.tabela_url, "_blank")
+    }
+  }}
+  disabled={!item.tabela_url}
+  className={`flex items-center justify-center gap-2 text-sm py-2 rounded-xl transition
+    ${item.tabela_url
+      ? "border border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-700 hover:scale-[1.03] active:scale-[0.97]"
+      : "bg-gray-100 text-gray-400 cursor-not-allowed"}
+  `}
+>
   <FileText size={16} />
   Tabelas
 </button>
 
 {/* BOOK */}
-<button className="flex items-center justify-center gap-2 border border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-700 text-sm py-2 rounded-xl transition">
+<button
+  onClick={() => {
+    if (item.book_url) {
+      window.open(item.book_url, "_blank")
+    }
+  }}
+  disabled={!item.book_url}
+  className={`flex items-center justify-center gap-2 text-sm py-2 rounded-xl transition
+    ${item.book_url
+      ? "border border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-700 hover:scale-[1.03] active:scale-[0.97]"
+      : "bg-gray-100 text-gray-400 cursor-not-allowed"}
+  `}
+>
   <BookOpen size={16} />
   Book
 </button>
