@@ -1332,9 +1332,7 @@ const temMelhorFora =
 </p>
 
 </div>
-                  <p className="text-sm text-gray-500">
-                    {item.bairro}
-                  </p>
+                  
                 </div>
 
                 <div className="bg-[#0f172a]/90 text-white text-xs px-3 py-1.5 rounded-full font-medium shadow-sm">
