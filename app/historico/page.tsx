@@ -110,38 +110,43 @@ export default function Historico() {
 
       {/* MELHOR OPÇÃO */}
       {top && (
-        <div className="bg-white border border-gray-200 shadow-sm rounded-xl overflow-hidden mb-4">
-  
-        {/* IMAGEM */}
-        <div className="relative">
+  <div className="bg-white border border-gray-200 shadow-sm rounded-xl overflow-hidden mb-4">
 
-  <img
-    src={top.imagem || "https://via.placeholder.com/400x200"}
-    className="w-full h-32 object-cover transition duration-300 hover:scale-[1.03]"
-  />
+    {/* IMAGEM + CLICK */}
+    <div
+      className="relative cursor-pointer active:scale-[0.98]"
+      onClick={() => router.push(`/historico/${item.id}`)}
+    >
 
-  {/* SCORE */}
-  <div className="absolute top-2 right-2 bg-[#0f172a] text-white text-xs px-3 py-1.5 rounded-full font-semibold shadow-md">
-    ⭐ {top?.score || 0}%
-  </div>
+      <img
+        src={top.imagem || "https://via.placeholder.com/400x200"}
+        className="w-full h-36 object-cover transition duration-300 hover:scale-[1.03]"
+      />
 
-</div>
-        <div className="p-3">
-          <p className="text-xs text-gray-500 mb-1">
-            Melhor opção para você
-          </p>
-      
-          <div className="font-semibold text-[#0f172a]">
-            {top.nome}
-          </div>
-      
-          <div className="text-sm text-gray-500">
-            {top.bairro}
-          </div>
-        </div>
-      
+      {/* SCORE */}
+      <div className="absolute top-2 right-2 bg-[#0f172a] text-white text-xs px-3 py-1.5 rounded-full font-semibold shadow-md">
+        ⭐ {top?.score || 0}%
       </div>
-      )}
+
+    </div>
+
+    {/* TEXTO */}
+    <div className="p-3">
+      <p className="text-xs text-gray-500 mb-1">
+        Melhor opção para você
+      </p>
+
+      <div className="font-semibold text-[#0f172a]">
+        {top.nome}
+      </div>
+
+      <div className="text-sm text-gray-500">
+        {top.bairro}
+      </div>
+    </div>
+
+  </div>
+)}
 
       {/* INFO */}
       <div className="text-sm text-gray-500 space-y-1">
