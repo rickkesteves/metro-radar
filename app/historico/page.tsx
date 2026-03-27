@@ -69,7 +69,7 @@ export default function Historico() {
         </p>
       )}
 
-<div className="grid md:grid-cols-2 gap-6">
+<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
 {analises.map((item) => {
 
@@ -78,7 +78,7 @@ export default function Historico() {
   return (
     <div
       key={item.id}
-      className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition"
+      className="bg-white border border-gray-100 rounded-3xl p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
     >
 
       {/* HEADER */}
@@ -91,24 +91,27 @@ export default function Historico() {
             {item.tipo || "-"}
           </p>
         </div>
+        <p className="text-xs text-gray-400">
+  Baseado no seu perfil salvo
+</p>
 
         {/* SCORE */}
-        <div className="bg-gray-900 text-white text-xs px-3 py-1 rounded-full">
+        <div className="flex items-center gap-1 bg-[#0f172a] text-white text-xs px-3 py-1.5 rounded-full font-semibold shadow-sm">
           {top?.score || 0}%
         </div>
       </div>
 
       {/* MELHOR OPÇÃO */}
       {top && (
-        <div className="bg-gray-50 border border-gray-100 rounded-xl p-3 mb-4">
+        <div className="bg-[#0f172a]/5 border border-[#0f172a]/10 rounded-xl p-3 mb-4">
 
           <p className="text-xs text-gray-500 mb-1">
-            Melhor opção encontrada
+            Melhor opção para você
           </p>
 
-          <div className="font-medium text-[#0f172a]">
-            {top.nome}
-          </div>
+        <div className="font-semibold text-[#0f172a]">
+          {top.nome}
+        </div>
 
           <div className="text-sm text-gray-500">
             {top.bairro}
@@ -132,21 +135,21 @@ export default function Historico() {
       </div>
 
       {/* AÇÕES */}
-      <div className="flex gap-3 mt-4">
+      <div className="mt-4 flex flex-col gap-2">
 
-        <button
-          onClick={() => router.push(`/historico/${item.id}`)}
-          className="flex-1 bg-gray-900 text-white text-sm py-2 rounded-lg hover:bg-gray-800 transition"
-        >
-          Ver análise
-        </button>
+      <button
+  onClick={() => router.push(`/historico/${item.id}`)}
+  className="w-full bg-[#0f172a] text-white py-2.5 rounded-xl text-sm font-semibold hover:scale-[1.02] active:scale-[0.97] transition-all"
+>
+  Rever análise
+</button>
 
-        <button
-          onClick={() => excluirAnalise(item.id)}
-          className="text-sm px-3 py-2 border border-gray-200 rounded-lg hover:bg-gray-100 transition"
-        >
-          Excluir
-        </button>
+<button
+  onClick={() => excluirAnalise(item.id)}
+  className="w-full border border-gray-200 py-2 rounded-xl text-sm text-gray-600 hover:bg-gray-50 transition"
+>
+  Excluir
+</button>
 
       </div>
 
