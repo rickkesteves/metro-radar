@@ -10,6 +10,7 @@ import toast, { Toaster } from "react-hot-toast"
 import { ExternalLink, FileText, BookOpen, Info } from "lucide-react"
 import Lottie from "lottie-react"
 import radarAnimation from "@/lotties/animabot.json"
+import { useSearchParams } from "next/navigation"
 
 
 export default function NovaAnalise() {
@@ -30,6 +31,8 @@ useEffect(() => {
 
   const params = new URL(window.location.href).searchParams
   const id = params.get("user_id")
+  const searchParams = useSearchParams()
+  const analiseId = searchParams.get("id")
 
   console.log("USER ID FINAL:", id)
 
@@ -57,7 +60,6 @@ useEffect(() => {
   const [empreendimentosSalvos, setEmpreendimentosSalvos] = useState<any[]>([])
 
   const router = useRouter()
-  const params = useParams()
   const analiseId = params?.id
   const { data, setData, reset } = useAnalysis()
 
