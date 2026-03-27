@@ -166,11 +166,9 @@ useEffect(() => {
     
     .img {
       width: 100%;
-      height: 180px;
       object-fit: cover;
-      display: block;
-      margin: 0 auto;
-      border-radius: 12px;
+      aspect-ratio: 4 / 3;
+      border-bottom: 1px solid #e5e7eb;
     }
 
     .content {
