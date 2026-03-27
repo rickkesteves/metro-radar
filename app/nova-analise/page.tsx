@@ -975,7 +975,6 @@ const temMelhorFora =
         )}
 
         <div
-          <div
   className={`bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-md hover:scale-[1.01] transition-all duration-300 overflow-hidden
           ${i === 0 ? "border border-green-200 shadow-[0_0_0_1px_rgba(34,197,94,0.15)]" : "border-gray-200 hover:shadow-md"}
           `}
