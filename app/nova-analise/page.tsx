@@ -117,7 +117,7 @@ useEffect(() => {
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-      padding: 32px;
+      padding: 24px 0;
       background: #ffffff;
       color: #0f172a;
     }
@@ -145,10 +145,9 @@ useEffect(() => {
     }
 
     .card {
-      background: white;
+      width: 100%;
       border-radius: 16px;
       overflow: hidden;
-      margin-bottom: 16px;
       border: 1px solid #e5e7eb;
     }
 
@@ -159,10 +158,15 @@ useEffect(() => {
     .overlay {
       background: linear-gradient(to bottom, rgba(0,0,0,0.3), transparent);
     }
+
+    .container {
+      max-width: 420px; /* 🔥 chave do problema */
+      margin: 0 auto;
+    }
     
     .img {
-      width: 70%;
-      height: 200px;
+      width: 100%;
+      height: 180px;
       object-fit: cover;
       display: block;
       margin: 0 auto;
