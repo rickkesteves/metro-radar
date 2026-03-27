@@ -113,14 +113,19 @@ export default function Historico() {
         <div className="bg-white border border-gray-200 shadow-sm rounded-xl overflow-hidden mb-4">
   
         {/* IMAGEM */}
-        <img
-          src={top.imagem || "https://via.placeholder.com/400x200"}
-          className="w-full h-32 object-cover transition duration-300 hover:scale-[1.03]"
-        />
-      {/* SCORE OVERLAY */}
+        <div className="relative">
+
+  <img
+    src={top.imagem || "https://via.placeholder.com/400x200"}
+    className="w-full h-32 object-cover transition duration-300 hover:scale-[1.03]"
+  />
+
+  {/* SCORE */}
   <div className="absolute top-2 right-2 bg-[#0f172a] text-white text-xs px-3 py-1.5 rounded-full font-semibold shadow-md">
     ⭐ {top?.score || 0}%
   </div>
+
+</div>
         <div className="p-3">
           <p className="text-xs text-gray-500 mb-1">
             Melhor opção para você
