@@ -1206,13 +1206,18 @@ const temMelhorFora =
 
 {/* DETALHES */}
 <button
-  onClick={() => {
-    if (item.url_wp) {
-      window.open(item.url_wp, "_blank")
+  disabled={!item.url_wp}
+  onClick={() => item.url_wp && window.open(item.url_wp, "_blank")}
+  className={`w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold transition-all duration-200 shadow-sm
+    ${
+      item.url_wp
+        ? "bg-[#0f172a] text-white hover:scale-[1.02] active:scale-[0.97]"
+        : "bg-gray-200 text-gray-400 cursor-not-allowed"
     }
-  }}
-  className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold bg-[#0f172a] text-white hover:scale-[1.02] active:scale-[0.97] transition-all duration-200 shadow-sm"
+  `}
 >
+  className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold bg-[#0f172a] text-white hover:scale-[1.02] active:scale-[0.97] transition-all duration-200 shadow-sm"
+
   <Info size={16} />
   Detalhes
 </button>
@@ -1221,26 +1226,36 @@ const temMelhorFora =
 
   {/* TABELA */}
   <button
-    onClick={() => {
-      if (item.tabela_url) {
-        window.open(item.tabela_url, "_blank")
-      }
-    }}
+  disabled={!item.tabela_url}
+  onClick={() => item.tabela_url && window.open(item.tabela_url, "_blank")}
+  className={`flex-1 flex items-center justify-center gap-2 py-2 rounded-xl text-sm transition
+    ${
+      item.tabela_url
+        ? "border border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-700 hover:scale-[1.02]"
+        : "bg-gray-100 text-gray-400 cursor-not-allowed"
+    }
+  `}
+>
     className="flex-1 flex items-center justify-center gap-2 py-2 rounded-xl text-sm border border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-700 transition hover:scale-[1.02]"
-  >
+  
     <FileText size={16} />
     Tabela
   </button>
 
   {/* BOOK */}
   <button
-    onClick={() => {
-      if (item.book_url) {
-        window.open(item.book_url, "_blank")
-      }
-    }}
+  disabled={!item.book_url}
+  onClick={() => item.book_url && window.open(item.book_url, "_blank")}
+  className={`flex-1 flex items-center justify-center gap-2 py-2 rounded-xl text-sm transition
+    ${
+      item.book_url
+        ? "border border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-700 hover:scale-[1.02]"
+        : "bg-gray-100 text-gray-400 cursor-not-allowed"
+    }
+  `}
+>
     className="flex-1 flex items-center justify-center gap-2 py-2 rounded-xl text-sm border border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-700 transition hover:scale-[1.02]"
-  >
+  
     <BookOpen size={16} />
     Book
   </button>
