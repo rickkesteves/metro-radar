@@ -1101,7 +1101,7 @@ const temMelhorFora =
 </div> {/* fecha p-5 */}
 
 {/* BOTÃO */}
-<div className="grid grid-cols-2 gap-3 mt-5 pt-3 border-t border-gray-100">
+<div className="grid grid-cols-2 gap-3 mt-5 pt-4 border-t border-gray-100">
 
   {/* SIMULAÇÃO */}
   <a
