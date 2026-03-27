@@ -145,10 +145,13 @@ useEffect(() => {
     }
 
     .card {
-      width: 100%;
+      width: 50%; /* 🔥 EXATAMENTE O QUE VOCÊ PEDIU */
+      max-width: 500px; /* evita ficar gigante em tela grande */
+      background: white;
       border-radius: 16px;
       overflow: hidden;
       border: 1px solid #e5e7eb;
+      margin-bottom: 24px;
     }
 
     .top {
@@ -160,14 +163,16 @@ useEffect(() => {
     }
 
     .container {
-      max-width: 420px; /* 🔥 chave do problema */
-      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* 🔥 centraliza tudo */
     }
     
     .img {
       width: 100%;
+      height: 180px;
       object-fit: cover;
-      aspect-ratio: 4 / 3;
       border-bottom: 1px solid #e5e7eb;
     }
 
