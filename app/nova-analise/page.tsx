@@ -1131,66 +1131,71 @@ const temMelhorFora =
         </div>
 
         </div> {/* fecha INFOS */}
-        <div className="grid grid-cols-2 gap-3 mt-6 pt-4 border-t border-gray-100 !mt-6 !pt-4">
+        <div className="flex flex-col gap-2 mt-6 pt-4 border-t border-gray-100 !mt-6 !pt-4">
 
 {/* SIMULAÇÃO */}
 <a
   href="https://www8.caixa.gov.br/siopiinternet-web/simulaOperacaoInternet.do?method=inicializarCasoUso"
   target="_blank"
-  className="flex items-center justify-center gap-2 bg-[#0f172a] text-white text-sm py-2 rounded-xl hover:opacity-90 transition"
+  className="text-xs text-gray-400 hover:text-gray-600 transition text-center mt-1"
 >
-  <ExternalLink size={16} />
-  Simulação
+  Simulação →
 </a>
 
 {/* TABELAS */}
 <button
   onClick={() => {
     if (item.tabela_url) {
+      toast.success("Abrindo tabela...")
       window.open(item.tabela_url, "_blank")
     }
   }}
   disabled={!item.tabela_url}
-  className={`flex items-center justify-center gap-2 text-sm py-2 rounded-xl transition
+  className={`w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold transition-all duration-200
     ${item.tabela_url
-      ? "border border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-700 hover:scale-[1.03] active:scale-[0.97]"
-      : "bg-gray-100 text-gray-400 cursor-not-allowed"}
+      ? "bg-[#0f172a] text-white hover:scale-[1.02] active:scale-[0.97] shadow-sm"
+      : "bg-gray-200 text-gray-400 cursor-not-allowed"}
   `}
 >
   <FileText size={16} />
-  Tabelas
+  Tabela
 </button>
 
-{/* BOOK */}
-<button
-  onClick={() => {
-    if (item.book_url) {
-      window.open(item.book_url, "_blank")
-    }
-  }}
-  disabled={!item.book_url}
-  className={`flex items-center justify-center gap-2 text-sm py-2 rounded-xl transition
-    ${item.book_url
-      ? "border border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-700 hover:scale-[1.03] active:scale-[0.97]"
-      : "bg-gray-100 text-gray-400 cursor-not-allowed"}
-  `}
->
-  <BookOpen size={16} />
-  Book
-</button>
+<div className="flex gap-2">
 
-{/* DETALHES */}
-<button
-  onClick={() => {
-    if (item.url_wp) {
-      window.open(item.url_wp, "_blank")
-    }
-  }}
-  className="flex items-center justify-center gap-2 border border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-700 text-sm py-2 rounded-xl transition hover:scale-[1.03] active:scale-[0.97]"
->
-  <Info size={16} />
-  Detalhes
-</button>
+  {/* BOOK */}
+  <button
+    onClick={() => {
+      if (item.book_url) {
+        toast.success("Abrindo book...")
+        window.open(item.book_url, "_blank")
+      }
+    }}
+    disabled={!item.book_url}
+    className={`flex-1 flex items-center justify-center gap-2 py-2 rounded-xl text-sm transition
+      ${item.book_url
+        ? "border border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-700 hover:scale-[1.02]"
+        : "bg-gray-100 text-gray-400 cursor-not-allowed"}
+    `}
+  >
+    <BookOpen size={16} />
+    Book
+  </button>
+
+  {/* DETALHES */}
+  <button
+    onClick={() => {
+      if (item.url_wp) {
+        window.open(item.url_wp, "_blank")
+      }
+    }}
+    className="flex-1 flex items-center justify-center gap-2 py-2 rounded-xl text-sm border border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-700 transition hover:scale-[1.02]"
+  >
+    <Info size={16} />
+    Detalhes
+  </button>
+
+</div>
 
 </div>
 </div> {/* fecha p-5 */}
