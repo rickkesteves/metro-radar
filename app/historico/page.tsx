@@ -57,7 +57,7 @@ export default function Historico() {
 
 
   return (
-    <div className="max-w-2xl mx-auto p-6">
+    <div className="max-w-2xl mx-auto rounded-3xl p-6">
 
       <h1 className="text-xl font-semibold mb-6">
         Histórico
@@ -88,28 +88,31 @@ export default function Historico() {
   </p>
 
       {/* HEADER */}
-      <div className="flex justify-between items-start mb-3">
-        <div>
-          <h2 className="font-semibold text-[#0f172a] text-lg">
-            {item.nome || "Análise"}
-          </h2>
-          <p className="text-sm text-gray-500">
-            {item.tipo || "-"}
-          </p>
-        </div>
-        <p className="text-xs text-gray-400">
-  Baseado no seu perfil salvo
-</p>
+      <div className="flex justify-between items-start mb-2">
 
-        {/* SCORE */}
-        <div className="flex items-center gap-1 bg-[#0f172a] text-white text-xs px-3 py-1.5 rounded-full font-semibold shadow-sm">
-          {top?.score || 0}%
-        </div>
-      </div>
+  <div>
+    <h2 className="font-semibold text-[#0f172a] text-lg leading-tight">
+      {item.nome || "Análise"}
+    </h2>
+
+    <p className="inline-block mt-1 text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-full">
+    {item.tipo || "-"}
+  </p>
+
+  <p className="text-xs text-gray-400 mt-1">
+    Baseado no seu perfil salvo
+  </p>
+</div>
+
+  <div className="flex items-center gap-1 bg-[#0f172a] text-white text-xs px-3 py-1.5 rounded-full font-semibold shadow-sm">
+    ⭐ {top?.score || 0}%
+  </div>
+
+</div>
 
       {/* MELHOR OPÇÃO */}
       {top && (
-        <div className="bg-[#0f172a]/5 border border-[#0f172a]/10 rounded-xl p-3 mb-4">
+        <div className="bg-white border border-gray-200 shadow-sm rounded-xl p-3 mb-4">
 
           <p className="text-xs text-gray-500 mb-1">
             Melhor opção para você
@@ -132,12 +135,7 @@ export default function Historico() {
           Bairros: {item.bairros?.join(", ") || "-"}
         </div>
 
-        <div>
-          Criado em:{" "}
-          {item.created_at
-            ? new Date(item.created_at).toLocaleDateString()
-            : "-"}
-        </div>
+        
       </div>
 
       {/* AÇÕES */}
@@ -145,9 +143,9 @@ export default function Historico() {
 
       <button
   onClick={() => router.push(`/historico/${item.id}`)}
-  className="w-full bg-[#0f172a] text-white py-2.5 rounded-xl text-sm font-semibold hover:scale-[1.02] active:scale-[0.97] transition-all"
+  className="w-full bg-[#0f172a] text-white py-3 rounded-xl text-sm font-semibold hover:scale-[1.02] active:scale-[0.97] hover:shadow-md transition-all"
 >
-  Rever análise
+  Abrir análise completa
 </button>
 
 <button
