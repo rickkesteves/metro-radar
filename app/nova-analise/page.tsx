@@ -1096,11 +1096,12 @@ const temMelhorFora =
           </div>
         </div>
 
-      </div>
-     </div>
+        </div> {/* fecha INFOS */}
 
-       {/* BOTÃO */}
-       <div className="grid grid-cols-2 gap-3 mt-3">
+</div> {/* fecha p-5 */}
+
+{/* BOTÃO */}
+<div className="grid grid-cols-2 gap-3 mt-3">
 
   {/* SIMULAÇÃO */}
   <a
@@ -1130,10 +1131,11 @@ const temMelhorFora =
     Detalhes
   </button>
 
-</div>
+  </div> {/* fecha BOTÕES */}
 
-    </div> 
-  </div> 
+</div> {/* fecha card branco */}
+
+</div> {/* fecha wrapper do item */}
 
 )
 })}
