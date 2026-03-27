@@ -988,7 +988,7 @@ const temMelhorFora =
       className="h-44 w-full object-cover"
     />
 
-    <div className="p-5 space-y-3">
+    <div className="p-5 space-y-3 pb-6">
 
       {/* HEADER */}
       <div className="flex justify-between items-start">
