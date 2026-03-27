@@ -57,7 +57,7 @@ export default function Historico() {
 
 
   return (
-    <div className="max-w-6xl mx-auto p-6">
+    <div className="max-w-7xl mx-auto p-6">
 
       <h1 className="text-xl font-semibold mb-6">
         Histórico
@@ -69,7 +69,7 @@ export default function Historico() {
         </p>
       )}
 
-<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
 
 {analises.map((item) => {
 
@@ -78,7 +78,7 @@ export default function Historico() {
   return (
     <div
       key={item.id}
-      className="bg-white border border-gray-100 rounded-3xl p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
+      className="bg-white border min-h-[260px] border-gray-100 rounded-3xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
     >
 
       {/* HEADER */}
