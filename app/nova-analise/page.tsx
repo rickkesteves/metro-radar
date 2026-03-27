@@ -9,7 +9,7 @@ import { useAnalysis } from "@/context/AnalysisContext"
 import toast, { Toaster } from "react-hot-toast"
 import { ExternalLink, FileText, BookOpen, Info } from "lucide-react"
 import Lottie from "lottie-react"
-import radarAnimation from "@/lotties/loading.json"
+import radarAnimation from "@/lotties/animabot.json"
 
 export default function NovaAnalise() {
   const [mensagemIndex, setMensagemIndex] = useState(0)
