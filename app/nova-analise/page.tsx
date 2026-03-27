@@ -1189,7 +1189,7 @@ const temMelhorFora =
 
 </div>
 
-</div>
+
 </div> {/* fecha p-5 */}
 
 {/* BOTÃO */}
