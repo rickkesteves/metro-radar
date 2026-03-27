@@ -734,9 +734,9 @@ useEffect(() => {
      {(data.bairros || []).map((b) => (
   <div
     key={b}
-    className="flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-full text-sm text-gray-700"
+    className="relative bg-gray-100 px-3 py-1.5 rounded-full text-sm text-gray-700"
   >
-    <span>{b}</span>
+    {b}
 
     <button
       onClick={() =>
@@ -744,7 +744,7 @@ useEffect(() => {
           bairros: (data.bairros || []).filter((item) => item !== b),
         })
       }
-      className="flex items-center justify-center w-5 h-5 rounded-full hover:bg-gray-200 transition hover:scale-110 active:scale-95"
+      className="absolute -top-1 -right-1 text-[10px] text-[#D97706] hover:scale-110 active:scale-90 transition"
     >
       ✕
     </button>
