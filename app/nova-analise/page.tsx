@@ -13,7 +13,17 @@ import radarAnimation from "@/lotties/loading.json"
 
 export default function NovaAnalise() {
   const [mensagemIndex, setMensagemIndex] = useState(0)
+  const [ready, setReady] = useState(false)
   const [user, setUser] = useState<any>(null)
+  useEffect(() => {
+    if (!step1Disabled) {
+      setReady(true)
+  
+      setTimeout(() => {
+        setReady(false)
+      }, 2000)
+    }
+  }, [step1Disabled])
   useEffect(() => {
     const interval = setInterval(() => {
       setMensagemIndex((prev) => (prev < 4 ? prev + 1 : prev))
@@ -618,6 +628,11 @@ useEffect(() => {
           {/* BOTÕES */}
           <div className="mt-6">
             <div className="bg-white/80 backdrop-blur-md border border-gray-200 rounded-2xl p-2 shadow-lg">
+            {ready && (
+  <div className="mt-3 text-center text-xs text-green-600 animate-fade-in">
+    ✨ Análise pronta — pode continuar
+  </div>
+)}
               <div className="grid grid-cols-2 gap-3"></div>
             <button
               onClick={() => {
@@ -635,11 +650,12 @@ useEffect(() => {
             <button
               disabled={step1Disabled}
               onClick={() => setStep(2)}
-              className={`w-full py-3 rounded-xl text-[15px] font-semibold transition ${
+              className={`w-full py-3 rounded-xl text-[15px] font-semibold transition-all duration-300 ${
                 step1Disabled
                   ? "bg-gray-200 text-gray-400"
-                  : "bg-[#0f172a] text-white shadow-md hover:scale-[1.02] active:scale-[0.98]"
+                  : "bg-[#0f172a] text-white shadow-md scale-[1.02] animate-[pulse_0.6s_ease]"
               }`}
+              
             >
               Continuar
             </button>
