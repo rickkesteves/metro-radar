@@ -6,6 +6,7 @@ type Props = {
   tipo: string
   rendaMinima: number
   entradaMinima: number
+  url_wp: string
   cliente: {
     tipo: string
     bairros: string[]
@@ -22,6 +23,7 @@ export default function PropertyCard({
   tipo,
   rendaMinima,
   entradaMinima,
+  url_wp,
   cliente
 }: Props) {
 
@@ -94,9 +96,16 @@ export default function PropertyCard({
 
       </div>
 
-      <button className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg text-sm">
-        Ver análise completa
-      </button>
+      <button
+  onClick={() => {
+    if (url_wp) {
+      window.open(url_wp, "_blank")
+    }
+  }}
+  className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg text-sm transition-all duration-200 hover:scale-[1.02] active:scale-[0.97]"
+>
+  Ver detalhes
+</button>
     </div>
   )
 }
