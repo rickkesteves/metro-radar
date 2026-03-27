@@ -597,7 +597,7 @@ useEffect(() => {
               Urgência
             </label>
   
-            <div className="mt-6 pt-4 border-t border-gray-100">
+            <div className="mt-2">
               <div className="grid grid-cols-2 gap-3 mb-4">
               {["12", "24", "36", "none"].map((u) => (
                 <button
@@ -616,7 +616,7 @@ useEffect(() => {
           </div>
   
           {/* BOTÕES */}
-          <div className="grid grid-cols-2 gap-3 mt-5 pt-4 border-t border-gray-100">
+          <div className="grid grid-cols-2 gap-3 mt-6">
             <button
               onClick={() => {
                 if (!user?.id) return
@@ -625,7 +625,7 @@ useEffect(() => {
                   window.top.location.href = `/historico?user_id=${user.id}`
                 }
               }}
-              className="w-1/2 bg-gray-100 py-3 rounded-lg text-[14px] font-medium"
+              className="bg-gray-100 py-3 rounded-lg text-[14px] font-medium"
             >
               Ver Histórico
             </button>
@@ -633,7 +633,7 @@ useEffect(() => {
             <button
               disabled={step1Disabled}
               onClick={() => setStep(2)}
-              className={`w-1/2 py-3 rounded-xl text-[15px] font-semibold transition ${
+              className={`py-3 rounded-xl text-[15px] font-semibold transition ${
                 step1Disabled
                   ? "bg-gray-200 text-gray-400"
                   : "bg-[#0f172a] text-white hover:scale-[1.02] active:scale-[0.98]"
