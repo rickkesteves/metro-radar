@@ -144,15 +144,48 @@ useEffect(() => {
           margin-bottom: 24px;
         }
   
-        .card {
-          display: flex;
-          gap: 16px;
-          background: white;
-          border: 1px solid #e2e8f0;
-          border-radius: 16px;
-          overflow: hidden;
-          margin-bottom: 20px;
-        }
+      .card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  border: 1px solid #e5e7eb;
+}
+
+.card-top {
+  border: 2px solid #22c55e;
+}
+
+.img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.content {
+  padding: 16px;
+}
+
+.badge {
+  display: inline-block;
+  background: #0f172a;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  margin-top: 6px;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.bairro {
+  color: #6b7280;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
   
         .img {
           width: 160px;
@@ -192,68 +225,75 @@ useEffect(() => {
     <body>
   
       <!-- HEADER -->
-      <div class="header">
-        <img class="logo" src="https://metrosquare.com.br/wp-content/uploads/2026/03/radar-1.png" />
-        <h1>Metro Radar</h1>
+     <div style="margin-bottom:24px;">
+  <h1 style="font-size:22px;font-weight:700;">
+    Seu ranking personalizado
+  </h1>
+
+  <p style="color:#6b7280;font-size:14px;">
+    Baseado no perfil financeiro e preferências
+  </p>
+
+  <p style="margin-top:8px;font-size:13px;color:#9ca3af;">
+    Cliente: ${data.nome || "Não informado"}
+  </p>
+</div>
+  
+${top3.map((item, i) => `
+
+  <div class="card ${i === 0 ? "card-top" : ""}">
+
+    <img 
+      class="img" 
+      src="${item.imagem || "https://via.placeholder.com/400"}"
+      onerror="this.src='https://via.placeholder.com/400'"
+    />
+
+    <div class="content">
+
+      <div class="title">${item.nome}</div>
+      <div class="bairro">${item.bairro}</div>
+
+      <div class="badge">${item.score || 0}%</div>
+
+      <div style="margin-top:10px; line-height:1.6;">
+
+        ${
+          data.bairros?.includes(item.bairro)
+            ? `<div class="ok">✔ Localização compatível</div>`
+            : `<div class="warn">⚠ Localização diferente</div>`
+        }
+
+        ${
+          String(data.tipo || "").toLowerCase().trim() ===
+          String(item.tipo || "").toLowerCase().trim()
+            ? `<div class="ok">✔ Tipo adequado</div>`
+            : `<div class="warn">⚠ Tipo diferente</div>`
+        }
+
+        ${
+          item.debug?.renda?.score >= 80
+            ? `<div class="ok">✔ Renda adequada</div>`
+            : item.debug?.renda?.score >= 50
+            ? `<div class="warn">⚠ Renda parcialmente adequada</div>`
+            : `<div class="bad">❌ Renda abaixo do ideal</div>`
+        }
+
+        ${
+          item.debug?.entrada?.score >= 80
+            ? `<div class="ok">✔ Entrada adequada</div>`
+            : item.debug?.entrada?.score >= 50
+            ? `<div class="warn">⚠ Entrada parcialmente adequada</div>`
+            : `<div class="bad">❌ Entrada abaixo do ideal</div>`
+        }
+
       </div>
-  
-      <div class="cliente">
-        Cliente: ${data.nome || "Não informado"}
-      </div>
-  
-      <h2>Seu ranking personalizado</h2>
-  
-      ${top3.map(item => `
-  
-        <div class="card">
-  
-          <img 
-            class="img" 
-            src="${item.imagem || "https://via.placeholder.com/300"}"
-            onerror="this.src='https://via.placeholder.com/300'"
-          />
-  
-          <div class="content">
-  
-            <div class="title">${item.nome}</div>
-            <div class="bairro">${item.bairro}</div>
-  
-            <div class="score">Score: ${item.score || 0}%</div>
-  
-            ${
-              data.bairros?.includes(item.bairro)
-                ? `<div class="ok">✔ Localização compatível</div>`
-                : `<div class="warn">⚠ Localização diferente</div>`
-            }
-  
-            ${
-              String(data.tipo || "").toLowerCase().trim() ===
-              String(item.tipo || "").toLowerCase().trim()
-                ? `<div class="ok">✔ Tipo adequado</div>`
-                : `<div class="warn">⚠ Tipo diferente</div>`
-            }
-  
-            ${
-              item.debug?.renda?.score >= 80
-                ? `<div class="ok">✔ Renda adequada</div>`
-                : item.debug?.renda?.score >= 50
-                ? `<div class="warn">⚠ Renda parcialmente adequada</div>`
-                : `<div class="bad">❌ Renda abaixo do ideal</div>`
-            }
-  
-            ${
-              item.debug?.entrada?.score >= 80
-                ? `<div class="ok">✔ Entrada adequada</div>`
-                : item.debug?.entrada?.score >= 50
-                ? `<div class="warn">⚠ Entrada parcialmente adequada</div>`
-                : `<div class="bad">❌ Entrada abaixo do ideal</div>`
-            }
-  
-          </div>
-  
-        </div>
-  
-      `).join("")}
+
+    </div>
+
+  </div>
+
+`).join("")}
   
     </body>
     </html>
