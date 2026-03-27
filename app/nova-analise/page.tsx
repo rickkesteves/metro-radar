@@ -597,7 +597,8 @@ useEffect(() => {
               Urgência
             </label>
   
-            <div className="grid grid-cols-2 gap-3">
+            <div className="mt-6 pt-4 border-t border-gray-100">
+              <div className="grid grid-cols-2 gap-3">
               {["12", "24", "36", "none"].map((u) => (
                 <button
                   key={u}
@@ -644,6 +645,8 @@ useEffect(() => {
   
         </div>
       </div>
+      </div>
+
     )
   }
 
