@@ -1100,18 +1100,42 @@ const temMelhorFora =
 
   </div>
 
-  <div className="mb-6 text-sm text-gray-500 space-y-1">
-    {qtdBoas >= 10 && <p>🔥 Encontramos várias oportunidades ideais para você</p>}
-    {qtdBoas >= 5 && qtdBoas < 10 && <p>👍 Boas opções disponíveis</p>}
-    {qtdBoas > 0 && qtdBoas < 5 && <p>⚠ Apenas {qtdBoas} opções realmente compatíveis</p>}
-    {qtdBoas === 0 && <p>Com pequenos ajustes, você pode acessar boas oportunidades 👇</p>}
-  </div>
+  <div className="mb-6 text-sm">
 
-          {temMelhorFora && (
-            <div className="mb-6 p-4 bg-amber-50 border border-amber-200 rounded-xl text-sm text-yellow-800">
-              ⚠ Você escolheu {data.tipo}, mas existem imóveis com score maior em outros tipos. Vale a pena conferir 👇
-            </div>
-          )}
+  {temMelhorFora ? (
+
+    // 🔥 PRIORIDADE MÁXIMA
+    <div className="p-4 bg-amber-50 border border-amber-200 rounded-xl text-yellow-800">
+      ⚠ Você escolheu {data.tipo}, mas existem imóveis com score maior em outros tipos. Vale a pena conferir 👇
+    </div>
+
+  ) : qtdBoas >= 10 ? (
+
+    <p className="text-gray-500">
+      🔥 Encontramos várias oportunidades ideais para você
+    </p>
+
+  ) : qtdBoas >= 5 ? (
+
+    <p className="text-gray-500">
+      👍 Boas opções disponíveis
+    </p>
+
+  ) : qtdBoas > 0 ? (
+
+    <p className="text-gray-500">
+      ⚠ Apenas {qtdBoas} opções realmente compatíveis
+    </p>
+
+  ) : (
+
+    <p className="text-gray-500">
+      Com pequenos ajustes, você pode acessar boas oportunidades 👇
+    </p>
+
+  )}
+
+</div>
   {/* TOP 3 */}
 <div className="flex flex-col gap-4 mb-10">
   {top3.map((item, i) => {
