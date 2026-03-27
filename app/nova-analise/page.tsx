@@ -304,24 +304,40 @@ useEffect(() => {
   }, [step, loading])
 
 
-useEffect(() => {
-  if (!analiseId) return
-
-  async function buscar() {
-    const { data } = await supabase
-      .from("analises")
-      .select("*")
-      .eq("id", analiseId)
-      .single()
-
-    if (data?.resultado?.top3) {
-      setEmpreendimentosSalvos(data.resultado.top3)
+  useEffect(() => {
+    if (!analiseId) return
+  
+    async function buscar() {
+      const { data } = await supabase
+        .from("analises")
+        .select("*")
+        .eq("id", analiseId)
+        .single()
+  
+      if (!data) return
+  
+      // 🔥 1. carrega empreendimentos salvos
+      if (data.resultado?.top3) {
+        setEmpreendimentosSalvos(data.resultado.top3)
+      }
+  
+      // 🔥 2. carrega dados do cliente (ESSENCIAL)
+      setData({
+        nome: data.nome,
+        renda: data.renda,
+        entrada: data.entrada,
+        urgencia: data.urgencia,
+        bairros: data.bairros || [],
+        tipo: data.tipo,
+        preco: data.preco
+      })
+  
+      // 🔥 3. vai direto pro resultado
       setStep(5)
     }
-  }
-
-  buscar()
-}, [analiseId])
+  
+    buscar()
+  }, [analiseId])
 
   useEffect(() => {
     if (step !== 5) return
