@@ -618,7 +618,7 @@ useEffect(() => {
           {/* BOTÕES */}
           <div className="mt-6">
             <div className="bg-white/80 backdrop-blur-md border border-gray-200 rounded-2xl p-2 shadow-lg">
-              <div className="grid grid-cols-2 gap-2"></div>
+              <div className="grid grid-cols-2 gap-3"></div>
             <button
               onClick={() => {
                 if (!user?.id) return
@@ -627,7 +627,7 @@ useEffect(() => {
                   window.top.location.href = `/historico?user_id=${user.id}`
                 }
               }}
-              className="py-3 rounded-xl text-[14px] font-medium text-gray-600 hover:bg-gray-100 transition"
+              className="w-full py-3 rounded-xl text-[14px] font-medium text-gray-600 hover:bg-gray-100 transition"
             >
               Ver Histórico
             </button>
@@ -635,7 +635,7 @@ useEffect(() => {
             <button
               disabled={step1Disabled}
               onClick={() => setStep(2)}
-              className={`py-3 rounded-xl text-[15px] font-semibold transition ${
+              className={`w-full py-3 rounded-xl text-[15px] font-semibold transition ${
                 step1Disabled
                   ? "bg-gray-200 text-gray-400"
                   : "bg-[#0f172a] text-white shadow-md hover:scale-[1.02] active:scale-[0.98]"
