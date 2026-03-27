@@ -95,7 +95,11 @@ useEffect(() => {
     // 🔥 IGUAL AO STEP 5 (ESSENCIAL)
     const tipoSelecionado = data.tipo
   
-    const ordenados = [...empreendimentos].sort((a, b) => b.score - a.score)
+    const baseLista = empreendimentosSalvos.length
+      ? empreendimentosSalvos
+      : empreendimentos
+
+    const ordenados = [...baseLista].sort((a, b) => b.score - a.score)
   
     const mesmos = ordenados.filter(
       e => String(e.tipo || "").toLowerCase().trim() ===
