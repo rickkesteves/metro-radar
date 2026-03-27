@@ -928,7 +928,7 @@ const temMelhorFora =
 
   <div className="text-center mb-10">
 
-    <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-[#0f172a] flex items-center justify-center">
+  <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-white border border-gray-200 flex items-center justify-center shadow-sm">
       <img
         src="https://metrosquare.com.br/wp-content/uploads/2026/03/radar-1.svg"
         className="w-6 h-6 invert"
@@ -1101,7 +1101,7 @@ const temMelhorFora =
 </div> {/* fecha p-5 */}
 
 {/* BOTÃO */}
-<div className="grid grid-cols-2 gap-3 mt-3">
+<div className="grid grid-cols-2 gap-3 mt-5 pt-3 border-t border-gray-100">
 
   {/* SIMULAÇÃO */}
   <a
