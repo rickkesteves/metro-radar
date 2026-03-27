@@ -616,7 +616,9 @@ useEffect(() => {
           </div>
   
           {/* BOTÕES */}
-          <div className="grid grid-cols-2 gap-3 mt-6">
+          <div className="mt-6">
+            <div className="bg-white/80 backdrop-blur-md border border-gray-200 rounded-2xl p-2 shadow-lg">
+              <div className="grid grid-cols-2 gap-2"></div>
             <button
               onClick={() => {
                 if (!user?.id) return
@@ -625,7 +627,7 @@ useEffect(() => {
                   window.top.location.href = `/historico?user_id=${user.id}`
                 }
               }}
-              className="bg-gray-100 py-3 rounded-lg text-[14px] font-medium"
+              className="py-3 rounded-xl text-[14px] font-medium text-gray-600 hover:bg-gray-100 transition"
             >
               Ver Histórico
             </button>
@@ -636,7 +638,7 @@ useEffect(() => {
               className={`py-3 rounded-xl text-[15px] font-semibold transition ${
                 step1Disabled
                   ? "bg-gray-200 text-gray-400"
-                  : "bg-[#0f172a] text-white hover:scale-[1.02] active:scale-[0.98]"
+                  : "bg-[#0f172a] text-white shadow-md hover:scale-[1.02] active:scale-[0.98]"
               }`}
             >
               Continuar
@@ -646,6 +648,8 @@ useEffect(() => {
         </div>
       </div>
       </div>
+      </div>
+      
 
     )
   }
