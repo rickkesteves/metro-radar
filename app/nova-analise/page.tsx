@@ -571,6 +571,7 @@ useEffect(() => {
   
     const resultado = {
       top3: empreendimentos.slice(0, 3),
+      outros: empreendimentos.slice(3, 20) // 🔥 aqui está o segredo
     }
   
     console.log("SALVANDO USER:", finalUserId)
