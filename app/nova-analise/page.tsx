@@ -1379,29 +1379,29 @@ const temMelhorFora =
             {/* AÇÕES */}
             <div className="mt-3 flex gap-2">
 
-  {/* DETALHES (PRIMARY) */}
+  {/* DETALHES */}
   <button
     onClick={() => item.url_wp && window.open(item.url_wp, "_blank")}
     disabled={!item.url_wp}
-    className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-medium transition-all duration-200
+    className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-medium transition-all duration-200
       ${
         item.url_wp
-          ? "bg-[#0f172a] text-white hover:scale-[1.02] active:scale-[0.97] shadow-sm"
+          ? "bg-[#0f172a] text-white hover:scale-[1.02] active:scale-[0.97]"
           : "bg-gray-200 text-gray-400 cursor-not-allowed"
       }
     `}
   >
-    <Info size={14} />
+    <Info size={13} />
     Detalhes
   </button>
 
-  {/* SIMULAR (SECONDARY) */}
+  {/* SIMULAR */}
   <a
     href="https://www8.caixa.gov.br/siopiinternet-web/simulaOperacaoInternet.do?method=inicializarCasoUso"
     target="_blank"
-    className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-medium border border-gray-200 text-gray-600 hover:bg-gray-50 transition"
+    className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-medium border border-gray-200 text-gray-600 hover:bg-gray-50 transition"
   >
-    <ExternalLink size={14} />
+    <ExternalLink size={13} />
     Simular
   </a>
 
