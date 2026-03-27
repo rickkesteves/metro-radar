@@ -161,9 +161,12 @@ useEffect(() => {
     }
 
     .lista-outros {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+      width: 50%;
+      max-width: 600px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      justify-items: center;
     }
 
     .card {
@@ -235,15 +238,16 @@ useEffect(() => {
 
     .outro {
       padding: 12px;
-      border-radius: 16px;
+      border-radius: 14px;
       background: #f9fafb;
-      margin-bottom: 10px;
+      width: 100%;
       box-shadow: 0 2px 6px rgba(0,0,0,0.04);
     }
 
     .outro-title {
       font-weight: 600;
-      font-size: 15px;
+      font-size: 14px;
+      line-height: 1.2;
       color: #0f172a;
     }
 
