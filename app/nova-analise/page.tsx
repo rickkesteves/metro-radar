@@ -317,8 +317,13 @@ useEffect(() => {
       if (!data) return
   
       // 🔥 1. carrega empreendimentos salvos
-      if (data.resultado?.top3) {
-        setEmpreendimentosSalvos(data.resultado.top3)
+      if (data.resultado) {
+        const listaCompleta = [
+          ...(data.resultado.top3 || []),
+          ...(data.resultado.outros || [])
+        ]
+      
+        setEmpreendimentosSalvos(listaCompleta)
       }
   
       // 🔥 2. carrega dados do cliente (ESSENCIAL)
