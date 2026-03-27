@@ -598,7 +598,7 @@ useEffect(() => {
             </label>
   
             <div className="mt-6 pt-4 border-t border-gray-100">
-              <div className="grid grid-cols-2 gap-3 mt-4">
+              <div className="grid grid-cols-2 gap-3">
               {["12", "24", "36", "none"].map((u) => (
                 <button
                   key={u}
@@ -988,7 +988,7 @@ const temMelhorFora =
       className="h-44 w-full object-cover"
     />
 
-    <div className="p-5 space-y-3 pb-6">
+    <div className="p-5">
 
       {/* HEADER */}
       <div className="flex justify-between items-start">
