@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { formatCurrency } from "@/lib/formatCurrency"
-import { useRouter, useParams } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { supabase } from "@/lib/supabase"
 import IconBox from "@/components/IconBox"
 import { useAnalysis } from "@/context/AnalysisContext"
@@ -10,7 +10,8 @@ import toast, { Toaster } from "react-hot-toast"
 import { ExternalLink, FileText, BookOpen, Info } from "lucide-react"
 import Lottie from "lottie-react"
 import radarAnimation from "@/lotties/animabot.json"
-import { useSearchParams } from "next/navigation"
+
+
 
 
 export default function NovaAnalise() {
@@ -31,8 +32,7 @@ useEffect(() => {
 
   const params = new URL(window.location.href).searchParams
   const id = params.get("user_id")
-  const searchParams = useSearchParams()
-  const analiseId = searchParams.get("id")
+  
 
   console.log("USER ID FINAL:", id)
 
@@ -60,7 +60,8 @@ useEffect(() => {
   const [empreendimentosSalvos, setEmpreendimentosSalvos] = useState<any[]>([])
 
   const router = useRouter()
-  const analiseId = params?.id
+  const searchParams = useSearchParams()
+  const analiseId = searchParams.get("id")
   const { data, setData, reset } = useAnalysis()
 
   const step1Disabled = !data.nome || !data.renda || !data.entrada || !data.urgencia
