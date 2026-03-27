@@ -87,14 +87,21 @@ export default function DetalheAnalise() {
     <div className="mb-8">
 
       <p className="text-xs text-green-600 font-semibold mb-2">
-        MELHOR OPÇÃO PARA VOCÊ
+       Recomendado para o seu perfil
       </p>
 
-      <div className="bg-white border border-green-200 rounded-3xl overflow-hidden shadow-sm">
+      <div
+  onClick={() => {
+    if (top1?.url_wp) {
+      window.open(top1.url_wp, "_blank")
+    }
+  }}
+  className="bg-white border border-green-300 shadow-[0_0_0_1px_rgba(34,197,94,0.15)] rounded-3xl overflow-hidden shadow-sm cursor-pointer hover:scale-[1.01] active:scale-[0.99] transition-all duration-200"
+>
 
         <img
           src={top1.imagem || "https://via.placeholder.com/400x300"}
-          className="w-full h-48 object-cover"
+          className="w-full h-52 object-cover"
         />
 
         <div className="p-5">
@@ -109,7 +116,7 @@ export default function DetalheAnalise() {
               </p>
             </div>
 
-            <div className="bg-[#0f172a] text-white text-xs px-3 py-1 rounded-full">
+            <div className="bg-[#0f172a]/90 text-white text-[11px] px-3 py-1.5 rounded-full font-medium shadow-sm">
               {top1.score}%
             </div>
           </div>
