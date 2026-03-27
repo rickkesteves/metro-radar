@@ -18,7 +18,14 @@ export default function NovaAnalise() {
   const [mensagemIndex, setMensagemIndex] = useState(0)
   const [ready, setReady] = useState(false)
   const [user, setUser] = useState<any>(null)
- 
+  const [analiseId, setAnaliseId] = useState<string | null>(null)
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URL(window.location.href).searchParams
+      const id = params.get("id")
+      setAnaliseId(id)
+    }
+  }, [])
   useEffect(() => {
     const interval = setInterval(() => {
       setMensagemIndex((prev) => (prev < 4 ? prev + 1 : prev))
@@ -60,8 +67,6 @@ useEffect(() => {
   const [empreendimentosSalvos, setEmpreendimentosSalvos] = useState<any[]>([])
 
   const router = useRouter()
-  const searchParams = useSearchParams()
-  const analiseId = searchParams.get("id")
   const { data, setData, reset } = useAnalysis()
 
   const step1Disabled = !data.nome || !data.renda || !data.entrada || !data.urgencia
