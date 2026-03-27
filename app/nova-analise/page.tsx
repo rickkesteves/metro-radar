@@ -15,15 +15,7 @@ export default function NovaAnalise() {
   const [mensagemIndex, setMensagemIndex] = useState(0)
   const [ready, setReady] = useState(false)
   const [user, setUser] = useState<any>(null)
-  useEffect(() => {
-    if (!step1Disabled) {
-      setReady(true)
-  
-      setTimeout(() => {
-        setReady(false)
-      }, 2000)
-    }
-  }, [step1Disabled])
+ 
   useEffect(() => {
     const interval = setInterval(() => {
       setMensagemIndex((prev) => (prev < 4 ? prev + 1 : prev))
@@ -67,6 +59,15 @@ useEffect(() => {
 
   const step1Disabled = !data.nome || !data.renda || !data.entrada || !data.urgencia
   const step3Disabled = !data.tipo
+  useEffect(() => {
+    if (!step1Disabled) {
+      setReady(true)
+  
+      setTimeout(() => {
+        setReady(false)
+      }, 2000)
+    }
+  }, [step1Disabled])
 
   function toggleBairro(nome: string) {
     const bairros = data.bairros || []
