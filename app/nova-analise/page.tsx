@@ -949,7 +949,7 @@ const temMelhorFora =
     {qtdBoas >= 10 && <p>🔥 Encontramos várias oportunidades ideais para você</p>}
     {qtdBoas >= 5 && qtdBoas < 10 && <p>👍 Boas opções disponíveis</p>}
     {qtdBoas > 0 && qtdBoas < 5 && <p>⚠ Apenas {qtdBoas} opções realmente compatíveis</p>}
-    {qtdBoas === 0 && <p>Com alguns ajustes, você pode acessar boas oportunidades 👇</p>}
+    {qtdBoas === 0 && <p>Com pequenos ajustes, você pode acessar boas oportunidades 👇</p>}
   </div>
 
           {temMelhorFora && (
@@ -975,8 +975,9 @@ const temMelhorFora =
         )}
 
         <div
-          className={`bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all overflow-hidden
-          ${i === 0 ? "border-green-500 shadow-lg scale-[1.02]" : "border-gray-200 hover:shadow-md"}
+          <div
+  className={`bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-md hover:scale-[1.01] transition-all duration-300 overflow-hidden
+          ${i === 0 ? "border border-green-200 shadow-[0_0_0_1px_rgba(34,197,94,0.15)]" : "border-gray-200 hover:shadow-md"}
           `}
         >
     {/* IMAGEM */}
@@ -985,7 +986,7 @@ const temMelhorFora =
       className="h-44 w-full object-cover"
     />
 
-    <div className="p-5 space-y-4">
+    <div className="p-5 space-y-3">
 
       {/* HEADER */}
       <div className="flex justify-between items-start">
@@ -998,7 +999,7 @@ const temMelhorFora =
           </p>
         </div>
 
-        <div className="bg-[#0f172a] text-white text-xs px-3 py-1.5 rounded-full shadow-sm">
+        <div className="bg-[#0f172a]/90 text-white text-[11px] px-3 py-1 rounded-full font-medium shadow-sm">
           {item.score || 0}%
         </div>
       </div>
@@ -1045,7 +1046,7 @@ const temMelhorFora =
               <>
                 {item.debug?.renda.score >= 50
                   ? "⚠ Renda parcialmente adequada"
-                  : "❌ Renda muito abaixo do ideal"}
+                  : "❌ Renda abaixo do ideal"}
 
 <div className="absolute hidden group-hover:block left-1/2 -translate-x-1/2 bottom-full mb-2 w-52 bg-white text-gray-700 text-xs rounded-md px-3 py-2 shadow-md border border-gray-200 z-50 transition-all duration-200 opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0">
 
@@ -1078,7 +1079,7 @@ const temMelhorFora =
               <>
                 {item.debug?.entrada.score >= 50
                   ? "⚠ Entrada parcialmente adequada"
-                  : "❌ Entrada muito abaixo do ideal"}
+                  : "❌ Entrada abaixo do ideal"}
 
 <div className="absolute hidden group-hover:block left-1/2 -translate-x-1/2 bottom-full mb-2 w-52 bg-white text-gray-700 text-xs rounded-md px-3 py-2 shadow-md border border-gray-200 z-50 transition-all duration-200 opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0">
 
@@ -1107,7 +1108,7 @@ const temMelhorFora =
   <a
     href="https://www8.caixa.gov.br/siopiinternet-web/simulaOperacaoInternet.do?method=inicializarCasoUso"
     target="_blank"
-    className="flex items-center justify-center gap-2 border border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-700 text-sm py-2 rounded-xl transition"
+    className="flex items-center justify-center gap-2 bg-[#0f172a] text-white text-sm py-2 rounded-xl hover:opacity-90 transition"
   >
     <ExternalLink size={16} />
     Simulação
