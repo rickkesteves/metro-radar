@@ -118,7 +118,7 @@ useEffect(() => {
     body {
       font-family: -apple-system, BlinkMacSystemFont, sans-serif;
       padding: 32px;
-      background: #f8fafc;
+      background: #ffffff;
       color: #0f172a;
     }
 
@@ -148,7 +148,7 @@ useEffect(() => {
       background: white;
       border-radius: 16px;
       overflow: hidden;
-      margin-bottom: 24px;
+      margin-bottom: 16px;
       border: 1px solid #e5e7eb;
     }
 
@@ -156,9 +156,12 @@ useEffect(() => {
       border: 2px solid #22c55e;
     }
 
+    .overlay {
+      background: linear-gradient(to bottom, rgba(0,0,0,0.3), transparent);
+    }
     .img {
       width: 100%;
-      height: 180px;
+      height: 140px;
       object-fit: cover;
     }
 
@@ -177,13 +180,19 @@ useEffect(() => {
       margin-bottom: 6px;
     }
 
+    .top {
+      border: 2px solid #22c55e;
+      box-shadow: 0 8px 24px rgba(34,197,94,0.15);
+    }
+
     .badge {
       display: inline-block;
       background: #0f172a;
       color: white;
+      font-weight: 600;
       padding: 4px 10px;
       border-radius: 999px;
-      font-size: 12px;
+      font-size: 123x;
       margin-top: 6px;
     }
 
@@ -232,10 +241,21 @@ useEffect(() => {
 
       <div class="content">
 
-        <div class="title">${item.nome}</div>
-        <div class="bairro">${item.bairro}</div>
+        <div style="margin-bottom:8px;">
 
-        <div class="badge">${item.score || 0}%</div>
+  <div class="title">
+    ${item.nome}
+  </div>
+
+  <div class="bairro">
+    ${item.bairro}
+  </div>
+
+  <div class="badge">
+    ${item.score || 0}%
+  </div>
+
+</div>
 
         <div style="margin-top:10px; line-height:1.6;">
 
