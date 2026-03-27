@@ -161,10 +161,12 @@ useEffect(() => {
     }
     
     .img {
-      width: 100%;
+      width: 70%;
       height: 200px;
       object-fit: cover;
-      border-bottom: 1px solid #e5e7eb;
+      display: block;
+      margin: 0 auto;
+      border-radius: 12px;
     }
 
     .content {
