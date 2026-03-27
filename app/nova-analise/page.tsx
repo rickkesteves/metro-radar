@@ -108,196 +108,195 @@ useEffect(() => {
   
     const top3 = mesmos.slice(0, 3)
   
+    
     const html = `
-    <html>
-    <head>
-      <title>Metro Radar</title>
-  
-      <style>
-        body {
-          font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-          padding: 32px;
-          background: #f8fafc;
-          color: #0f172a;
-        }
-  
-        .header {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          margin-bottom: 24px;
-        }
-  
-        .logo {
-          width: 40px;
-          height: 40px;
-        }
-  
-        h1 {
-          font-size: 20px;
-          margin: 0;
-        }
-  
-        .cliente {
-          color: #64748b;
-          font-size: 14px;
-          margin-bottom: 24px;
-        }
-  
-      .card {
-  background: white;
-  border-radius: 16px;
-  overflow: hidden;
-  margin-bottom: 24px;
-  border: 1px solid #e5e7eb;
-}
+<html>
+<head>
+  <title>Metro Radar</title>
 
-.card-top {
-  border: 2px solid #22c55e;
-}
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      padding: 32px;
+      background: #f8fafc;
+      color: #0f172a;
+    }
 
-.img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
+    h1 {
+      font-size: 22px;
+      margin-bottom: 4px;
+    }
 
-.content {
-  padding: 16px;
-}
+    h2 {
+      font-size: 16px;
+      margin-top: 32px;
+      margin-bottom: 12px;
+    }
 
-.badge {
-  display: inline-block;
-  background: #0f172a;
-  color: white;
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-  margin-top: 6px;
-}
+    .sub {
+      color: #6b7280;
+      font-size: 14px;
+    }
 
-.title {
-  font-weight: 600;
-  font-size: 18px;
-}
+    .cliente {
+      margin-top: 6px;
+      font-size: 13px;
+      color: #9ca3af;
+    }
 
-.bairro {
-  color: #6b7280;
-  font-size: 13px;
-  margin-bottom: 6px;
-}
-  
-        .img {
-          width: 160px;
-          height: 120px;
-          object-fit: cover;
-          background: #e2e8f0;
-        }
-  
-        .content {
-          flex: 1;
-          padding: 16px;
-        }
-  
-        .title {
-          font-weight: 600;
-          font-size: 16px;
-        }
-  
-        .bairro {
-          color: #64748b;
-          font-size: 13px;
-          margin-bottom: 8px;
-        }
-  
-        .score {
-          font-size: 14px;
-          font-weight: 600;
-          margin-bottom: 8px;
-        }
-  
-        .ok { color: #16a34a; font-size: 13px; }
-        .warn { color: #f59e0b; font-size: 13px; }
-        .bad { color: #ef4444; font-size: 13px; }
-      </style>
-    </head>
-  
-    <body>
-  
-      <!-- HEADER -->
-     <div style="margin-bottom:24px;">
-  <h1 style="font-size:22px;font-weight:700;">
-    Seu ranking personalizado
-  </h1>
+    .card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 24px;
+      border: 1px solid #e5e7eb;
+    }
 
-  <p style="color:#6b7280;font-size:14px;">
-    Baseado no perfil financeiro e preferências
-  </p>
+    .top {
+      border: 2px solid #22c55e;
+    }
 
-  <p style="margin-top:8px;font-size:13px;color:#9ca3af;">
-    Cliente: ${data.nome || "Não informado"}
-  </p>
-</div>
-  
-${top3.map((item, i) => `
+    .img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
 
-  <div class="card ${i === 0 ? "card-top" : ""}">
+    .content {
+      padding: 16px;
+    }
 
-    <img 
-      class="img" 
-      src="${item.imagem || "https://via.placeholder.com/400"}"
-      onerror="this.src='https://via.placeholder.com/400'"
-    />
+    .title {
+      font-weight: 600;
+      font-size: 18px;
+    }
 
-    <div class="content">
+    .bairro {
+      color: #6b7280;
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
 
-      <div class="title">${item.nome}</div>
-      <div class="bairro">${item.bairro}</div>
+    .badge {
+      display: inline-block;
+      background: #0f172a;
+      color: white;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      margin-top: 6px;
+    }
 
-      <div class="badge">${item.score || 0}%</div>
+    .ok { color: #16a34a; font-size: 13px; }
+    .warn { color: #f59e0b; font-size: 13px; }
+    .bad { color: #ef4444; font-size: 13px; }
 
-      <div style="margin-top:10px; line-height:1.6;">
+    .outro {
+      padding: 12px 0;
+      border-bottom: 1px solid #e5e7eb;
+    }
 
-        ${
-          data.bairros?.includes(item.bairro)
-            ? `<div class="ok">✔ Localização compatível</div>`
-            : `<div class="warn">⚠ Localização diferente</div>`
-        }
+    .outro-title {
+      font-weight: 600;
+      font-size: 14px;
+    }
 
-        ${
-          String(data.tipo || "").toLowerCase().trim() ===
-          String(item.tipo || "").toLowerCase().trim()
-            ? `<div class="ok">✔ Tipo adequado</div>`
-            : `<div class="warn">⚠ Tipo diferente</div>`
-        }
+    .footer {
+      margin-top: 40px;
+      font-size: 12px;
+      color: #9ca3af;
+      text-align: center;
+    }
+  </style>
+</head>
 
-        ${
-          item.debug?.renda?.score >= 80
-            ? `<div class="ok">✔ Renda adequada</div>`
-            : item.debug?.renda?.score >= 50
-            ? `<div class="warn">⚠ Renda parcialmente adequada</div>`
-            : `<div class="bad">❌ Renda abaixo do ideal</div>`
-        }
+<body>
 
-        ${
-          item.debug?.entrada?.score >= 80
-            ? `<div class="ok">✔ Entrada adequada</div>`
-            : item.debug?.entrada?.score >= 50
-            ? `<div class="warn">⚠ Entrada parcialmente adequada</div>`
-            : `<div class="bad">❌ Entrada abaixo do ideal</div>`
-        }
+  <!-- HEADER -->
+  <div>
+    <h1>Seu ranking personalizado</h1>
+    <p class="sub">Baseado no perfil financeiro e preferências</p>
+    <p class="cliente">Cliente: ${data.nome || "Não informado"}</p>
+  </div>
+
+  <!-- TOP 3 -->
+  ${top3.map((item, i) => `
+
+    <div class="card ${i === 0 ? "top" : ""}">
+
+      <img 
+        class="img" 
+        src="${item.imagem || "https://via.placeholder.com/400"}"
+        onerror="this.src='https://via.placeholder.com/400'"
+      />
+
+      <div class="content">
+
+        <div class="title">${item.nome}</div>
+        <div class="bairro">${item.bairro}</div>
+
+        <div class="badge">${item.score || 0}%</div>
+
+        <div style="margin-top:10px; line-height:1.6;">
+
+          ${
+            data.bairros?.includes(item.bairro)
+              ? `<div class="ok">✔ Localização compatível</div>`
+              : `<div class="warn">⚠ Localização diferente</div>`
+          }
+
+          ${
+            String(data.tipo || "").toLowerCase().trim() ===
+            String(item.tipo || "").toLowerCase().trim()
+              ? `<div class="ok">✔ Tipo adequado</div>`
+              : `<div class="warn">⚠ Tipo diferente</div>`
+          }
+
+          ${
+            item.debug?.renda?.score >= 80
+              ? `<div class="ok">✔ Renda adequada</div>`
+              : item.debug?.renda?.score >= 50
+              ? `<div class="warn">⚠ Renda parcialmente adequada</div>`
+              : `<div class="bad">❌ Renda abaixo do ideal</div>`
+          }
+
+          ${
+            item.debug?.entrada?.score >= 80
+              ? `<div class="ok">✔ Entrada adequada</div>`
+              : item.debug?.entrada?.score >= 50
+              ? `<div class="warn">⚠ Entrada parcialmente adequada</div>`
+              : `<div class="bad">❌ Entrada abaixo do ideal</div>`
+          }
+
+        </div>
 
       </div>
 
     </div>
 
+  `).join("")}
+
+  <!-- OUTROS -->
+  ${ordenados.length > 3 ? `
+    <h2>Outras oportunidades</h2>
+
+    ${ordenados.slice(3, 10).map((item, i) => `
+      <div class="outro">
+        <div class="outro-title">#${i + 4} ${item.nome}</div>
+        <div class="bairro">${item.bairro}</div>
+        <div class="badge">${item.score}%</div>
+      </div>
+    `).join("")}
+  ` : ""}
+
+  <!-- FOOTER -->
+  <div class="footer">
+    Relatório gerado por Metro Radar • ${new Date().toLocaleDateString()}
   </div>
 
-`).join("")}
-  
-    </body>
-    </html>
-    `
+</body>
+</html>
+`
   
     const win = window.open("", "_blank")
     if (!win) return
