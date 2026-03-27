@@ -1300,14 +1300,14 @@ const temMelhorFora =
 
       return (
         <div
-          key={i}
-          className="flex gap-4 bg-white border border-gray-100 rounded-2xl p-4 shadow-sm hover:shadow-md transition"
-        >
+        key={i}
+        className="flex gap-4 bg-white border border-gray-100 rounded-2xl p-4 shadow-sm hover:shadow-md hover:scale-[1.01] active:scale-[0.98] transition-all duration-200"
+      >
 
           {/* IMAGEM */}
           <img
             src={item.imagem || "https://via.placeholder.com/120"}
-            className="w-28 h-24 object-cover rounded-lg"
+            className="w-24 h-24 object-cover rounded-xl shadow-sm"
           />
 
           {/* CONTEÚDO */}
@@ -1317,17 +1317,29 @@ const temMelhorFora =
             <div>
               <div className="flex justify-between items-start">
                 <div>
-                  <h3 className="font-semibold text-[#0f172a]">
-                    #{i + 4} {item.nome}
-                  </h3>
+                <div className="flex-1">
+
+<p className="text-xs text-gray-400">
+  #{i + 4}
+</p>
+
+<h3 className="font-semibold text-[#0f172a] leading-tight">
+  {item.nome}
+</h3>
+
+<p className="text-sm text-gray-500">
+  {item.bairro}
+</p>
+
+</div>
                   <p className="text-sm text-gray-500">
                     {item.bairro}
                   </p>
                 </div>
 
-                <div className="text-sm font-semibold bg-gray-100 px-3 py-1 rounded-full">
-                  {item.score}%
-                </div>
+                <div className="bg-[#0f172a]/90 text-white text-xs px-3 py-1.5 rounded-full font-medium shadow-sm">
+  {item.score}%
+</div>
               </div>
 
               {/* CRITÉRIOS */}
@@ -1367,19 +1379,29 @@ const temMelhorFora =
             {/* AÇÕES */}
             <div className="mt-3 flex gap-2">
 
-              <button className="text-xs px-3 py-1 border border-gray-200 rounded-lg hover:bg-gray-100 transition">
-                ℹ Ver detalhes
-              </button>
+  <button
+    onClick={() => item.url_wp && window.open(item.url_wp, "_blank")}
+    disabled={!item.url_wp}
+    className={`flex-1 text-xs py-2 rounded-lg transition
+      ${
+        item.url_wp
+          ? "border border-gray-200 hover:bg-gray-50"
+          : "bg-gray-100 text-gray-400 cursor-not-allowed"
+      }
+    `}
+  >
+    ℹ Detalhes
+  </button>
 
-              <a
-                href="https://www8.caixa.gov.br/siopiinternet-web/simulaOperacaoInternet.do?method=inicializarCasoUso"
-                target="_blank"
-                className="text-xs px-3 py-1 border border-gray-200 rounded-lg hover:bg-gray-100 transition"
-              >
-                🔗 Simular
-              </a>
+  <a
+    href="https://www8.caixa.gov.br/siopiinternet-web/simulaOperacaoInternet.do?method=inicializarCasoUso"
+    target="_blank"
+    className="flex-1 text-xs py-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition"
+  >
+    🔗 Simular
+  </a>
 
-            </div>
+</div>
 
           </div>
 
