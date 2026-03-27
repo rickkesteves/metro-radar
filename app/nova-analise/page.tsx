@@ -146,12 +146,12 @@ useEffect(() => {
 
     .card {
       width: 50%; /* 🔥 EXATAMENTE O QUE VOCÊ PEDIU */
-      max-width: 500px; /* evita ficar gigante em tela grande */
+      max-width: 480px; /* evita ficar gigante em tela grande */
       background: white;
       border-radius: 16px;
       overflow: hidden;
       border: 1px solid #e5e7eb;
-      margin-bottom: 24px;
+      margin: 0 auto 24px;
     }
 
     .top {
