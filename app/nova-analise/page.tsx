@@ -744,7 +744,7 @@ useEffect(() => {
           bairros: (data.bairros || []).filter((item) => item !== b),
         })
       }
-      className="flex items-center justify-center w-5 h-5 rounded-full hover:bg-gray-200 transition hover:scale-110 active:scale-95"
+      className="flex items-center justify-center w-5 h-5 rounded-full hover:bg-gray-200 transition hover:scale-110 active:scale-96"
     >
       ✕
     </button>
@@ -767,7 +767,7 @@ useEffect(() => {
               className={`w-1/2 py-3 rounded-xl text-[15px] font-semibold transition ${
                 step1Disabled
                   ? "bg-gray-200 text-gray-400"
-                  : "bg-[#0f172a] text-white hover:scale-[1.02] active:scale-[0.98]"
+                  : "bg-[#0f172a] text-white hover:scale-[1.02] active:scale-[0.96]"
               }`}>
               Continuar
             </button>
@@ -850,7 +850,7 @@ useEffect(() => {
                 setLoading(0)
                 setStep(4)
               }}
-              className="w-1/2 bg-[#0f172a] text-white py-3 rounded-xl text-[15px] font-semibold transition hover:scale-[1.02] active:scale-[0.98]"
+              className="w-1/2 bg-[#0f172a] text-white py-3 rounded-xl text-[15px] font-semibold transition hover:scale-[1.02] active:scale-[0.96]"
             >
               Analisar
             </button>
@@ -1153,7 +1153,7 @@ const temMelhorFora =
   disabled={!item.tabela_url}
   className={`w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold transition-all duration-200
     ${item.tabela_url
-      ? "bg-[#0f172a] text-white hover:scale-[1.02] active:scale-[0.97] shadow-sm"
+      ? "bg-[#0f172a] text-white hover:scale-[1.02] active:scale-[0.96] shadow-sm"
       : "bg-gray-200 text-gray-400 cursor-not-allowed"}
   `}
 >
