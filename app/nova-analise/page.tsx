@@ -128,9 +128,12 @@ useEffect(() => {
     }
 
     h2 {
-      font-size: 16px;
+      font-size: 14px;
       margin-top: 32px;
       margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #64748b;
     }
 
     .sub {
@@ -232,9 +235,10 @@ useEffect(() => {
 
     .outro {
       padding: 12px;
-      border-radius: 12px;
+      border-radius: 16px;
       background: #f9fafb;
       margin-bottom: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
     }
 
     .outro-title {
