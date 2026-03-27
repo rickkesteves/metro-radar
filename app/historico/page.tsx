@@ -112,21 +112,29 @@ export default function Historico() {
 
       {/* MELHOR OPÇÃO */}
       {top && (
-        <div className="bg-white border border-gray-200 shadow-sm rounded-xl p-3 mb-4">
-
+        <div className="bg-white border border-gray-200 shadow-sm rounded-xl overflow-hidden mb-4">
+  
+        {/* IMAGEM */}
+        <img
+          src={top.imagem || "https://via.placeholder.com/400x200"}
+          className="w-full h-32 object-cover transition duration-300 hover:scale-[1.03]"
+        />
+      
+        <div className="p-3">
           <p className="text-xs text-gray-500 mb-1">
             Melhor opção para você
           </p>
-
-        <div className="font-semibold text-[#0f172a]">
-          {top.nome}
-        </div>
-
+      
+          <div className="font-semibold text-[#0f172a]">
+            {top.nome}
+          </div>
+      
           <div className="text-sm text-gray-500">
             {top.bairro}
           </div>
-
         </div>
+      
+      </div>
       )}
 
       {/* INFO */}
