@@ -158,8 +158,9 @@ useEffect(() => {
     }
 
     .lista-outros {
-      width: 50%;
-      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
     .card {
@@ -230,13 +231,16 @@ useEffect(() => {
     .bad { color: #ef4444; font-size: 13px; }
 
     .outro {
-      padding: 12px 0;
-      border-bottom: 1px solid #e5e7eb;
+      padding: 12px;
+      border-radius: 12px;
+      background: #f9fafb;
+      margin-bottom: 10px;
     }
 
     .outro-title {
       font-weight: 600;
-      font-size: 14px;
+      font-size: 15px;
+      color: #0f172a;
     }
 
     .footer {
@@ -335,10 +339,19 @@ useEffect(() => {
 <div class="lista-outros">
     ${ordenados.slice(3, 10).map((item, i) => `
       <div class="outro">
-        <div class="outro-title">#${i + 4} ${item.nome}</div>
-        <div class="bairro">${item.bairro}</div>
-        <div class="badge">${item.score}%</div>
-      </div>
+
+  <div style="display:flex; justify-content:space-between; align-items:center;">
+    
+    <div>
+      <div class="outro-title">#${i + 4} ${item.nome}</div>
+      <div class="bairro">${item.bairro}</div>
+    </div>
+
+    <div class="badge">${item.score}%</div>
+
+  </div>
+
+</div>
     `).join("")}
     </div>
   ` : ""}
