@@ -1216,8 +1216,6 @@ const temMelhorFora =
     }
   `}
 >
-  className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold bg-[#0f172a] text-white hover:scale-[1.02] active:scale-[0.97] transition-all duration-200 shadow-sm"
-
   <Info size={16} />
   Detalhes
 </button>
@@ -1236,11 +1234,9 @@ const temMelhorFora =
     }
   `}
 >
-    className="flex-1 flex items-center justify-center gap-2 py-2 rounded-xl text-sm border border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-700 transition hover:scale-[1.02]"
-  
-    <FileText size={16} />
-    Tabela
-  </button>
+  <FileText size={16} />
+  Tabela
+</button>
 
   {/* BOOK */}
   <button
@@ -1254,11 +1250,9 @@ const temMelhorFora =
     }
   `}
 >
-    className="flex-1 flex items-center justify-center gap-2 py-2 rounded-xl text-sm border border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-700 transition hover:scale-[1.02]"
-  
-    <BookOpen size={16} />
-    Book
-  </button>
+  <BookOpen size={16} />
+  Book
+</button>
 
 </div>
 
