@@ -913,7 +913,7 @@ const temMelhorFora =
     return (
       <>
       <Toaster position="top-right" />
-      <div className="max-w-md mx-auto px-4 py-8 bg-[#f8fafc] min-h-screen">
+      <div className="max-w-md mx-auto px-4 py-10 bg-[#f8fafc] min-h-screen">
   
         {/* BOTÕES */}
         
@@ -928,7 +928,7 @@ const temMelhorFora =
 
   <div className="text-center mb-10">
 
-  <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-white border border-gray-200 flex items-center justify-center shadow-sm">
+  <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-[#0f172a]/5 flex items-center justify-center">
       <img
         src="https://metrosquare.com.br/wp-content/uploads/2026/03/radar-1.svg"
         className="w-6 h-6 invert"
