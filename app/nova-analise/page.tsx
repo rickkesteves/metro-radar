@@ -1100,41 +1100,41 @@ const temMelhorFora =
         </div>
 
         </div> {/* fecha INFOS */}
+        <div className="grid grid-cols-2 gap-3 mt-6 pt-4 border-t border-gray-100 !mt-6 !pt-4">
 
+{/* SIMULAÇÃO */}
+<a
+  href="https://www8.caixa.gov.br/siopiinternet-web/simulaOperacaoInternet.do?method=inicializarCasoUso"
+  target="_blank"
+  className="flex items-center justify-center gap-2 bg-[#0f172a] text-white text-sm py-2 rounded-xl hover:opacity-90 transition"
+>
+  <ExternalLink size={16} />
+  Simulação
+</a>
+
+{/* TABELAS */}
+<button className="flex items-center justify-center gap-2 border border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-700 text-sm py-2 rounded-xl transition">
+  <FileText size={16} />
+  Tabelas
+</button>
+
+{/* BOOK */}
+<button className="flex items-center justify-center gap-2 border border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-700 text-sm py-2 rounded-xl transition">
+  <BookOpen size={16} />
+  Book
+</button>
+
+{/* DETALHES */}
+<button className="flex items-center justify-center gap-2 border border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-700 text-sm py-2 rounded-xl transition">
+  <Info size={16} />
+  Detalhes
+</button>
+
+</div>
 </div> {/* fecha p-5 */}
 
 {/* BOTÃO */}
-<div className="grid grid-cols-2 gap-3 mt-6 pt-4 border-t border-gray-100 !mt-6 !pt-4">
 
-  {/* SIMULAÇÃO */}
-  <a
-    href="https://www8.caixa.gov.br/siopiinternet-web/simulaOperacaoInternet.do?method=inicializarCasoUso"
-    target="_blank"
-    className="flex items-center justify-center gap-2 bg-[#0f172a] text-white text-sm py-2 rounded-xl hover:opacity-90 transition"
-  >
-    <ExternalLink size={16} />
-    Simulação
-  </a>
-
-  {/* TABELAS */}
-  <button className="flex items-center justify-center gap-2 border border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-700 text-sm py-2 rounded-xl transition">
-    <FileText size={16} />
-    Tabelas
-  </button>
-
-  {/* BOOK */}
-  <button className="flex items-center justify-center gap-2 border border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-700 text-sm py-2 rounded-xl transition">
-    <BookOpen size={16} />
-    Book
-  </button>
-
-  {/* DETALHES */}
-  <button className="flex items-center justify-center gap-2 border border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-700 text-sm py-2 rounded-xl transition">
-    <Info size={16} />
-    Detalhes
-  </button>
-
-  </div>
 
 </div>
 
