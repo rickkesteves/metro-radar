@@ -144,6 +144,24 @@ useEffect(() => {
       color: #9ca3af;
     }
 
+    .wrapper {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .header {
+      width: 50%;
+      max-width: 480px;
+      margin-bottom: 16px;
+    }
+
+    .lista-outros {
+      width: 50%;
+      max-width: 480px;
+    }
+
     .card {
       width: 50%; /* 🔥 EXATAMENTE O QUE VOCÊ PEDIU */
       max-width: 480px; /* evita ficar gigante em tela grande */
@@ -203,7 +221,7 @@ useEffect(() => {
       font-weight: 600;
       padding: 4px 10px;
       border-radius: 999px;
-      font-size: 123x;
+      font-size: 12px;
       margin-top: 6px;
     }
 
@@ -232,8 +250,10 @@ useEffect(() => {
 
 <body>
 
+  <div class="wrapper">
+
   <!-- HEADER -->
-  <div>
+  <div class="header">
     <h1>Seu ranking personalizado</h1>
     <p class="sub">Baseado no perfil financeiro e preferências</p>
     <p class="cliente">Cliente: ${data.nome || "Não informado"}</p>
@@ -309,8 +329,10 @@ useEffect(() => {
 
   <!-- OUTROS -->
   ${ordenados.length > 3 ? `
-    <h2>Outras oportunidades</h2>
-
+<div class="header">
+  <h2>Outras oportunidades</h2>
+</div>
+<div class="lista-outros">
     ${ordenados.slice(3, 10).map((item, i) => `
       <div class="outro">
         <div class="outro-title">#${i + 4} ${item.nome}</div>
@@ -318,12 +340,14 @@ useEffect(() => {
         <div class="badge">${item.score}%</div>
       </div>
     `).join("")}
+    </div>
   ` : ""}
 
   <!-- FOOTER -->
   <div class="footer">
     Relatório gerado por Metro Radar • ${new Date().toLocaleDateString()}
   </div>
+  </div> <!-- wrapper -->
 
 </body>
 </html>
