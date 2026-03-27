@@ -1156,7 +1156,14 @@ const temMelhorFora =
 </button>
 
 {/* DETALHES */}
-<button className="flex items-center justify-center gap-2 border border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-700 text-sm py-2 rounded-xl transition">
+<button
+  onClick={() => {
+    if (item.url_wp) {
+      window.open(item.url_wp, "_blank")
+    }
+  }}
+  className="flex items-center justify-center gap-2 border border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-700 text-sm py-2 rounded-xl transition hover:scale-[1.03] active:scale-[0.97]"
+>
   <Info size={16} />
   Detalhes
 </button>
