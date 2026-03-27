@@ -1131,11 +1131,11 @@ const temMelhorFora =
     Detalhes
   </button>
 
-  </div> {/* fecha BOTÕES */}
+  </div>
 
-</div> {/* fecha card branco */}
+</div>
 
-</div> {/* fecha wrapper do item */}
+</div>
 
 )
 })}
