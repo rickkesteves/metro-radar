@@ -161,7 +161,7 @@ export default function Historico() {
       <div className="mt-4 flex flex-col gap-2">
 
       <button
-  onClick={() => router.push(`/historico/${item.id}`)}
+  onClick={() => router.push(`/analise/${item.id}`)}
   className="w-full bg-[#0f172a] text-white py-3 rounded-xl text-sm font-semibold hover:scale-[1.02] active:scale-[0.97] hover:shadow-md transition-all"
 >
   Abrir análise completa
