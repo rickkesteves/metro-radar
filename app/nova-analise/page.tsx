@@ -616,7 +616,7 @@ useEffect(() => {
           </div>
   
           {/* BOTÕES */}
-          <div className="flex gap-3">
+          <div className="grid grid-cols-2 gap-3 mt-5 pt-4 border-t border-gray-100">
             <button
               onClick={() => {
                 if (!user?.id) return
