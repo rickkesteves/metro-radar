@@ -598,7 +598,7 @@ useEffect(() => {
             </label>
   
             <div className="mt-6 pt-4 border-t border-gray-100">
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-3 mt-4">
               {["12", "24", "36", "none"].map((u) => (
                 <button
                   key={u}
