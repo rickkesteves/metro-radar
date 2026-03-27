@@ -159,10 +159,12 @@ useEffect(() => {
     .overlay {
       background: linear-gradient(to bottom, rgba(0,0,0,0.3), transparent);
     }
+    
     .img {
       width: 100%;
-      height: 140px;
+      height: 200px;
       object-fit: cover;
+      border-bottom: 1px solid #e5e7eb;
     }
 
     .content {
