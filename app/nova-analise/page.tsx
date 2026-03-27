@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { formatCurrency } from "@/lib/formatCurrency"
-import { useRouter } from "next/navigation"
+import { useRouter, useParams } from "next/navigation"
 import { supabase } from "@/lib/supabase"
 import IconBox from "@/components/IconBox"
 import { useAnalysis } from "@/context/AnalysisContext"
@@ -10,6 +10,7 @@ import toast, { Toaster } from "react-hot-toast"
 import { ExternalLink, FileText, BookOpen, Info } from "lucide-react"
 import Lottie from "lottie-react"
 import radarAnimation from "@/lotties/animabot.json"
+
 
 export default function NovaAnalise() {
   const [mensagemIndex, setMensagemIndex] = useState(0)
@@ -53,8 +54,11 @@ useEffect(() => {
   const [showTop10, setShowTop10] = useState(false)
   const [showOutros, setShowOutros] = useState(false)
   const [empreendimentos, setEmpreendimentos] = useState<any[]>([])
+  const [empreendimentosSalvos, setEmpreendimentosSalvos] = useState<any[]>([])
 
   const router = useRouter()
+  const params = useParams()
+  const analiseId = params?.id
   const { data, setData, reset } = useAnalysis()
 
   const step1Disabled = !data.nome || !data.renda || !data.entrada || !data.urgencia
@@ -286,6 +290,26 @@ useEffect(() => {
       return () => clearTimeout(t)
     }
   }, [step, loading])
+
+
+useEffect(() => {
+  if (!analiseId) return
+
+  async function buscar() {
+    const { data } = await supabase
+      .from("analises")
+      .select("*")
+      .eq("id", analiseId)
+      .single()
+
+    if (data?.resultado?.top3) {
+      setEmpreendimentosSalvos(data.resultado.top3)
+      setStep(5)
+    }
+  }
+
+  buscar()
+}, [analiseId])
 
   useEffect(() => {
     if (step !== 5) return
@@ -921,7 +945,11 @@ useEffect(() => {
     const tipoSelecionado = data.tipo
 
 // 🔥 1. Ordena tudo primeiro
-const ordenados = [...empreendimentos].sort((a, b) => b.score - a.score)
+const baseLista = empreendimentosSalvos.length
+  ? empreendimentosSalvos
+  : empreendimentos
+
+const ordenados = [...baseLista].sort((a, b) => b.score - a.score)
 
 // 🔥 2. Separa depois
 const mesmos = ordenados.filter(
