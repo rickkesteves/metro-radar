@@ -113,7 +113,7 @@ useEffect(() => {
     const html = `
 <html>
 <head>
-  <title>Sobre Você</title>
+  <title>Metro Radar</title>
 
   <style>
     body {
@@ -789,7 +789,7 @@ useEffect(() => {
         </h1>
   
         <p className="text-gray-500 mt-2">
-          Os melhores lançamentos para o seu perfil, em segundo
+          Os melhores lançamentos para o seu perfil, em segundos
         </p>
   
         <div className="mt-6 space-y-2 text-sm text-gray-600">
@@ -825,7 +825,7 @@ useEffect(() => {
           <IconBox src="https://metrosquare.com.br/wp-content/uploads/2026/03/radar-1.svg" />
   
           <h1 className="text-[26px] font-semibold tracking-tight text-[#0f172a]">
-            Metro Radar
+            Sobre Você
           </h1>
   
           <p className="text-[15px] text-gray-500">
