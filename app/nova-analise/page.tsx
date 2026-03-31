@@ -623,11 +623,11 @@ useEffect(() => {
           sTipo * 0.05 +
           sPreco * 0.05
       
-        const final = base * 0.90 + sUrg * 0.10
-        
-        if (sEntrada < 50) {
-          final = final * 0.9
-        }
+          let final = base * 0.90 + sUrg * 0.10
+
+          if (sEntrada < 50) {
+            final = final * 0.9
+          }
       
         return {
           ...e,
@@ -1214,23 +1214,47 @@ const temMelhorFora =
     </p>
 
   </div>
-  <div className="flex gap-2 mb-6 flex-wrap">
+  <p className="text-xs text-gray-400 mb-2">
+  Visualizar por tipo
+</p>
 
-{["todos", "Casa", "Apartamento", "Misto", "Lote"].map((t) => (
-  <button
-    key={t}
-    onClick={() => setTipoFiltro(t)}
-    className={`px-3 py-2 rounded-lg text-sm font-medium transition ${
-      tipoFiltro === t
-        ? "bg-[#0f172a] text-white"
-        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-    }`}
-  >
-    {t === "todos" ? "Todos" : t}
-  </button>
-))}
+<div className="flex gap-2 mb-6 flex-wrap">
+
+  {["todos", "Casa", "Apartamento", "Misto", "Lote"].map((t) => {
+
+    const ativo = tipoFiltro === t
+
+    return (
+      <button
+        key={t}
+        onClick={() => setTipoFiltro(t)}
+        className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200
+          ${ativo
+            ? "bg-[#0f172a] text-white shadow-md scale-[1.05]"
+            : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+          }
+        `}
+      >
+        <span className="flex items-center gap-1">
+  {t === "todos" ? "Todos" : t}
+
+  {t !== "todos" &&
+    melhorGeral &&
+    String(melhorGeral.tipo || "").toLowerCase().trim() !==
+      String(t).toLowerCase().trim() && (
+      <span className="text-[10px] text-orange-500">🔥</span>
+  )}
+</span>
+      </button>
+    )
+  })}
 
 </div>
+{tipoFiltro !== "todos" && (
+  <p className="text-xs text-gray-500 mb-4">
+    Mostrando imóveis do tipo <span className="font-medium">{tipoFiltro}</span>
+  </p>
+)}
   <div className="mb-6 text-sm">
 
   {temMelhorFora ? (
@@ -1493,7 +1517,7 @@ const temMelhorFora =
 {ordenados.length > 3 && (
   <button
     onClick={() => setShowOutros(!showOutros)}
-    className="mb-6 bg-gray-100 px-4 py-2 rounded-lg text-sm hover:bg-gray-200 transition"
+    className="mb-6 bg-gray-100 px-4 py-2 rounded-full text-sm hover:bg-gray-200 transition"
   >
     {showOutros
       ? "Ocultar outras opções"
