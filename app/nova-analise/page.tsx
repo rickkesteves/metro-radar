@@ -617,13 +617,17 @@ useEffect(() => {
       
         const base =
           sEsforco * 0.30 +
-          sRenda * 0.25 +
-          sEntrada * 0.20 +
+          sRenda * 0.20 +
+          sEntrada * 0.25 +
           sLocal * 0.15 +
           sTipo * 0.05 +
           sPreco * 0.05
       
         const final = base * 0.90 + sUrg * 0.10
+        
+        if (sEntrada < 50) {
+          final = final * 0.9
+        }
       
         return {
           ...e,
