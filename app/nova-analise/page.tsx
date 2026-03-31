@@ -1218,7 +1218,7 @@ const temMelhorFora =
   Visualizar por tipo
 </p>
 
-<div className="flex gap-2 mb-6 flex-wrap">
+<div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2 mb-6">
 
   {["todos", "Casa", "Apartamento", "Misto", "Lote"].map((t) => {
 
@@ -1228,7 +1228,7 @@ const temMelhorFora =
       <button
         key={t}
         onClick={() => setTipoFiltro(t)}
-        className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-200
+        className={`w-full sm:w-auto px-4 py-2 rounded-full text-sm font-medium text-center whitespace-nowrap transition-all duration-200
           ${ativo
             ? "bg-[#0f172a] text-white shadow-md scale-[1.03]"
             : "bg-gray-100 text-gray-700 hover:bg-gray-200"
