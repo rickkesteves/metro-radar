@@ -782,30 +782,40 @@ useEffect(() => {
     return (
       <div className="max-w-md mx-auto px-4 py-10 text-center">
   
-        <Lottie animationData={radarAnimation} className="w-40 h-40 mx-auto mb-6" />
+  <div className="relative flex justify-center mb-6">
+
+{/* GLOW */}
+<div className="absolute w-52 h-52 bg-gradient-to-br from-blue-200 to-indigo-200 blur-3xl rounded-full opacity-50 animate-pulse" />
+
+{/* ROBÔ */}
+<Lottie
+  animationData={radarAnimation}
+  className="w-40 h-40 relative z-10"
+/>
+
+</div>
   
         <h1 className="text-2xl font-semibold">
           Metro Radar
         </h1>
   
         <p className="text-gray-500 mt-2">
-          Os melhores lançamentos para o seu perfil, em segundos
+          Deixa que eu encontro as melhores oportunidades pra você
         </p>
   
-        <div className="mt-6 space-y-2 text-sm text-gray-600">
-          <p>✔ Ranking personalizado</p>
-          <p>✔ Análise de renda e entrada</p>
-          <p>✔ Comparação com o mercado</p>
-        </div>
+        <p className="text-[14px] text-gray-500 mt-4 leading-relaxed">
+          Analisamos seu perfil, cruzamos com o mercado e mostramos apenas as melhores oportunidades para você.
+        </p>
   
         <p className="text-xs text-gray-400 mt-4">
-  Analisamos centenas de combinações em segundos
-</p>
+          Analisamos centenas de combinações em segundos
+        </p>
+
         <button
           onClick={() => setStep(1)}
           className="mt-8 w-full bg-[#0f172a] text-white py-3 rounded-xl font-semibold"
         >
-          Começar agora
+          Ver Oportunidades
         </button>
   
       </div>
