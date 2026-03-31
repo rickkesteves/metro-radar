@@ -113,7 +113,7 @@ useEffect(() => {
     const html = `
 <html>
 <head>
-  <title>Metro Radar</title>
+  <title>Sobre Você</title>
 
   <style>
     body {
