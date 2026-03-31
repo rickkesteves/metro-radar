@@ -865,18 +865,22 @@ useEffect(() => {
                 {item.label}
               </label>
               <input
-                value={(data as any)[item.key] || ""}
-                onChange={(e) =>
-                  setData({
-                    [item.key]:
-                      item.key === "nome"
-                        ? e.target.value
-                        : formatCurrency(e.target.value),
-                  })
-                }
-                placeholder={item.placeholder || "R$ 0,00"}
-                className="w-full mt-1 px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-[15px] text-[#0f172a] focus:outline-none focus:ring-2 focus:ring-[#1E293B] focus:bg-white transition"
-              />
+  value={(data as any)[item.key] || ""}
+  onChange={(e) =>
+    setData({
+      [item.key]:
+        item.key === "nome"
+          ? e.target.value
+          : formatCurrency(e.target.value),
+    })
+  }
+  placeholder={item.placeholder || "R$ 0,00"}
+  
+  inputMode={item.key !== "nome" ? "numeric" : "text"}
+  pattern={item.key !== "nome" ? "[0-9]*" : undefined}
+
+  className="w-full mt-1 px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-[15px] text-[#0f172a] focus:outline-none focus:ring-2 focus:ring-[#1E293B] focus:bg-white transition"
+/>
             </div>
           ))}
   
