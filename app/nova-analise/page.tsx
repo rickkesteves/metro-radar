@@ -15,6 +15,7 @@ import radarAnimation from "@/lotties/animabot.json"
 
 
 export default function NovaAnalise() {
+  const [tipoFiltro, setTipoFiltro] = useState("todos")
   const [mensagemIndex, setMensagemIndex] = useState(0)
   const [ready, setReady] = useState(false)
   const [user, setUser] = useState<any>(null)
@@ -1145,8 +1146,7 @@ useEffect(() => {
   if (step === 5) {
 
     const tipoSelecionado = data.tipo
-    const [tipoFiltro, setTipoFiltro] = useState("todos")
-
+    
 // 🔥 1. Ordena tudo primeiro
 const baseLista = empreendimentosSalvos.length
   ? empreendimentosSalvos
