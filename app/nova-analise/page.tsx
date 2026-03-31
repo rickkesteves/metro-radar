@@ -580,14 +580,16 @@ useEffect(() => {
         const c = urgenciaMeses(u)
         const i = mesesAteEntrega(entrega)
   
-        if (i < 0) return 100
-        if (i <= c) return 100
+        if (i < 0) return 80
+        if (i <= c) return 95
   
         const diff = i - c
-        if (diff <= 6) return 70
-        if (diff <= 12) return 40
+        if (diff <= 3) return 90
+        if (diff <= 6) return 75
+        if (diff <= 12) return 60
+        if (diff <= 18) return 40
   
-        return 0
+        return 20
       }
   
       const cliente = {
@@ -618,7 +620,7 @@ useEffect(() => {
           sTipo * 0.05 +
           sPreco * 0.05
       
-        const final = base * 0.95 + sUrg * 0.05
+        const final = base * 0.90 + sUrg * 0.10
       
         return {
           ...e,
