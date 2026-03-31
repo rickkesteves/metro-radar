@@ -839,7 +839,7 @@ useEffect(() => {
           </h1>
   
           <p className="text-[15px] text-gray-500">
-            Encontre os lançamentos ideais para seu perfil
+            Encontre os lançamentos ideais para você
           </p>
         </div>
   
@@ -856,7 +856,7 @@ useEffect(() => {
   
           {/* INPUTS ORIGINAIS */}
           {[
-            { label: "Nome do cliente", key: "nome", placeholder: "Digite o nome completo" },
+            { label: "Nome do cliente", key: "nome", placeholder: "Digite o nome" },
             { label: "Renda familiar mensal", key: "renda" },
             { label: "Quanto você pode dar de entrada (à vista ou parcelado)?", key: "entrada" }
           ].map((item, i) => (
@@ -1574,7 +1574,7 @@ const temMelhorFora =
     {showOutros
       ? "Ocultar outras opções"
       : temMelhorFora
-      ? "🔥 Ver melhores oportunidades"
+      ? "🔥 Ver outras oportunidades"
       : "Ver outras opções de imóveis"}
   </button>
 )}
