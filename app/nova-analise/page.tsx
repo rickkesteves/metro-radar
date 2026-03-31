@@ -505,6 +505,23 @@ useEffect(() => {
         if (indice >= 0.2) return 40
         return 20
       }
+
+      function calcularParcela(valorImovel: number, entrada: number) {
+        const financiado = Math.max(valorImovel - entrada, 0)
+        return financiado * 0.0065
+      }
+
+      function scoreEsforco(parcela: number, renda: number) {
+        if (!renda) return 0
+      
+        const esforco = parcela / renda
+      
+        if (esforco <= 0.2) return 100
+        if (esforco <= 0.25) return 80
+        if (esforco <= 0.3) return 60
+        if (esforco <= 0.35) return 40
+        return 20
+      }
   
       function scoreLocal(bairros: string[], bairro: string) {
         return bairros?.includes(bairro) ? 100 : 0
@@ -581,6 +598,9 @@ useEffect(() => {
       }
   
       const calculados = lista.map((e) => {
+        const valorImovel = toNumber(e.preco)
+        const parcela = calcularParcela(valorImovel, cliente.entrada)
+        const sEsforco = scoreEsforco(parcela, cliente.renda)
         const sRenda = scoreRenda(cliente.renda, e.renda_minima)
         const sEntrada = scoreEntrada(cliente.entrada, e.entrada_minima)
         const sLocal = scoreLocal(cliente.bairros || [], e.bairro || "")
@@ -589,11 +609,12 @@ useEffect(() => {
         const sUrg = scoreUrgencia(cliente.urgencia || "", e.entrega || "")
       
         const base =
-          sRenda * 0.35 +
-          sEntrada * 0.25 +
+          sEsforco * 0.30 +
+          sRenda * 0.25 +
+          sEntrada * 0.20 +
           sLocal * 0.15 +
-          sTipo * 0.10 +
-          sPreco * 0.10
+          sTipo * 0.05 +
+          sPreco * 0.05
       
         const final = base * 0.95 + sUrg * 0.05
       
@@ -605,6 +626,12 @@ useEffect(() => {
               informada: cliente.renda,
               ideal: e.renda_minima,
               score: Math.round(sRenda)
+            },
+            esforco: {
+              parcela: Math.round(parcela),
+              renda: cliente.renda,
+              percentual: cliente.renda ? (parcela / cliente.renda) : 0,
+              score: Math.round(sEsforco)
             },
             entrada: {
               informada: cliente.entrada,
@@ -648,6 +675,16 @@ useEffect(() => {
           "Renda:",
           item.debug.renda.score,
           `(${item.debug.renda.informada} / ${item.debug.renda.ideal})`
+        )
+
+        console.log(
+          "Parcela:",
+          Math.round(item.debug.esforco.parcela)
+        )
+        
+        console.log(
+          "Esforço:",
+          Math.round(item.debug.esforco.percentual * 100) + "%"
         )
       
         console.log(
