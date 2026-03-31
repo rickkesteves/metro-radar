@@ -517,10 +517,12 @@ useEffect(() => {
         const esforco = parcela / renda
       
         if (esforco <= 0.2) return 100
-        if (esforco <= 0.25) return 80
-        if (esforco <= 0.3) return 60
-        if (esforco <= 0.35) return 40
-        return 20
+        if (esforco <= 0.25) return 90
+        if (esforco <= 0.3) return 75
+        if (esforco <= 0.35) return 60
+        if (esforco <= 0.4) return 45
+        if (esforco <= 0.5) return 30
+      return 15
       }
   
       function scoreLocal(bairros: string[], bairro: string) {
