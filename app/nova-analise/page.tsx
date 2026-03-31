@@ -1248,13 +1248,13 @@ const temMelhorFora =
       👍 Boas opções disponíveis
     </p>
 
-  ) : qtdBoas > 0 ? (
+) : qtdBoas > 0 ? (
 
-    <p className="text-gray-500">
-      ⚠ Apenas {qtdBoas} opções realmente compatíveis
-    </p>
+  <p className="text-gray-500">
+    Encontramos {qtdBoas} boas opções dentro do seu perfil 👇
+  </p>
 
-  ) : (
+) : (
 
     <p className="text-gray-500">
       Com pequenos ajustes, você pode acessar boas oportunidades 👇
@@ -1323,7 +1323,7 @@ const temMelhorFora =
             : "text-yellow-600"
         }>
           {!data.bairros?.length
-            ? "• Localização não informada"
+            ? "• Região não priorizada"
             : data.bairros.includes(item.bairro)
             ? "✔ Localização compatível"
             : "⚠ Localização diferente"}
@@ -1331,27 +1331,27 @@ const temMelhorFora =
 
         {/* TIPO */}
         <div className={tipoOk ? "text-green-600" : "text-yellow-600"}>
-          {tipoOk
-            ? "✔ Tipo ideal: " + item.tipo
-            : "⚠ Tipo diferente: " + item.tipo}
+        {tipoOk
+          ? "✔ Dentro do tipo desejado"
+          : "💡 Tipo diferente, mas pode ser uma boa oportunidade"}
         </div>
 
         {/* RENDA */}
         <div className="relative group">
           <div className={
-            item.debug?.renda.score >= 80
+            item.debug?.renda.score >= 85
               ? "text-green-600"
-              : item.debug?.renda.score >= 50
+              : item.debug?.renda.score >= 65
               ? "text-yellow-600"
               : "text-red-600"
           }>
-            {item.debug?.renda.score >= 80 ? (
-              "✔ Renda adequada"
-            ) : (
-              <>
-                {item.debug?.renda.score >= 50
-                  ? "⚠ Renda parcialmente adequada"
-                  : "❌ Renda abaixo do ideal"}
+            {item.debug?.renda.score >= 85 ? (
+              "✔ Dentro da renda ideal"
+              ) : (
+                <>
+                  {item.debug?.renda.score >= 65
+                    ? "💡 Pode exigir pequeno ajuste na renda"
+                    : "⚠ Acima do ideal de financiamento"}
 
 <div className="absolute hidden group-hover:block left-1/2 -translate-x-1/2 bottom-full mb-2 w-52 bg-white text-gray-700 text-xs rounded-md px-3 py-2 shadow-md border border-gray-200 z-50 transition-all duration-200 opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0">
 
@@ -1374,18 +1374,19 @@ const temMelhorFora =
           <div className={
             item.debug?.entrada.score >= 80
               ? "text-green-600"
-              : item.debug?.entrada.score >= 50
+              : item.debug?.entrada.score >= 65
               ? "text-yellow-600"
               : "text-red-600"
           }>
-            {item.debug?.entrada.score >= 80 ? (
-              "✔ Entrada adequada"
+
+            {item.debug?.entrada.score >= 85 ? (
+              "✔ Entrada dentro do ideal"
             ) : (
               <>
-                {item.debug?.entrada.score >= 50
-                  ? "⚠ Entrada parcialmente adequada"
-                  : "❌ Entrada abaixo do ideal"}
-
+              {item.debug?.entrada.score >= 65
+                ? "💡 Entrada próxima do ideal"
+                : "⚠ Pode exigir ajuste na entrada"}
+            
 <div className="absolute hidden group-hover:block left-1/2 -translate-x-1/2 bottom-full mb-2 w-52 bg-white text-gray-700 text-xs rounded-md px-3 py-2 shadow-md border border-gray-200 z-50 transition-all duration-200 opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0">
 
 <div className="font-medium text-gray-900 mb-1">
@@ -1568,7 +1569,7 @@ const temMelhorFora =
                 )}
 
                 {/* RENDA */}
-                {item.debug?.renda.score >= 80 && (
+                {item.debug?.renda.score >= 85 && (
                   <div className="text-green-600">
                     ✔ Renda adequada
                   </div>
