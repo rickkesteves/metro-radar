@@ -142,15 +142,6 @@ useEffect(() => {
       font-size: 14px;
     }
     
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-
     .cliente {
       margin-top: 6px;
       font-size: 13px;
@@ -1227,7 +1218,7 @@ const temMelhorFora =
   Visualizar por tipo
 </p>
 
-<div className="flex gap-2 mb-6 overflow-x-auto no-scrollbar">
+<div className="flex gap-2 mb-6 flex-wrap">
 
   {["todos", "Casa", "Apartamento", "Misto", "Lote"].map((t) => {
 
