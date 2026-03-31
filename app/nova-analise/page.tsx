@@ -324,13 +324,7 @@ useEffect(() => {
               : `<div class="bad">❌ Renda abaixo do ideal</div>`
           }
 
-          ${
-            item.debug?.entrada?.score >= 80
-              ? `<div class="ok">✔ Entrada adequada</div>`
-              : item.debug?.entrada?.score >= 50
-              ? `<div class="warn">⚠ Entrada parcialmente adequada</div>`
-              : `<div class="bad">❌ Entrada abaixo do ideal</div>`
-          }
+          
 
         </div>
 
@@ -446,7 +440,6 @@ useEffect(() => {
       setData({
         nome: data.nome,
         renda: data.renda,
-        entrada: data.entrada,
         urgencia: data.urgencia,
         bairros: data.bairros || [],
         tipo: data.tipo,
@@ -693,18 +686,10 @@ useEffect(() => {
           "Esforço:",
           Math.round(item.debug.esforco.percentual * 100) + "%"
         )
-      
-        console.log(
-          "Entrada:",
-          item.debug.entrada.score,
-          `(${item.debug.entrada.informada} / ${item.debug.entrada.ideal})`
-        )
+    
+    
 
-        console.log(
-          "Indice entrada:",
-          item.debug.entrada.indice
-        )
-      
+     
         console.log(
           "Localização:",
           item.debug.localizacao.score,
@@ -1145,7 +1130,7 @@ useEffect(() => {
   if (step === 4) {
     const mensagens = [
       "Analisando seu perfil financeiro...",
-      "Cruzando dados de renda e entrada...",
+      "Cruzando dados de renda com o mercado...",
       "Escaneando bairros com oportunidades...",
       "Comparando mais de 2.000 combinações possíveis...",
       "Encontrando os melhores imóveis para você...",
