@@ -527,7 +527,9 @@ useEffect(() => {
       }
   
       function scoreLocal(bairros: string[], bairro: string) {
-        return bairros?.includes(bairro) ? 100 : 0
+        if (!bairros || bairros.length === 0) return 70 // 🔥 neutro
+      
+        return bairros.includes(bairro) ? 100 : 40
       }
   
       function scoreTipo(t1: string, t2: string) {
@@ -925,7 +927,7 @@ useEffect(() => {
           </div>
   
           <p className="text-[14px] text-[#64748B]">
-            Selecione um ou mais bairros:
+            Tem algum bairro que você gostaria de priorizar?
           </p>
   
           <div className="flex gap-2 flex-wrap">
