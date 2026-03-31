@@ -61,7 +61,6 @@ useEffect(() => {
 }, [])
   const [bairrosLista, setBairrosLista] = useState<string[]>([])
   const [step, setStep] = useState(0)
-  const [step, setStep] = useState(1)
   const [loading, setLoading] = useState(0)
   const [showTop10, setShowTop10] = useState(false)
   const [showOutros, setShowOutros] = useState(false)
@@ -790,7 +789,7 @@ useEffect(() => {
         </h1>
   
         <p className="text-gray-500 mt-2">
-          Descubra os melhores lançamentos para o seu perfil
+          Os melhores lançamentos para o seu perfil, em segundo
         </p>
   
         <div className="mt-6 space-y-2 text-sm text-gray-600">
@@ -799,11 +798,14 @@ useEffect(() => {
           <p>✔ Comparação com o mercado</p>
         </div>
   
+        <p className="text-xs text-gray-400 mt-4">
+  Analisamos centenas de combinações em segundos
+</p>
         <button
           onClick={() => setStep(1)}
           className="mt-8 w-full bg-[#0f172a] text-white py-3 rounded-xl font-semibold"
         >
-          Começar análise
+          Começar agora
         </button>
   
       </div>
