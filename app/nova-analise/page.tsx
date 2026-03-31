@@ -1210,11 +1210,11 @@ const temMelhorFora =
     </h1>
 
     <p className="text-[15px] text-gray-500">
-      Baseado no seu perfil financeiro e preferências
+      Selecionamos os melhores imóveis para o seu perfil
     </p>
 
   </div>
-  <p className="text-xs text-gray-400 mb-2">
+  <p className="text-xs text-gray-500 mb-2 font-medium">
   Visualizar por tipo
 </p>
 
@@ -1230,7 +1230,7 @@ const temMelhorFora =
         onClick={() => setTipoFiltro(t)}
         className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200
           ${ativo
-            ? "bg-[#0f172a] text-white shadow-md scale-[1.05]"
+            ? "bg-[#0f172a] text-white shadow-md scale-[1.03]"
             : "bg-gray-100 text-gray-700 hover:bg-gray-200"
           }
         `}
@@ -1239,9 +1239,12 @@ const temMelhorFora =
   {t === "todos" ? "Todos" : t}
 
   {t !== "todos" &&
-    melhorGeral &&
-    String(melhorGeral.tipo || "").toLowerCase().trim() !==
-      String(t).toLowerCase().trim() && (
+  ordenados.some(
+    (e) =>
+      String(e.tipo || "").toLowerCase().trim() ===
+        String(t).toLowerCase().trim() &&
+      e.score >= 80
+  ) && (
       <span className="text-[10px] text-orange-500">🔥</span>
   )}
 </span>
@@ -1400,7 +1403,7 @@ const temMelhorFora =
         {/* ENTRADA */}
         <div className="relative group">
           <div className={
-            item.debug?.entrada.score >= 80
+            item.debug?.entrada.score >= 85
               ? "text-green-600"
               : item.debug?.entrada.score >= 65
               ? "text-yellow-600"
