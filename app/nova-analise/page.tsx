@@ -496,8 +496,14 @@ useEffect(() => {
   
       function scoreEntrada(e: number, min: number) {
         if (!min) return 0
-        if (e >= min) return 100
-        return (e / min) * 100
+      
+        const indice = e / min
+      
+        if (indice >= 1) return 100
+        if (indice >= 0.7) return 80
+        if (indice >= 0.4) return 60
+        if (indice >= 0.2) return 40
+        return 20
       }
   
       function scoreLocal(bairros: string[], bairro: string) {
@@ -603,6 +609,7 @@ useEffect(() => {
             entrada: {
               informada: cliente.entrada,
               ideal: e.entrada_minima,
+              indice: e.entrada_minima ? cliente.entrada / e.entrada_minima : 0,
               score: Math.round(sEntrada)
             },
             localizacao: {
@@ -647,6 +654,11 @@ useEffect(() => {
           "Entrada:",
           item.debug.entrada.score,
           `(${item.debug.entrada.informada} / ${item.debug.entrada.ideal})`
+        )
+
+        console.log(
+          "Indice entrada:",
+          item.debug.entrada.indice
         )
       
         console.log(
@@ -753,7 +765,7 @@ useEffect(() => {
           {[
             { label: "Nome do cliente", key: "nome", placeholder: "Digite o nome completo" },
             { label: "Renda familiar mensal", key: "renda" },
-            { label: "Valor disponível para entrada", key: "entrada" }
+            { label: "Quanto você pode dar de entrada (à vista ou parcelado)?", key: "entrada" }
           ].map((item, i) => (
             <div key={i}>
               <label className="text-[13px] text-gray-500 font-medium">
