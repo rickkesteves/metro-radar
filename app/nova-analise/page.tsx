@@ -780,7 +780,7 @@ useEffect(() => {
   }
   if (step === 0) {
     return (
-      <div className="max-w-md mx-auto px-4 py-10 text-center">
+      <div className="max-w-md mx-auto px-4 py-14 text-center">
   
   <div className="relative flex justify-center mb-6">
 
@@ -794,26 +794,26 @@ useEffect(() => {
 />
 
 </div>
+
+  <div className="w-16 h-[2px] bg-gradient-to-r from-transparent via-gray-300 to-transparent mx-auto mb-6" />
+
   
         <h1 className="text-2xl font-semibold">
           Metro Radar
         </h1>
   
-        <p className="text-gray-500 mt-2">
-          Deixa que eu encontro as melhores oportunidades pra você
+        <p className="text-[15px] text-gray-500 mt-3 leading-relaxed">
+          O melhor imóvel para você, sem perder tempo.
         </p>
-  
-        <p className="text-[14px] text-gray-500 mt-4 leading-relaxed">
-          Analisamos seu perfil, cruzamos com o mercado e mostramos apenas as melhores oportunidades para você.
-        </p>
-  
-        <p className="text-xs text-gray-400 mt-4">
-          Analisamos centenas de combinações em segundos
+    
+        <p className="text-xs text-gray-400 mt-6">
+          ⚡ Resultado em segundos
         </p>
 
         <button
           onClick={() => setStep(1)}
-          className="mt-8 w-full bg-[#0f172a] text-white py-3 rounded-xl font-semibold"
+          className="mt-10 w-full bg-[#0f172a] text-white py-3 rounded-xl font-semibold 
+          hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-md"
         >
           Ver Oportunidades
         </button>
@@ -835,7 +835,7 @@ useEffect(() => {
           <IconBox src="https://metrosquare.com.br/wp-content/uploads/2026/03/radar-1.svg" />
   
           <h1 className="text-[26px] font-semibold tracking-tight text-[#0f172a]">
-            Sobre Você
+            Vamos começar pelo seu perfil
           </h1>
   
           <p className="text-[15px] text-gray-500">
