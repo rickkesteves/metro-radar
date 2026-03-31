@@ -1231,7 +1231,14 @@ const temMelhorFora =
         
     return (
       <>
-      <Toaster position="top-right" />
+      <Toaster
+  position="top-center"
+  toastOptions={{
+    style: {
+      marginTop: "60px",
+    },
+  }}
+/>
       <div className="max-w-md mx-auto px-4 py-10 bg-[#f8fafc] min-h-screen">
   
         {/* BOTÕES */}
