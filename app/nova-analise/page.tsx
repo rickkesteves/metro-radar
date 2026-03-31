@@ -1218,9 +1218,22 @@ const temMelhorFora =
   Visualizar por tipo
 </p>
 
-<div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2 mb-6">
+{/* TODOS separado */}
+<button
+  onClick={() => setTipoFiltro("todos")}
+  className={`w-full mb-3 px-4 py-2 rounded-full text-sm font-medium transition-all
+    ${tipoFiltro === "todos"
+      ? "bg-[#0f172a] text-white shadow-md"
+      : "bg-gray-100 text-gray-700"
+    }
+  `}
+>
+  Todos
+</button>
 
-  {["todos", "Casa", "Apartamento", "Misto", "Lote"].map((t) => {
+{/* OUTROS TIPOS */}
+<div className="grid grid-cols-2 gap-2">
+  {["Casa", "Apartamento", "Misto", "Lote"].map((t) => {
 
     const ativo = tipoFiltro === t
 
@@ -1228,30 +1241,17 @@ const temMelhorFora =
       <button
         key={t}
         onClick={() => setTipoFiltro(t)}
-        className={`w-full sm:w-auto px-4 py-2 rounded-full text-sm font-medium text-center whitespace-nowrap transition-all duration-200
+        className={`px-4 py-2 rounded-full text-sm font-medium text-center transition-all
           ${ativo
-            ? "bg-[#0f172a] text-white shadow-md scale-[1.03]"
-            : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+            ? "bg-[#0f172a] text-white shadow-md"
+            : "bg-gray-100 text-gray-700"
           }
         `}
       >
-        <span className="flex items-center gap-1">
-  {t === "todos" ? "Todos" : t}
-
-  {t !== "todos" &&
-  ordenados.some(
-    (e) =>
-      String(e.tipo || "").toLowerCase().trim() ===
-        String(t).toLowerCase().trim() &&
-      e.score >= 80
-  ) && (
-      <span className="text-[10px] text-orange-500">🔥</span>
-  )}
-</span>
+        {t}
       </button>
     )
   })}
-
 </div>
 {tipoFiltro !== "todos" && (
   <p className="text-xs text-gray-500 mb-4">
@@ -1264,7 +1264,7 @@ const temMelhorFora =
 
     // 🔥 PRIORIDADE MÁXIMA
     <div className="p-4 bg-amber-50 border border-amber-200 rounded-xl text-yellow-800">
-      ⚠ Você escolheu {data.tipo}, mas existem imóveis com score maior em outros tipos. Vale a pena conferir 👇
+      ⚠ 💡 Existem imóveis com melhor pontuação em outros tipos — vale conferir 👇
     </div>
 
   ) : qtdBoas >= 10 ? (
