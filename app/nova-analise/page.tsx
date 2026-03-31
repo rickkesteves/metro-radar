@@ -1231,8 +1231,7 @@ const temMelhorFora =
         
     return (
       <>
-      <Toaster
-  position="top-center"
+      <Toaster position="bottom-center"
   toastOptions={{
     style: {
       marginTop: "60px",
