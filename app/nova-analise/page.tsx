@@ -70,7 +70,7 @@ useEffect(() => {
   const router = useRouter()
   const { data, setData, reset } = useAnalysis()
 
-  const step1Disabled = !data.nome || !data.renda || !data.entrada || !data.urgencia
+  const step1Disabled = !data.nome || !data.renda || !data.urgencia
   const step3Disabled = !data.tipo
   useEffect(() => {
     if (!step1Disabled) {
@@ -597,40 +597,42 @@ useEffect(() => {
   
       const cliente = {
         renda: toNumber(data.renda),
-        entrada: toNumber(data.entrada),
         bairros: data.bairros || [],
         tipo: data.tipo,
         preco: data.preco,
         urgencia: data.urgencia
       }
-  
+
+      function entradaEstimada(valorImovel: number) {
+        return valorImovel * 0.15 // 🔥 pode ajustar (10%–20%)
+      }
       const calculados = lista.map((e) => {
+        const noteMetro =
+          (Number(e.densidade || 0) +
+          Number(e.area || 0) +
+          Number(e.localizacao || 0)) / 3
         const valorImovel = toNumber(e.preco)
-        const parcela = calcularParcela(valorImovel, cliente.entrada)
+        const entradaCalc = entradaEstimada(valorImovel)
+        const parcela = calcularParcela(valorImovel, entradaCalc)
         const sEsforco = scoreEsforco(parcela, cliente.renda)
         const sRenda = scoreRenda(cliente.renda, e.renda_minima)
-        const sEntrada = scoreEntrada(cliente.entrada, e.entrada_minima)
         const sLocal = scoreLocal(cliente.bairros || [], e.bairro || "")
         const sTipo = scoreTipo(cliente.tipo || "", e.tipo || "")                
         const sPreco = scorePreco(cliente.preco || "", e.preco || 0)
         const sUrg = scoreUrgencia(cliente.urgencia || "", e.entrega || "")
       
         const base =
-          sEsforco * 0.30 +
-          sRenda * 0.20 +
-          sEntrada * 0.25 +
+          sEsforco * 0.25 +
+          sRenda * 0.35 +
           sLocal * 0.15 +
-          sTipo * 0.05 +
-          sPreco * 0.05
+          sTipo * 0.10 +
+          sPreco * 0.10
       
           let final = base * 0.90 + sUrg * 0.10
-
-          if (sEntrada < 50) {
-            final = final * 0.9
-          }
       
         return {
           ...e,
+          noteMetro: Math.round(noteMetro),
           score: Math.round(final),
           debug: {
             renda: {
@@ -643,12 +645,6 @@ useEffect(() => {
               renda: cliente.renda,
               percentual: cliente.renda ? (parcela / cliente.renda) : 0,
               score: Math.round(sEsforco)
-            },
-            entrada: {
-              informada: cliente.entrada,
-              ideal: e.entrada_minima,
-              indice: e.entrada_minima ? cliente.entrada / e.entrada_minima : 0,
-              score: Math.round(sEntrada)
             },
             localizacao: {
               informada: cliente.bairros,
@@ -858,7 +854,7 @@ useEffect(() => {
           {[
             { label: "Nome do cliente", key: "nome", placeholder: "Digite o nome" },
             { label: "Renda familiar mensal", key: "renda" },
-            { label: "Quanto você pode dar de entrada (à vista ou parcelado)?", key: "entrada" }
+            
           ].map((item, i) => (
             <div key={i}>
               <label className="text-[13px] text-gray-500 font-medium">
@@ -1393,6 +1389,9 @@ const temMelhorFora =
         <div className="bg-[#0f172a]/90 text-white text-[11px] px-3 py-1 rounded-full font-medium shadow-sm">
           {item.score || 0}%
         </div>
+        <p className="text-xs text-gray-400 mt-1">
+  Nota Metro: {item.noteMetro || 0}
+</p>
       </div>
 
       <div className="h-px bg-gray-100 my-2" />
@@ -1455,39 +1454,7 @@ const temMelhorFora =
           </div>
         </div>
 
-        {/* ENTRADA */}
-        <div className="relative group">
-          <div className={
-            item.debug?.entrada.score >= 85
-              ? "text-green-600"
-              : item.debug?.entrada.score >= 65
-              ? "text-yellow-600"
-              : "text-red-600"
-          }>
-
-            {item.debug?.entrada.score >= 85 ? (
-              "✔ Entrada dentro do ideal"
-            ) : (
-              <>
-              {item.debug?.entrada.score >= 65
-                ? "💡 Entrada próxima do ideal"
-                : "⚠ Pode exigir ajuste na entrada"}
-            
-<div className="absolute hidden group-hover:block left-1/2 -translate-x-1/2 bottom-full mb-2 w-52 bg-white text-gray-700 text-xs rounded-md px-3 py-2 shadow-md border border-gray-200 z-50 transition-all duration-200 opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0">
-
-<div className="font-medium text-gray-900 mb-1">
-  Entrada ideal
-</div>
-
-<div>
-  R$ {item.debug?.entrada?.ideal || "—"}
-</div>
-
-</div>
-              </>
-            )}
-          </div>
-        </div>
+        
 
         </div> {/* fecha INFOS */}
         <div className="flex flex-col gap-2 mt-6 pt-4 border-t border-gray-100 !mt-6 !pt-4">
@@ -1661,16 +1628,7 @@ const temMelhorFora =
                   </div>
                 )}
 
-                {/* ALERTAS */}
-                {item.debug?.entrada.score < 80 && (
-                  <div className="text-yellow-600">
-                    ⚠ Entrada insuficiente
-                  </div>
-                )}
-
-              </div>
-            </div>
-
+               
             {/* AÇÕES */}
             <div className="mt-3 flex gap-2">
 
