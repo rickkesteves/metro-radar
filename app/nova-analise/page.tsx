@@ -267,7 +267,7 @@ useEffect(() => {
 
   <!-- HEADER -->
   <div class="header">
-    <h1>Seu ranking personalizado</h1>
+    <h1>Os melhores imóveis para o seu perfil</h1>
     <p class="sub">Baseado no perfil financeiro e preferências</p>
     <p class="cliente">Cliente: ${data.nome || "Não informado"}</p>
   </div>
