@@ -60,6 +60,7 @@ useEffect(() => {
   }
 }, [])
   const [bairrosLista, setBairrosLista] = useState<string[]>([])
+  const [step, setStep] = useState(0)
   const [step, setStep] = useState(1)
   const [loading, setLoading] = useState(0)
   const [showTop10, setShowTop10] = useState(false)
@@ -778,6 +779,38 @@ useEffect(() => {
       toast.success("Análise salva com sucesso!")
     }
   }
+  if (step === 0) {
+    return (
+      <div className="max-w-md mx-auto px-4 py-10 text-center">
+  
+        <Lottie animationData={radarAnimation} className="w-40 h-40 mx-auto mb-6" />
+  
+        <h1 className="text-2xl font-semibold">
+          Metro Radar
+        </h1>
+  
+        <p className="text-gray-500 mt-2">
+          Descubra os melhores lançamentos para o seu perfil
+        </p>
+  
+        <div className="mt-6 space-y-2 text-sm text-gray-600">
+          <p>✔ Ranking personalizado</p>
+          <p>✔ Análise de renda e entrada</p>
+          <p>✔ Comparação com o mercado</p>
+        </div>
+  
+        <button
+          onClick={() => setStep(1)}
+          className="mt-8 w-full bg-[#0f172a] text-white py-3 rounded-xl font-semibold"
+        >
+          Começar análise
+        </button>
+  
+      </div>
+    )
+  }
+
+
 
   // ======================
   // STEP 1
