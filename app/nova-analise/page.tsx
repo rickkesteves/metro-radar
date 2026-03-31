@@ -270,7 +270,7 @@ useEffect(() => {
     <p class="sub">Baseado no perfil financeiro e preferências</p>
     <p class="cliente">Cliente: ${data.nome || "Não informado"}</p>
   </div>
-
+  
   <!-- TOP 3 -->
   ${top3.map((item, i) => `
 
@@ -1145,6 +1145,7 @@ useEffect(() => {
   if (step === 5) {
 
     const tipoSelecionado = data.tipo
+    const [tipoFiltro, setTipoFiltro] = useState("todos")
 
 // 🔥 1. Ordena tudo primeiro
 const baseLista = empreendimentosSalvos.length
@@ -1153,26 +1154,25 @@ const baseLista = empreendimentosSalvos.length
 
 const ordenados = [...baseLista].sort((a, b) => b.score - a.score)
 
-// 🔥 2. Separa depois
-const mesmos = ordenados.filter(
-  e => String(e.tipo || "").toLowerCase().trim() === String(tipoSelecionado || "").toLowerCase().trim()
-)
-
-const outros = ordenados.filter(
-  e => String(e.tipo || "").toLowerCase().trim() !== String(tipoSelecionado || "").toLowerCase().trim()
-)
-
 // 🔥 3. Detecta se tem melhor fora
-const melhorMesmo = mesmos[0]
-const melhorOutro = outros[0]
+const melhorGeral = ordenados[0]
 
 const temMelhorFora =
-  melhorOutro && melhorMesmo &&
-  melhorOutro.score > melhorMesmo.score
+  melhorGeral &&
+  String(melhorGeral.tipo || "").toLowerCase().trim() !==
+  String(data.tipo || "").toLowerCase().trim()
   
-    const top3 = mesmos.slice(0, 3)
-    const top10 = mesmos.slice(3, 10)
+    const top3 = ordenados.slice(0, 3)
+    const top10 = ordenados.slice(3, 10)
     const qtdBoas = ordenados.filter(e => e.score >= 70).length
+    const listaExibida =
+  tipoFiltro === "todos"
+    ? ordenados
+    : ordenados.filter(
+        (e) =>
+          String(e.tipo || "").toLowerCase().trim() ===
+          String(tipoFiltro).toLowerCase().trim()
+      )
         
     return (
       <>
@@ -1208,7 +1208,23 @@ const temMelhorFora =
     </p>
 
   </div>
+  <div className="flex gap-2 mb-6 flex-wrap">
 
+{["todos", "Casa", "Apartamento", "Misto", "Lote"].map((t) => (
+  <button
+    key={t}
+    onClick={() => setTipoFiltro(t)}
+    className={`px-3 py-2 rounded-lg text-sm font-medium transition ${
+      tipoFiltro === t
+        ? "bg-[#0f172a] text-white"
+        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+    }`}
+  >
+    {t === "todos" ? "Todos" : t}
+  </button>
+))}
+
+</div>
   <div className="mb-6 text-sm">
 
   {temMelhorFora ? (
@@ -1247,7 +1263,7 @@ const temMelhorFora =
 </div>
   {/* TOP 3 */}
 <div className="flex flex-col gap-4 mb-10">
-  {top3.map((item, i) => {
+    {listaExibida.slice(0, 3).map((item, i) => {
 
     const tipoOk =
       String(data.tipo || "").toLowerCase().trim() ===
@@ -1467,7 +1483,7 @@ const temMelhorFora =
 
 </div> {/* FECHA GRID */}
 {/* BOTÃO OUTROS TIPOS */}
-{outros.length > 0 && (
+{ordenados.length > 3 && (
   <button
     onClick={() => setShowOutros(!showOutros)}
     className="mb-6 bg-gray-100 px-4 py-2 rounded-lg text-sm hover:bg-gray-200 transition"
@@ -1484,7 +1500,7 @@ const temMelhorFora =
 {showOutros && (
   <div className="space-y-4 mb-6">
 
-    {ordenados.slice(3, 10).map((item, i) => {
+    {listaExibida.slice(3, 10).map((item, i) => {
 
       const tipoOk =
         String(data.tipo || "").toLowerCase().trim() ===
