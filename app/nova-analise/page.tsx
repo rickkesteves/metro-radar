@@ -610,10 +610,10 @@ useEffect(() => {
       
         const calculados = lista.map((e) => {
         const valorImovel = toNumber(e.preco)
-        const parcela = calcularParcela(valorImovel, cliente.entrada)
+        const entradaCalc = entradaEstimada(valorImovel)
+        const parcela = calcularParcela(valorImovel, entradaCalc) 
         const sEsforco = scoreEsforco(parcela, cliente.renda)
         const sRenda = scoreRenda(cliente.renda, e.renda_minima)
-        const sEntrada = scoreEntrada(cliente.entrada, e.entrada_minima)
         const sLocal = scoreLocal(cliente.bairros || [], e.bairro || "")
         const sTipo = scoreTipo(cliente.tipo || "", e.tipo || "")                
         const sPreco = scorePreco(cliente.preco || "", e.preco || 0)
@@ -622,7 +622,6 @@ useEffect(() => {
         const base =
           sEsforco * 0.30 +
           sRenda * 0.20 +
-          sEntrada * 0.25 +
           sLocal * 0.15 +
           sTipo * 0.05 +
           sPreco * 0.05
