@@ -1356,10 +1356,19 @@ const temMelhorFora =
           `}
         >
     {/* IMAGEM */}
-    <img
-      src={item.imagem || "https://via.placeholder.com/400x300"}
-      className="h-44 w-full object-cover"
-    />
+    <div className="relative">
+
+      <img
+        src={item.imagem || "https://via.placeholder.com/400x300"}
+        className="h-44 w-full object-cover"
+      />
+
+    {/* BADGE % */}
+      <div className="absolute top-3 right-3 bg-[#0f172a]/90 text-white text-xs px-3 py-1 rounded-full font-semibold shadow-md">
+        {item.score || 0}%
+      </div>
+
+    </div>
 
     <div className="p-5">
 
@@ -1378,11 +1387,7 @@ const temMelhorFora =
 
   {/* DIREITA */}
   <div className="flex flex-col items-end flex-shrink-0">
-
-    <div className="bg-[#0f172a]/90 text-white text-[11px] px-3 py-1 rounded-full font-medium shadow-sm">
-      {item.score || 0}%
-    </div>
-
+    
     <div className="text-yellow-500 text-base mt-1 whitespace-nowrap">
       {renderStars(Number(item.noteMetro))}
     </div>
