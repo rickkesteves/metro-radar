@@ -1195,6 +1195,14 @@ const baseLista = empreendimentosSalvos.length
   : empreendimentos
 
 const ordenados = [...baseLista].sort((a, b) => b.score - a.score)
+const listaFiltrada =
+  tipoFiltro === "todos"
+    ? ordenados
+    : ordenados.filter(
+        (e) =>
+          String(e.tipo || "").toLowerCase().trim() ===
+          String(tipoFiltro).toLowerCase().trim()
+      )
 
 // 🔥 3. Detecta se tem melhor fora
 const melhorGeral = ordenados[0]
@@ -1204,7 +1212,7 @@ const temMelhorFora =
   String(melhorGeral.tipo || "").toLowerCase().trim() !==
   String(data.tipo || "").toLowerCase().trim()
   
-    const top3 = ordenados.slice(0, 3)
+    const top3 = listaFiltrada.slice(0, 3)
     const top10 = listaFiltrada.slice(3, 10)
     const qtdBoas = ordenados.filter(e => e.score >= 70).length
     const listaExibida =
