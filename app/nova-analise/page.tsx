@@ -1364,9 +1364,9 @@ const temMelhorFora =
       />
 
     {/* BADGE % */}
-      <div className="absolute top-3 right-3 bg-[#0f172a]/90 text-white text-xs px-3 py-1 rounded-full font-semibold shadow-md">
-        {item.score || 0}%
-      </div>
+    <div className="absolute top-3 right-3 bg-black/70 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full font-semibold shadow-md">
+      {item.score || 0}%
+    </div>
 
     </div>
 
