@@ -1624,13 +1624,15 @@ const temMelhorFora =
 
 
           </div>
+          </div>
+          </div>
 
          
       )
   })}
 
-</div> {/* 🔥 FECHA o container do showOutros */}
-)}
+
+
 <div className="mt-10 flex flex-col gap-3">
 
 <button
