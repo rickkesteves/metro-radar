@@ -1601,11 +1601,10 @@ const temMelhorFora =
                   </div>
                 )}
                 
-              </div>
+                </div> {/* fecha CRITÉRIOS */}
 
-               
-            {/* AÇÕES */}
-            <div className="mt-3 flex gap-2">
+{/* AÇÕES */}
+<div className="mt-3 flex gap-2">
 
   {/* DETALHES */}
   <button
@@ -1633,7 +1632,8 @@ const temMelhorFora =
     Simular
   </a>
 
-</div>
+  </div> {/* AÇÕES */}
+
 
 </div> {/* 🔥 AQUI: FECHA flex-1 flex-col (ESSENCIAL) */}
 
