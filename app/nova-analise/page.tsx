@@ -1602,7 +1602,7 @@ const temMelhorFora =
 
 {/* AÇÕES */}
 <div className="mt-3 flex gap-2">
-</div>
+
   {/* DETALHES */}
   <button
     onClick={() => item.url_wp && window.open(item.url_wp, "_blank")}
@@ -1629,7 +1629,7 @@ const temMelhorFora =
     Simular
   </a>
 
-  </div> {/* AÇÕES */}
+</div> {/* AÇÕES */}
 
 
 </div> {/* 🔥 AQUI: FECHA flex-1 flex-col (ESSENCIAL) */}
