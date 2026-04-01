@@ -609,6 +609,7 @@ useEffect(() => {
       }
       
         const calculados = lista.map((e) => {
+        const noteMetro = (Number(e.densidade || 0) + Number(e.area || 0) + Number(e.localizacao || 0)) / 3
         const valorImovel = toNumber(e.preco)
         const entradaCalc = entradaEstimada(valorImovel)
         const parcela = calcularParcela(valorImovel, entradaCalc) 
@@ -618,18 +619,12 @@ useEffect(() => {
         const sTipo = scoreTipo(cliente.tipo || "", e.tipo || "")                
         const sPreco = scorePreco(cliente.preco || "", e.preco || 0)
         const sUrg = scoreUrgencia(cliente.urgencia || "", e.entrega || "")
-      
-        const base =
-          sEsforco * 0.30 +
-          sRenda * 0.20 +
-          sLocal * 0.15 +
-          sTipo * 0.05 +
-          sPreco * 0.05
-      
+        const base = sEsforco * 0.30 + sRenda * 0.20 + sLocal * 0.15 + sTipo * 0.05 + sPreco * 0.05
           let final = base * 0.90 + sUrg * 0.10
       
         return {
           ...e,
+          noteMetro: Math.round(noteMetro),
           score: Math.round(final),
           debug: {
             renda: {
