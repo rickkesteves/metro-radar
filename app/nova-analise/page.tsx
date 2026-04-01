@@ -1388,7 +1388,7 @@ const temMelhorFora =
   {/* DIREITA */}
   <div className="flex flex-col items-end flex-shrink-0">
     
-    <div className="text-yellow-500 text-base mt-1 whitespace-nowrap">
+    <div className="text-yellow-500 text-lg mt-1 whitespace-nowrap">
       {renderStars(Number(item.noteMetro))}
     </div>
 
