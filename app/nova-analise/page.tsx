@@ -1632,8 +1632,9 @@ const temMelhorFora =
   })}
 
 
-
+</div> {/* 🔥 FECHA showOutros */}
 <div className="mt-10 flex flex-col gap-3">
+  
 
 <button
   onClick={() => {
