@@ -1364,25 +1364,32 @@ const temMelhorFora =
     <div className="p-5">
 
       {/* HEADER */}
-      <div className="flex justify-between items-start">
-        <div>
-          <h3 className="font-semibold text-[#0f172a] text-lg">
-            {item.nome}
-          </h3>
-          <p className="text-sm text-gray-500">
-            {item.bairro}
-          </p>
-        </div>
+      <div className="flex justify-between items-start gap-3">
 
-        <div className="bg-[#0f172a]/90 text-white text-[11px] px-3 py-1 rounded-full font-medium shadow-sm">
-          {item.score || 0}%
-        </div>
-        <p className="text-xs text-gray-400 mt-1">
-        <div className="text-yellow-500 text-sm mt-1">
-          {renderStars(Number(item.noteMetro))}
-        </div>
-        </p>
-      </div>
+  {/* ESQUERDA */}
+  <div className="flex-1 min-w-0">
+    <h3 className="font-semibold text-[#0f172a] text-lg leading-tight line-clamp-2">
+      {item.nome}
+    </h3>
+    <p className="text-sm text-gray-500">
+      {item.bairro}
+    </p>
+  </div>
+
+  {/* DIREITA */}
+  <div className="flex flex-col items-end flex-shrink-0">
+
+    <div className="bg-[#0f172a]/90 text-white text-[11px] px-3 py-1 rounded-full font-medium shadow-sm">
+      {item.score || 0}%
+    </div>
+
+    <div className="text-yellow-500 text-base mt-1 whitespace-nowrap">
+      {renderStars(Number(item.noteMetro))}
+    </div>
+
+  </div>
+
+</div>
 
       <div className="h-px bg-gray-100 my-2" />
 
