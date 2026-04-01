@@ -15,6 +15,10 @@ import radarAnimation from "@/lotties/animabot.json"
 
 
 export default function NovaAnalise() {
+  function renderStars(nota: number) {
+    const estrelas = Math.round(nota / 2)
+    return "★".repeat(estrelas) + "☆".repeat(5 - estrelas)
+  }
   const [tipoFiltro, setTipoFiltro] = useState("todos")
   const [mensagemIndex, setMensagemIndex] = useState(0)
   const [ready, setReady] = useState(false)
@@ -1367,7 +1371,9 @@ const temMelhorFora =
           {item.score || 0}%
         </div>
         <p className="text-xs text-gray-400 mt-1">
-          Nota Metro: {item.noteMetro || 0}
+        <div className="text-yellow-500 text-sm mt-1">
+          {renderStars(Number(item.noteMetro))}
+        </div>
         </p>
       </div>
 
