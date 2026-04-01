@@ -1621,12 +1621,8 @@ const temMelhorFora =
                   </div>
                 )}
 
-                {/* ALERTAS */}
-                {item.debug?.entrada.score < 80 && (
-                  <div className="text-yellow-600">
-                    ⚠ Entrada insuficiente
-                  </div>
-                )}
+                
+                
 
               </div>
             </div>
