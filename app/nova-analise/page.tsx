@@ -70,7 +70,7 @@ useEffect(() => {
   const router = useRouter()
   const { data, setData, reset } = useAnalysis()
 
-  const step1Disabled = !data.nome || !data.renda || !data.entrada || !data.urgencia
+  const step1Disabled = !data.nome || !data.renda || !data.urgencia
   const step3Disabled = !data.tipo
   useEffect(() => {
     if (!step1Disabled) {
@@ -597,14 +597,18 @@ useEffect(() => {
   
       const cliente = {
         renda: toNumber(data.renda),
-        entrada: toNumber(data.entrada),
         bairros: data.bairros || [],
         tipo: data.tipo,
         preco: data.preco,
         urgencia: data.urgencia
       }
   
-      const calculados = lista.map((e) => {
+
+      function entradaEstimada(valorImovel: number) {
+        return valorImovel * 0.15 // 🔥 pode ajustar (10%–20%)
+      }
+      
+        const calculados = lista.map((e) => {
         const valorImovel = toNumber(e.preco)
         const parcela = calcularParcela(valorImovel, cliente.entrada)
         const sEsforco = scoreEsforco(parcela, cliente.renda)
@@ -858,7 +862,6 @@ useEffect(() => {
           {[
             { label: "Nome do cliente", key: "nome", placeholder: "Digite o nome" },
             { label: "Renda familiar mensal", key: "renda" },
-            { label: "Quanto você pode dar de entrada (à vista ou parcelado)?", key: "entrada" }
           ].map((item, i) => (
             <div key={i}>
               <label className="text-[13px] text-gray-500 font-medium">
