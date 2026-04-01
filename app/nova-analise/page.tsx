@@ -1552,91 +1552,84 @@ const temMelhorFora =
 
             {/* TOP */}
             <div className="flex justify-between items-start">
+              <div className="flex-1">
+                <p className="text-xs text-gray-400">
+                  #{i + 4}
+                </p>
+                <h3 className="font-semibold text-[#0f172a] leading-tight">
+                  {item.nome}
+                </h3>
+                <p className="text-sm text-gray-500">
+                  {item.bairro}
+                </p>
+            </div>
+            <div className="bg-[#0f172a]/90 text-white text-xs px-3 py-1.5 rounded-full font-medium shadow-sm">
+              {item.score}%
+            </div>
+          </div>
 
-  <div className="flex-1">
-    <p className="text-xs text-gray-400">
-      #{i + 4}
-    </p>
-
-    <h3 className="font-semibold text-[#0f172a] leading-tight">
-      {item.nome}
-    </h3>
-
-    <p className="text-sm text-gray-500">
-      {item.bairro}
-    </p>
-  </div>
-
-  <div className="bg-[#0f172a]/90 text-white text-xs px-3 py-1.5 rounded-full font-medium shadow-sm">
-    {item.score}%
-  </div>
-
-
-              </div>
-
-              {/* CRITÉRIOS */}
-              <div className="mt-3 text-sm space-y-1">
-
-                {/* LOCAL */}
+          {/* CRITÉRIOS */}
+            <div className="mt-3 text-sm space-y-1">
+              {/* LOCAL */}
                 {data.bairros?.includes(item.bairro) && (
                   <div className="text-green-600">
                     ✔ Localização compatível
                   </div>
                 )}
 
-                {/* TIPO */}
+              {/* TIPO */}
                 {tipoOk && (
                   <div className="text-green-600">
                     ✔ Tipo adequado
                   </div>
                 )}
 
-                {/* RENDA */}
+              {/* RENDA */}
                 {item.debug?.renda.score >= 85 && (
                   <div className="text-green-600">
                     ✔ Renda adequada
                   </div>
                 )}
                 
-                </div> {/* fecha CRITÉRIOS */}
+            </div> {/* fecha CRITÉRIOS */}
 
-{/* AÇÕES */}
-<div className="mt-3 flex gap-2">
+            {/* AÇÕES */}
+              <div className="mt-3 flex gap-2">
 
-  {/* DETALHES */}
-  <button
-    onClick={() => item.url_wp && window.open(item.url_wp, "_blank")}
-    disabled={!item.url_wp}
-    className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-medium transition-all duration-200
-      ${
-        item.url_wp
-          ? "bg-[#0f172a] text-white hover:scale-[1.02] active:scale-[0.97]"
-          : "bg-gray-200 text-gray-400 cursor-not-allowed"
-      }
-    `}
-  >
-    <Info size={13} />
-    Detalhes
-  </button>
+                {/* DETALHES */}
+                <button
+                  onClick={() => item.url_wp && window.open(item.url_wp, "_blank")}
+                  disabled={!item.url_wp}
+                  className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-medium transition-all duration-200
+                  ${
+                    item.url_wp
+                      ? "bg-[#0f172a] text-white hover:scale-[1.02] active:scale-[0.97]"
+                      : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                    }
+                  `}
+                >
+                <Info size={13} />
+                  Detalhes
+                </button>
 
-  {/* SIMULAR */}
-  <a
-    href="https://www8.caixa.gov.br/siopiinternet-web/simulaOperacaoInternet.do?method=inicializarCasoUso"
-    target="_blank"
-    className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-medium border border-gray-200 text-gray-600 hover:bg-gray-50 transition"
-  >
-    <ExternalLink size={13} />
-    Simular
-  </a>
+                {/* SIMULAR */}
+                  <a
+                    href="https://www8.caixa.gov.br/siopiinternet-web/simulaOperacaoInternet.do?method=inicializarCasoUso"
+                    target="_blank"
+                    className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-medium border border-gray-200 text-gray-600 hover:bg-gray-50 transition"
+                  >
+                  <ExternalLink size={13} />
+                    Simular
+                  </a>
 
-</div> {/* AÇÕES */}
+            </div>
 
 
-</div> {/* 🔥 AQUI: FECHA flex-1 flex-col (ESSENCIAL) */}
+          </div>
 
-</div> {/* fecha CARD */}
-)
-})}
+        </div> 
+      )
+  })}
 
 </div> {/* 🔥 FECHA o container do showOutros */}
 
