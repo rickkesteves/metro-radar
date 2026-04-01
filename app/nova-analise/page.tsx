@@ -1380,6 +1380,9 @@ const temMelhorFora =
         <div className="bg-[#0f172a]/90 text-white text-[11px] px-3 py-1 rounded-full font-medium shadow-sm">
           {item.score || 0}%
         </div>
+        <p className="text-xs text-gray-400 mt-1">
+          Nota Metro: {item.noteMetro || 0}
+        </p>
       </div>
 
       <div className="h-px bg-gray-100 my-2" />
