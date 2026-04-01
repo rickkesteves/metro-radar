@@ -323,15 +323,7 @@ useEffect(() => {
               ? `<div class="warn">⚠ Renda parcialmente adequada</div>`
               : `<div class="bad">❌ Renda abaixo do ideal</div>`
           }
-
-          ${
-            item.debug?.entrada?.score >= 80
-              ? `<div class="ok">✔ Entrada adequada</div>`
-              : item.debug?.entrada?.score >= 50
-              ? `<div class="warn">⚠ Entrada parcialmente adequada</div>`
-              : `<div class="bad">❌ Entrada abaixo do ideal</div>`
-          }
-
+       
         </div>
 
       </div>
@@ -446,7 +438,6 @@ useEffect(() => {
       setData({
         nome: data.nome,
         renda: data.renda,
-        entrada: data.entrada,
         urgencia: data.urgencia,
         bairros: data.bairros || [],
         tipo: data.tipo,
@@ -1125,7 +1116,7 @@ useEffect(() => {
   if (step === 4) {
     const mensagens = [
       "Analisando seu perfil financeiro...",
-      "Cruzando dados de renda e entrada...",
+      "Cruzando dados de renda com o mercado...",
       "Escaneando bairros com oportunidades...",
       "Comparando mais de 2.000 combinações possíveis...",
       "Encontrando os melhores imóveis para você...",
