@@ -685,18 +685,7 @@ useEffect(() => {
           "Esforço:",
           Math.round(item.debug.esforco.percentual * 100) + "%"
         )
-      
-        console.log(
-          "Entrada:",
-          item.debug.entrada.score,
-          `(${item.debug.entrada.informada} / ${item.debug.entrada.ideal})`
-        )
-
-        console.log(
-          "Indice entrada:",
-          item.debug.entrada.indice
-        )
-      
+                  
         console.log(
           "Localização:",
           item.debug.localizacao.score,
