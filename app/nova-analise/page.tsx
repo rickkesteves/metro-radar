@@ -1571,7 +1571,7 @@ const temMelhorFora =
     {item.score}%
   </div>
 
-</div>
+
               </div>
 
               {/* CRITÉRIOS */}
@@ -1602,7 +1602,7 @@ const temMelhorFora =
 
 {/* AÇÕES */}
 <div className="mt-3 flex gap-2">
-
+</div>
   {/* DETALHES */}
   <button
     onClick={() => item.url_wp && window.open(item.url_wp, "_blank")}
