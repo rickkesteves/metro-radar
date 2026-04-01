@@ -1552,9 +1552,8 @@ const temMelhorFora =
 
             {/* TOP */}
             <div>
-              <div className="flex justify-between items-start">
-                <div>
-                <div className="flex-1">
+  <div className="flex justify-between items-start">
+    <div className="flex-1">
 
 <p className="text-xs text-gray-400">
   #{i + 4}
