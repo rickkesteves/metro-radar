@@ -1447,39 +1447,7 @@ const temMelhorFora =
           </div>
         </div>
 
-        {/* ENTRADA */}
-        <div className="relative group">
-          <div className={
-            item.debug?.entrada.score >= 85
-              ? "text-green-600"
-              : item.debug?.entrada.score >= 65
-              ? "text-yellow-600"
-              : "text-red-600"
-          }>
-
-            {item.debug?.entrada.score >= 85 ? (
-              "✔ Entrada dentro do ideal"
-            ) : (
-              <>
-              {item.debug?.entrada.score >= 65
-                ? "💡 Entrada próxima do ideal"
-                : "⚠ Pode exigir ajuste na entrada"}
-            
-<div className="absolute hidden group-hover:block left-1/2 -translate-x-1/2 bottom-full mb-2 w-52 bg-white text-gray-700 text-xs rounded-md px-3 py-2 shadow-md border border-gray-200 z-50 transition-all duration-200 opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0">
-
-<div className="font-medium text-gray-900 mb-1">
-  Entrada ideal
-</div>
-
-<div>
-  R$ {item.debug?.entrada?.ideal || "—"}
-</div>
-
-</div>
-              </>
-            )}
-          </div>
-        </div>
+        
 
         </div> {/* fecha INFOS */}
         <div className="flex flex-col gap-2 mt-6 pt-4 border-t border-gray-100 !mt-6 !pt-4">
