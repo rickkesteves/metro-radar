@@ -110,15 +110,18 @@ useEffect(() => {
     const baseLista = empreendimentosSalvos.length
       ? empreendimentosSalvos
       : empreendimentos
-
+    
     const ordenados = [...baseLista].sort((a, b) => b.score - a.score)
-  
-    const mesmos = ordenados.filter(
-      e => String(e.tipo || "").toLowerCase().trim() ===
-           String(tipoSelecionado || "").toLowerCase().trim()
-    )
-  
-    const top3 = mesmos.slice(0, 3)
+
+    const listaFiltrada =
+      tipoSelecionado === "todos"
+        ? ordenados
+        : ordenados.filter(
+          e =>
+            String(e.tipo || "").toLowerCase().trim() ===
+            String(tipoSelecionado || "").toLowerCase().trim()
+          )
+    const top3 = listaFiltrada.slice(0, 3)
   
     
     const html = `
@@ -344,12 +347,12 @@ useEffect(() => {
   `).join("")}
 
   <!-- OUTROS -->
-  ${ordenados.length > 3 ? `
+  ${listaFiltrada.length > 3 ? `
 <div class="header">
   <h2>Outras oportunidades</h2>
 </div>
 <div class="lista-outros">
-    ${ordenados.slice(3, 10).map((item, i) => `
+    ${listaFiltrada.slice(3, 10).map((item, i) => `
       <div class="outro">
 
   <div style="display:flex; justify-content:space-between; align-items:center;">
@@ -1202,7 +1205,7 @@ const temMelhorFora =
   String(data.tipo || "").toLowerCase().trim()
   
     const top3 = ordenados.slice(0, 3)
-    const top10 = ordenados.slice(3, 10)
+    const top10 = listaFiltrada.slice(3, 10)
     const qtdBoas = ordenados.filter(e => e.score >= 70).length
     const listaExibida =
   tipoFiltro === "todos"
