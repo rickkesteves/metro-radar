@@ -600,13 +600,13 @@ useEffect(() => {
       }
       
         const calculados = lista.map((e) => {
-          const noteMetro = (
-            (
-              (Number(e.densidade) || 0) +
-              (Number(e.area) || 0) +
-              (Number(e.localizacao) || 0)
-            ) / 3 * 2
-          ).toFixed(1)
+        const noteMetro = Math.round(
+          (
+            (Number(e.densidade) || 0) +
+            (Number(e.area) || 0) +
+            (Number(e.localizacao) || 0)
+          ) / 3 * 2 * 10
+        ) / 10
         const valorImovel = toNumber(e.preco)
         const entradaCalc = entradaEstimada(valorImovel)
         const parcela = calcularParcela(valorImovel, entradaCalc) 
@@ -622,6 +622,7 @@ useEffect(() => {
         return {
           ...e,
           score: Math.round(final),
+          noteMetro,
           debug: {
             renda: {
               informada: cliente.renda,
