@@ -1551,28 +1551,26 @@ const temMelhorFora =
           <div className="flex-1 flex flex-col justify-between">
 
             {/* TOP */}
-            <div>
-  <div className="flex justify-between items-start">
-    <div className="flex-1">
+            <div className="flex justify-between items-start">
 
-<p className="text-xs text-gray-400">
-  #{i + 4}
-</p>
+  <div className="flex-1">
+    <p className="text-xs text-gray-400">
+      #{i + 4}
+    </p>
 
-<h3 className="font-semibold text-[#0f172a] leading-tight">
-  {item.nome}
-</h3>
+    <h3 className="font-semibold text-[#0f172a] leading-tight">
+      {item.nome}
+    </h3>
 
-<p className="text-sm text-gray-500">
-  {item.bairro}
-</p>
+    <p className="text-sm text-gray-500">
+      {item.bairro}
+    </p>
+  </div>
 
-</div>
-                  
-                </div>
+  <div className="bg-[#0f172a]/90 text-white text-xs px-3 py-1.5 rounded-full font-medium shadow-sm">
+    {item.score}%
+  </div>
 
-                <div className="bg-[#0f172a]/90 text-white text-xs px-3 py-1.5 rounded-full font-medium shadow-sm">
-  {item.score}%
 </div>
               </div>
 
