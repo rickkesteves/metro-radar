@@ -488,17 +488,7 @@ useEffect(() => {
         return (r / min) * 100
       }
   
-      function scoreEntrada(e: number, min: number) {
-        if (!min) return 0
       
-        const indice = e / min
-      
-        if (indice >= 1) return 100
-        if (indice >= 0.7) return 80
-        if (indice >= 0.4) return 60
-        if (indice >= 0.2) return 40
-        return 20
-      }
 
       function calcularParcela(valorImovel: number, entrada: number) {
         const financiado = Math.max(valorImovel - entrada, 0)
@@ -742,7 +732,6 @@ useEffect(() => {
         user_id: finalUserId,
         nome: data.nome || `Análise ${new Date().toLocaleDateString()}`,
         renda: data.renda,
-        entrada: data.entrada,
         urgencia: data.urgencia,
         bairros: data.bairros,
         tipo: data.tipo,
@@ -1612,6 +1601,8 @@ const temMelhorFora =
                     ✔ Renda adequada
                   </div>
                 )}
+                
+              </div>
 
                
             {/* AÇÕES */}
@@ -1645,14 +1636,12 @@ const temMelhorFora =
 
 </div>
 
-          </div>
+</div> {/* 🔥 AQUI: FECHA flex-1 flex-col (ESSENCIAL) */}
 
-        </div>
-      )
-    })}
+</div> {/* fecha CARD */}
+)
+})}
 
-  </div>
-)}
 <div className="mt-10 flex flex-col gap-3">
 
 <button
