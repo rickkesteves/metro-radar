@@ -1188,7 +1188,6 @@ const temMelhorFora =
   String(data.tipo || "").toLowerCase().trim()
   
     const top3 = ordenados.slice(0, 3)
-    const top10 = ordenados.slice(3, 10)
     const qtdBoas = ordenados.filter(e => e.score >= 70).length
     const listaExibida =
   tipoFiltro === "todos"
