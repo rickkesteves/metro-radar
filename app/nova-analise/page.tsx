@@ -627,10 +627,6 @@ useEffect(() => {
           sPreco * 0.05
       
           let final = base * 0.90 + sUrg * 0.10
-
-          if (sEntrada < 50) {
-            final = final * 0.9
-          }
       
         return {
           ...e,
@@ -646,12 +642,6 @@ useEffect(() => {
               renda: cliente.renda,
               percentual: cliente.renda ? (parcela / cliente.renda) : 0,
               score: Math.round(sEsforco)
-            },
-            entrada: {
-              informada: cliente.entrada,
-              ideal: e.entrada_minima,
-              indice: e.entrada_minima ? cliente.entrada / e.entrada_minima : 0,
-              score: Math.round(sEntrada)
             },
             localizacao: {
               informada: cliente.bairros,
