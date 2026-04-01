@@ -16,8 +16,15 @@ import radarAnimation from "@/lotties/animabot.json"
 
 export default function NovaAnalise() {
   function renderStars(nota: number) {
-    const estrelas = Math.round(nota / 2)
-    return "★".repeat(estrelas) + "☆".repeat(5 - estrelas)
+    const estrelasCheias = Math.floor(nota / 2)
+    const meia = nota % 2 >= 1 ? 1 : 0
+    const vazias = 5 - estrelasCheias - meia
+  
+    return (
+      "★".repeat(estrelasCheias) +
+      (meia ? "⯪" : "") +
+      "☆".repeat(vazias)
+    )
   }
   const [tipoFiltro, setTipoFiltro] = useState("todos")
   const [mensagemIndex, setMensagemIndex] = useState(0)
