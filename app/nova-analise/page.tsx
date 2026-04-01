@@ -1622,12 +1622,10 @@ const temMelhorFora =
                     Simular
                   </a>
 
-            </div>
-
 
           </div>
 
-        </div> 
+         
       )
   })}
 
