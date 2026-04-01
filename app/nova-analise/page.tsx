@@ -70,7 +70,7 @@ useEffect(() => {
   const router = useRouter()
   const { data, setData, reset } = useAnalysis()
 
-  const step1Disabled = !data.nome || !data.renda || !data.urgencia
+  const step1Disabled = !data.nome || !data.renda || !data.entrada || !data.urgencia
   const step3Disabled = !data.tipo
   useEffect(() => {
     if (!step1Disabled) {
@@ -324,7 +324,13 @@ useEffect(() => {
               : `<div class="bad">❌ Renda abaixo do ideal</div>`
           }
 
-          
+          ${
+            item.debug?.entrada?.score >= 80
+              ? `<div class="ok">✔ Entrada adequada</div>`
+              : item.debug?.entrada?.score >= 50
+              ? `<div class="warn">⚠ Entrada parcialmente adequada</div>`
+              : `<div class="bad">❌ Entrada abaixo do ideal</div>`
+          }
 
         </div>
 
@@ -440,6 +446,7 @@ useEffect(() => {
       setData({
         nome: data.nome,
         renda: data.renda,
+        entrada: data.entrada,
         urgencia: data.urgencia,
         bairros: data.bairros || [],
         tipo: data.tipo,
@@ -488,7 +495,17 @@ useEffect(() => {
         return (r / min) * 100
       }
   
+      function scoreEntrada(e: number, min: number) {
+        if (!min) return 0
       
+        const indice = e / min
+      
+        if (indice >= 1) return 100
+        if (indice >= 0.7) return 80
+        if (indice >= 0.4) return 60
+        if (indice >= 0.2) return 40
+        return 20
+      }
 
       function calcularParcela(valorImovel: number, entrada: number) {
         const financiado = Math.max(valorImovel - entrada, 0)
@@ -580,42 +597,40 @@ useEffect(() => {
   
       const cliente = {
         renda: toNumber(data.renda),
+        entrada: toNumber(data.entrada),
         bairros: data.bairros || [],
         tipo: data.tipo,
         preco: data.preco,
         urgencia: data.urgencia
       }
-
-      function entradaEstimada(valorImovel: number) {
-        return valorImovel * 0.15 // 🔥 pode ajustar (10%–20%)
-      }
+  
       const calculados = lista.map((e) => {
-        const noteMetro =
-          (Number(e.densidade || 0) +
-          Number(e.area || 0) +
-          Number(e.localizacao || 0)) / 3
         const valorImovel = toNumber(e.preco)
-        const entradaCalc = entradaEstimada(valorImovel)
-        const parcela = calcularParcela(valorImovel, entradaCalc)
+        const parcela = calcularParcela(valorImovel, cliente.entrada)
         const sEsforco = scoreEsforco(parcela, cliente.renda)
         const sRenda = scoreRenda(cliente.renda, e.renda_minima)
+        const sEntrada = scoreEntrada(cliente.entrada, e.entrada_minima)
         const sLocal = scoreLocal(cliente.bairros || [], e.bairro || "")
         const sTipo = scoreTipo(cliente.tipo || "", e.tipo || "")                
         const sPreco = scorePreco(cliente.preco || "", e.preco || 0)
         const sUrg = scoreUrgencia(cliente.urgencia || "", e.entrega || "")
       
         const base =
-          sEsforco * 0.25 +
-          sRenda * 0.35 +
+          sEsforco * 0.30 +
+          sRenda * 0.20 +
+          sEntrada * 0.25 +
           sLocal * 0.15 +
-          sTipo * 0.10 +
-          sPreco * 0.10
+          sTipo * 0.05 +
+          sPreco * 0.05
       
           let final = base * 0.90 + sUrg * 0.10
+
+          if (sEntrada < 50) {
+            final = final * 0.9
+          }
       
         return {
           ...e,
-          noteMetro: Math.round(noteMetro),
           score: Math.round(final),
           debug: {
             renda: {
@@ -628,6 +643,12 @@ useEffect(() => {
               renda: cliente.renda,
               percentual: cliente.renda ? (parcela / cliente.renda) : 0,
               score: Math.round(sEsforco)
+            },
+            entrada: {
+              informada: cliente.entrada,
+              ideal: e.entrada_minima,
+              indice: e.entrada_minima ? cliente.entrada / e.entrada_minima : 0,
+              score: Math.round(sEntrada)
             },
             localizacao: {
               informada: cliente.bairros,
@@ -676,10 +697,18 @@ useEffect(() => {
           "Esforço:",
           Math.round(item.debug.esforco.percentual * 100) + "%"
         )
-    
-    
+      
+        console.log(
+          "Entrada:",
+          item.debug.entrada.score,
+          `(${item.debug.entrada.informada} / ${item.debug.entrada.ideal})`
+        )
 
-     
+        console.log(
+          "Indice entrada:",
+          item.debug.entrada.indice
+        )
+      
         console.log(
           "Localização:",
           item.debug.localizacao.score,
@@ -732,6 +761,7 @@ useEffect(() => {
         user_id: finalUserId,
         nome: data.nome || `Análise ${new Date().toLocaleDateString()}`,
         renda: data.renda,
+        entrada: data.entrada,
         urgencia: data.urgencia,
         bairros: data.bairros,
         tipo: data.tipo,
@@ -828,7 +858,7 @@ useEffect(() => {
           {[
             { label: "Nome do cliente", key: "nome", placeholder: "Digite o nome" },
             { label: "Renda familiar mensal", key: "renda" },
-            
+            { label: "Quanto você pode dar de entrada (à vista ou parcelado)?", key: "entrada" }
           ].map((item, i) => (
             <div key={i}>
               <label className="text-[13px] text-gray-500 font-medium">
@@ -1119,7 +1149,7 @@ useEffect(() => {
   if (step === 4) {
     const mensagens = [
       "Analisando seu perfil financeiro...",
-      "Cruzando dados de renda com o mercado...",
+      "Cruzando dados de renda e entrada...",
       "Escaneando bairros com oportunidades...",
       "Comparando mais de 2.000 combinações possíveis...",
       "Encontrando os melhores imóveis para você...",
@@ -1188,6 +1218,7 @@ const temMelhorFora =
   String(data.tipo || "").toLowerCase().trim()
   
     const top3 = ordenados.slice(0, 3)
+    const top10 = ordenados.slice(3, 10)
     const qtdBoas = ordenados.filter(e => e.score >= 70).length
     const listaExibida =
   tipoFiltro === "todos"
@@ -1362,9 +1393,6 @@ const temMelhorFora =
         <div className="bg-[#0f172a]/90 text-white text-[11px] px-3 py-1 rounded-full font-medium shadow-sm">
           {item.score || 0}%
         </div>
-        <p className="text-xs text-gray-400 mt-1">
-  Nota Metro: {item.noteMetro || 0}
-</p>
       </div>
 
       <div className="h-px bg-gray-100 my-2" />
@@ -1427,7 +1455,39 @@ const temMelhorFora =
           </div>
         </div>
 
-        
+        {/* ENTRADA */}
+        <div className="relative group">
+          <div className={
+            item.debug?.entrada.score >= 85
+              ? "text-green-600"
+              : item.debug?.entrada.score >= 65
+              ? "text-yellow-600"
+              : "text-red-600"
+          }>
+
+            {item.debug?.entrada.score >= 85 ? (
+              "✔ Entrada dentro do ideal"
+            ) : (
+              <>
+              {item.debug?.entrada.score >= 65
+                ? "💡 Entrada próxima do ideal"
+                : "⚠ Pode exigir ajuste na entrada"}
+            
+<div className="absolute hidden group-hover:block left-1/2 -translate-x-1/2 bottom-full mb-2 w-52 bg-white text-gray-700 text-xs rounded-md px-3 py-2 shadow-md border border-gray-200 z-50 transition-all duration-200 opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0">
+
+<div className="font-medium text-gray-900 mb-1">
+  Entrada ideal
+</div>
+
+<div>
+  R$ {item.debug?.entrada?.ideal || "—"}
+</div>
+
+</div>
+              </>
+            )}
+          </div>
+        </div>
 
         </div> {/* fecha INFOS */}
         <div className="flex flex-col gap-2 mt-6 pt-4 border-t border-gray-100 !mt-6 !pt-4">
@@ -1551,90 +1611,106 @@ const temMelhorFora =
           <div className="flex-1 flex flex-col justify-between">
 
             {/* TOP */}
-            <div className="flex justify-between items-start">
-              <div className="flex-1">
-                <p className="text-xs text-gray-400">
-                  #{i + 4}
-                </p>
-                <h3 className="font-semibold text-[#0f172a] leading-tight">
-                  {item.nome}
-                </h3>
-                <p className="text-sm text-gray-500">
-                  {item.bairro}
-                </p>
-            </div>
-            <div className="bg-[#0f172a]/90 text-white text-xs px-3 py-1.5 rounded-full font-medium shadow-sm">
-              {item.score}%
-            </div>
-          </div>
+            <div>
+              <div className="flex justify-between items-start">
+                <div>
+                <div className="flex-1">
 
-          {/* CRITÉRIOS */}
-            <div className="mt-3 text-sm space-y-1">
-              {/* LOCAL */}
+<p className="text-xs text-gray-400">
+  #{i + 4}
+</p>
+
+<h3 className="font-semibold text-[#0f172a] leading-tight">
+  {item.nome}
+</h3>
+
+<p className="text-sm text-gray-500">
+  {item.bairro}
+</p>
+
+</div>
+                  
+                </div>
+
+                <div className="bg-[#0f172a]/90 text-white text-xs px-3 py-1.5 rounded-full font-medium shadow-sm">
+  {item.score}%
+</div>
+              </div>
+
+              {/* CRITÉRIOS */}
+              <div className="mt-3 text-sm space-y-1">
+
+                {/* LOCAL */}
                 {data.bairros?.includes(item.bairro) && (
                   <div className="text-green-600">
                     ✔ Localização compatível
                   </div>
                 )}
 
-              {/* TIPO */}
+                {/* TIPO */}
                 {tipoOk && (
                   <div className="text-green-600">
                     ✔ Tipo adequado
                   </div>
                 )}
 
-              {/* RENDA */}
+                {/* RENDA */}
                 {item.debug?.renda.score >= 85 && (
                   <div className="text-green-600">
                     ✔ Renda adequada
                   </div>
                 )}
-                
-            </div> {/* fecha CRITÉRIOS */}
+
+                {/* ALERTAS */}
+                {item.debug?.entrada.score < 80 && (
+                  <div className="text-yellow-600">
+                    ⚠ Entrada insuficiente
+                  </div>
+                )}
+
+              </div>
+            </div>
 
             {/* AÇÕES */}
-              <div className="mt-3 flex gap-2">
+            <div className="mt-3 flex gap-2">
 
-                {/* DETALHES */}
-                <button
-                  onClick={() => item.url_wp && window.open(item.url_wp, "_blank")}
-                  disabled={!item.url_wp}
-                  className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-medium transition-all duration-200
-                  ${
-                    item.url_wp
-                      ? "bg-[#0f172a] text-white hover:scale-[1.02] active:scale-[0.97]"
-                      : "bg-gray-200 text-gray-400 cursor-not-allowed"
-                    }
-                  `}
-                >
-                <Info size={13} />
-                  Detalhes
-                </button>
+  {/* DETALHES */}
+  <button
+    onClick={() => item.url_wp && window.open(item.url_wp, "_blank")}
+    disabled={!item.url_wp}
+    className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-medium transition-all duration-200
+      ${
+        item.url_wp
+          ? "bg-[#0f172a] text-white hover:scale-[1.02] active:scale-[0.97]"
+          : "bg-gray-200 text-gray-400 cursor-not-allowed"
+      }
+    `}
+  >
+    <Info size={13} />
+    Detalhes
+  </button>
 
-                {/* SIMULAR */}
-                  <a
-                    href="https://www8.caixa.gov.br/siopiinternet-web/simulaOperacaoInternet.do?method=inicializarCasoUso"
-                    target="_blank"
-                    className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-medium border border-gray-200 text-gray-600 hover:bg-gray-50 transition"
-                  >
-                  <ExternalLink size={13} />
-                    Simular
-                  </a>
+  {/* SIMULAR */}
+  <a
+    href="https://www8.caixa.gov.br/siopiinternet-web/simulaOperacaoInternet.do?method=inicializarCasoUso"
+    target="_blank"
+    className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-medium border border-gray-200 text-gray-600 hover:bg-gray-50 transition"
+  >
+    <ExternalLink size={13} />
+    Simular
+  </a>
 
+</div>
 
           </div>
-          </div>
-          </div>
 
-         
+        </div>
       )
-  })
+    })}
 
-
-
+  </div>
+)}
 <div className="mt-10 flex flex-col gap-3">
-  
 
 <button
   onClick={() => {
@@ -1684,4 +1760,4 @@ const temMelhorFora =
 
 </>
 )
-}
+}}
