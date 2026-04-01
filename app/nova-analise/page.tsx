@@ -1629,7 +1629,7 @@ const temMelhorFora =
 
          
       )
-  })}
+  })
 
 
 </div> {/* 🔥 FECHA showOutros */}
