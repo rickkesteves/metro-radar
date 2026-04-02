@@ -815,6 +815,11 @@ useEffect(() => {
   // ======================
   if (step === 1) {
     const urgenciaValue = data.urgencia || "12"
+    useEffect(() => {
+      if (!data.urgencia) {
+        setData({ urgencia: "12" })
+      }
+    }, [])
     return (
       <div className="max-w-md mx-auto px-4 py-6">
   
