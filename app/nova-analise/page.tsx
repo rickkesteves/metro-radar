@@ -814,6 +814,7 @@ useEffect(() => {
   // STEP 1
   // ======================
   if (step === 1) {
+    const urgenciaValue = data.urgencia || "12"
     return (
       <div className="max-w-md mx-auto px-4 py-6">
   
@@ -879,9 +880,9 @@ useEffect(() => {
 
     {/* LABEL DINÂMICO */}
     <div className="text-center text-sm text-gray-600 mb-2">
-      {data.urgencia === "none"
+      {urgenciaValue === "none"
         ? "Sem urgência"
-        : `Até ${data.urgencia} meses`}
+        : `Até ${urgenciaValue} meses`}
     </div>
 
     {/* SLIDER */}
@@ -890,7 +891,7 @@ useEffect(() => {
       min={6}
       max={36}
       step={6}
-      value={data.urgencia === "none" ? 36 : Number(data.urgencia || 12)}
+      value={urgenciaValue === "none" ? 36 : Number(urgenciaValue)}
       onChange={(e) =>
         setData({ urgencia: String(e.target.value) })
       }
