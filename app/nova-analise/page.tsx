@@ -647,13 +647,14 @@ useEffect(() => {
         const mesesEntrega = mesesAteEntrega(e.entrega)
         const sUrg = scoreUrgencia(mesesEntrega)
         const base =
-          sEsforco * 0.25 +
+          sEsforco * 0.20 +
           sRenda * 0.20 +
           sLocal * 0.15 +
           sTipo * 0.20 +
-          sPreco * 0.20
+          sPreco * 0.25
         const variacao = (Math.random() - 0.5) * 4 // -2 a +2
-          let final = base * 0.90 + sUrg * 0.10 + variacao
+          let final = base * 0.80 + sUrg * 0.10 + variacao
+          final = Math.max(0, Math.min(100, final))
           
       
         return {
