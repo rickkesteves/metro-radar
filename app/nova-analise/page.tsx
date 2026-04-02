@@ -39,6 +39,11 @@ export default function NovaAnalise() {
     }
   }, [])
   useEffect(() => {
+    if (!data.urgencia) {
+      setData({ urgencia: "12" })
+    }
+  }, [data.urgencia])
+  useEffect(() => {
     const interval = setInterval(() => {
       setMensagemIndex((prev) => (prev < 4 ? prev + 1 : prev))
     }, 1800)
@@ -815,11 +820,6 @@ useEffect(() => {
   // ======================
   if (step === 1) {
     const urgenciaValue = data.urgencia || "12"
-    useEffect(() => {
-      if (!data.urgencia) {
-        setData({ urgencia: "12" })
-      }
-    }, [])
     return (
       <div className="max-w-md mx-auto px-4 py-6">
   
