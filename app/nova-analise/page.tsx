@@ -567,10 +567,13 @@ useEffect(() => {
       
         // 🔥 cliente com alta renda
         if (renda >= 15000) {
-          if (preco <= limite) return 90
-          if (preco <= limite * 1.8) return 100
-          if (preco <= limite * 2.5) return 80
-          return 40
+          const ratio = preco / limite
+        
+          if (ratio <= 1) return 100          // dentro do esperado
+          if (ratio <= 1.3) return 95         // leve upgrade
+          if (ratio <= 1.6) return 85         // upgrade ok
+          if (ratio <= 2.0) return 70         // já mais distante
+          return 40                           // fora da realidade
         }
       
         // 🔹 cliente padrão
