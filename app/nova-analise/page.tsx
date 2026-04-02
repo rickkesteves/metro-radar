@@ -500,10 +500,14 @@ useEffect(() => {
         )
       }
   
-      function scoreRenda(r: number, min: number) {
-        if (!min) return 0
-        if (r >= min) return 100
-        return (r / min) * 100
+      function scoreRenda(rendaCliente: number, rendaIdeal: number) {
+        const ratio = rendaCliente / rendaIdeal
+      
+        if (ratio >= 3) return 100
+        if (ratio >= 2) return 90
+        if (ratio >= 1.5) return 75
+        if (ratio >= 1) return 60
+        return 30
       }
   
       function scoreEntrada(e: number, min: number) {
@@ -523,18 +527,12 @@ useEffect(() => {
         return financiado * 0.0065
       }
 
-      function scoreEsforco(parcela: number, renda: number) {
-        if (!renda) return 0
-      
-        const esforco = parcela / renda
-      
-        if (esforco <= 0.2) return 100
-        if (esforco <= 0.25) return 90
-        if (esforco <= 0.3) return 75
-        if (esforco <= 0.35) return 60
-        if (esforco <= 0.4) return 45
-        if (esforco <= 0.5) return 30
-      return 15
+      function scoreEsforco(percentual: number) {
+        if (percentual <= 5) return 100
+        if (percentual <= 10) return 85
+        if (percentual <= 15) return 70
+        if (percentual <= 20) return 50
+        return 20
       }
   
       function scoreLocal(bairros: string[], bairro: string) {
@@ -601,20 +599,12 @@ useEffect(() => {
         return Number(u)
       }
   
-      function scoreUrgencia(u: string, entrega: string) {
-        const c = urgenciaMeses(u)
-        const i = mesesAteEntrega(entrega)
-  
-        if (i < 0) return 80
-        if (i <= c) return 95
-  
-        const diff = i - c
-        if (diff <= 3) return 90
-        if (diff <= 6) return 75
-        if (diff <= 12) return 60
-        if (diff <= 18) return 40
-  
-        return 20
+      function scoreUrgencia(meses: number) {
+        if (meses <= 3) return 100
+        if (meses <= 6) return 90
+        if (meses <= 12) return 80
+        if (meses <= 24) return 70
+        return 60
       }
   
       const cliente = {
@@ -651,7 +641,12 @@ useEffect(() => {
           cliente.renda
         )
         const sUrg = scoreUrgencia(cliente.urgencia || "", e.entrega || "")
-        const base = sEsforco * 0.20 + sRenda * 0.20 + sLocal * 0.15 + sTipo * 0.05 + sPreco * 0.20
+        const base =
+          sEsforco * 0.25 +
+          sRenda * 0.20 +
+          sLocal * 0.15 +
+          sTipo * 0.10 +
+          sPreco * 0.20
         const variacao = (Math.random() - 0.5) * 4 // -2 a +2
           let final = base * 0.90 + sUrg * 0.10 + variacao
           
