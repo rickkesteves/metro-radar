@@ -38,11 +38,7 @@ export default function NovaAnalise() {
       setAnaliseId(id)
     }
   }, [])
-  useEffect(() => {
-    if (!data.urgencia) {
-      setData({ urgencia: "12" })
-    }
-  }, [data.urgencia])
+  
   useEffect(() => {
     const interval = setInterval(() => {
       setMensagemIndex((prev) => (prev < 4 ? prev + 1 : prev))
@@ -85,6 +81,11 @@ useEffect(() => {
 
   const router = useRouter()
   const { data, setData, reset } = useAnalysis()
+  useEffect(() => {
+    if (!data.urgencia) {
+      setData({ urgencia: "12" })
+    }
+  }, [data.urgencia])
 
   const step1Disabled = !data.nome || !data.renda || !data.urgencia
   const step3Disabled = !data.tipo
