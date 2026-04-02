@@ -650,7 +650,7 @@ useEffect(() => {
           sEsforco * 0.25 +
           sRenda * 0.20 +
           sLocal * 0.15 +
-          sTipo * 0.10 +
+          sTipo * 0.20 +
           sPreco * 0.20
         const variacao = (Math.random() - 0.5) * 4 // -2 a +2
           let final = base * 0.90 + sUrg * 0.10 + variacao
