@@ -1093,11 +1093,11 @@ useEffect(() => {
         <IconBox src="https://metrosquare.com.br/wp-content/uploads/2026/03/home-6.svg" />
   
         <h1 className="text-[26px] font-semibold tracking-tight text-[#0f172a] text-center mb-2">
-  Tipo de imóvel (preferência)
+  Tipo de imóvel
 </h1>
 
 <p className="text-[15px] text-gray-500 text-center mb-8">
-  Vamos priorizar esse tipo, mas também podemos sugerir oportunidades melhores para você
+ Defina o tipo e faixa ideal para seu perfil
 </p>
   
         <div className="bg-white rounded-3xl p-7 shadow-sm border border-gray-100 space-y-7">
