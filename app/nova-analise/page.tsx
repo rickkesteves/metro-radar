@@ -631,7 +631,11 @@ useEffect(() => {
         const valorImovel = toNumber(e.preco)
         const entradaCalc = entradaEstimada(valorImovel)
         const parcela = calcularParcela(valorImovel, entradaCalc) 
-        const sEsforco = scoreEsforco(parcela, cliente.renda)
+        const percentualEsforco = cliente.renda
+          ? (parcela / cliente.renda) * 100
+          : 0
+
+        const sEsforco = scoreEsforco(percentualEsforco)
         const sRenda = scoreRenda(cliente.renda, e.renda_minima)
         const sLocal = scoreLocal(cliente.bairros || [], e.bairro || "")
         const sTipo = scoreTipo(cliente.tipo || "", e.tipo || "")                
@@ -640,7 +644,8 @@ useEffect(() => {
           valorImovel,
           cliente.renda
         )
-        const sUrg = scoreUrgencia(cliente.urgencia || "", e.entrega || "")
+        const mesesEntrega = mesesAteEntrega(e.entrega)
+        const sUrg = scoreUrgencia(mesesEntrega)
         const base =
           sEsforco * 0.25 +
           sRenda * 0.20 +
