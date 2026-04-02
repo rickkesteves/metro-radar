@@ -555,16 +555,26 @@ useEffect(() => {
         return 40
       }
   
-      function scorePreco(faixa: string, preco: number) {
-        if (!faixa) return 100 // 🔥 neutro se não informou
-      
+      function scorePreco(faixa: string, preco: number, renda: number) {
+        if (!faixa) return 100
         if (!preco) return 0
       
-        if (faixa === "Até R$ 200.000") return preco <= 200000 ? 100 : 0
-        if (faixa === "R$ 200.000 - R$ 350.000") return preco <= 350000 ? 100 : 0
-        if (faixa === "R$ 350.000 - R$ 500.000") return preco <= 500000 ? 100 : 0
-        if (faixa === "Acima de R$ 500.000") return preco > 500000 ? 100 : 0
+        const limite =
+          faixa === "Até R$ 200.000" ? 200000 :
+          faixa === "R$ 200.000 - R$ 350.000" ? 350000 :
+          faixa === "R$ 350.000 - R$ 500.000" ? 500000 :
+          faixa === "Acima de R$ 500.000" ? 9999999 : 0
       
+        // 🔥 cliente com alta renda
+        if (renda >= 15000) {
+          if (preco <= limite) return 90
+          if (preco <= limite * 1.8) return 100
+          if (preco <= limite * 2.5) return 80
+          return 40
+        }
+      
+        // 🔹 cliente padrão
+        if (preco <= limite) return 100
         return 0
       }
   
@@ -632,9 +642,13 @@ useEffect(() => {
         const sRenda = scoreRenda(cliente.renda, e.renda_minima)
         const sLocal = scoreLocal(cliente.bairros || [], e.bairro || "")
         const sTipo = scoreTipo(cliente.tipo || "", e.tipo || "")                
-        const sPreco = scorePreco(cliente.preco || "", e.preco || 0)
+        const sPreco = scorePreco(
+          cliente.preco || "",
+          valorImovel,
+          cliente.renda
+        )
         const sUrg = scoreUrgencia(cliente.urgencia || "", e.entrega || "")
-        const base = sEsforco * 0.30 + sRenda * 0.20 + sLocal * 0.15 + sTipo * 0.02 + sPreco * 0.05
+        const base = sEsforco * 0.30 + sRenda * 0.20 + sLocal * 0.15 + sTipo * 0.02 + sPreco * 0.08
           let final = base * 0.90 + sUrg * 0.10
       
         return {
