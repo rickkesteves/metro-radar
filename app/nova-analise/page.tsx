@@ -648,9 +648,10 @@ useEffect(() => {
           cliente.renda
         )
         const sUrg = scoreUrgencia(cliente.urgencia || "", e.entrega || "")
-        const base = sEsforco * 0.30 + sRenda * 0.20 + sLocal * 0.15 + sTipo * 0.02 + sPreco * 0.08
+        const base = sEsforco * 0.20 + sRenda * 0.20 + sLocal * 0.15 + sTipo * 0.05 + sPreco * 0.20
         const variacao = (Math.random() - 0.5) * 4 // -2 a +2
           let final = base * 0.90 + sUrg * 0.10 + variacao
+          
       
         return {
           ...e,
