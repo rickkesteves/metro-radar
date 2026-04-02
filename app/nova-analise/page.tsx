@@ -628,7 +628,7 @@ useEffect(() => {
         const sTipo = scoreTipo(cliente.tipo || "", e.tipo || "")                
         const sPreco = scorePreco(cliente.preco || "", e.preco || 0)
         const sUrg = scoreUrgencia(cliente.urgencia || "", e.entrega || "")
-        const base = sEsforco * 0.30 + sRenda * 0.20 + sLocal * 0.15 + sTipo * 0.05 + sPreco * 0.05
+        const base = sEsforco * 0.30 + sRenda * 0.20 + sLocal * 0.15 + sTipo * 0.02 + sPreco * 0.05
           let final = base * 0.90 + sUrg * 0.10
       
         return {
@@ -1086,10 +1086,11 @@ useEffect(() => {
         <IconBox src="https://metrosquare.com.br/wp-content/uploads/2026/03/home-6.svg" />
   
         <h1 className="text-[26px] font-semibold tracking-tight text-[#0f172a] text-center mb-2">
-          Tipo de Imóvel
-        </h1>
-        <p className="text-[15px] text-gray-500 text-center mb-8">
-  Defina o tipo e faixa ideal para seu perfil
+  Tipo de imóvel (preferência)
+</h1>
+
+<p className="text-[15px] text-gray-500 text-center mb-8">
+  Vamos priorizar esse tipo, mas também podemos sugerir oportunidades melhores para você
 </p>
   
         <div className="bg-white rounded-3xl p-7 shadow-sm border border-gray-100 space-y-7">
@@ -1242,10 +1243,26 @@ const temMelhorFora =
   String(melhorGeral.tipo || "").toLowerCase().trim() !==
   String(data.tipo || "").toLowerCase().trim()
   
-    const top3 = listaFiltrada.slice(0, 3)
-    const top10 = listaFiltrada.slice(3, 10)
-    const qtdBoas = ordenados.filter(e => e.score >= 70).length
-    const listaExibida =
+let top3 = listaFiltrada.slice(0, 3)
+
+const doTipo = ordenados.filter(
+  (e) =>
+    String(e.tipo || "").toLowerCase().trim() ===
+    String(data.tipo || "").toLowerCase().trim()
+  )
+  
+const jaTemTipo = top3.some(
+  (e) =>
+    String(e.tipo || "").toLowerCase().trim() ===
+    String(data.tipo || "").toLowerCase().trim()
+  )
+  
+if (!jaTemTipo && doTipo.length > 0) {
+  top3[2] = doTipo[0]
+}
+  const top10 = listaFiltrada.slice(3, 10)
+  const qtdBoas = ordenados.filter(e => e.score >= 70).length
+  const listaExibida =
   tipoFiltro === "todos"
     ? ordenados
     : ordenados.filter(
@@ -1374,6 +1391,16 @@ const temMelhorFora =
   )}
 
 </div>
+{!ordenados.some(
+  (e) =>
+    String(e.tipo || "").toLowerCase().trim() ===
+    String(data.tipo || "").toLowerCase().trim()
+) && (
+  <div className="p-4 bg-gray-100 border border-gray-200 rounded-xl text-gray-600 text-sm mb-4">
+    😕 Não encontramos muitas opções exatamente no tipo escolhido, 
+    mas selecionamos as melhores oportunidades para seu perfil 👇
+  </div>
+)}
   {/* TOP 3 */}
 <div className="flex flex-col gap-4 mb-10">
     {listaExibida.slice(0, 3).map((item, i) => {
@@ -1424,6 +1451,12 @@ const temMelhorFora =
     <p className="text-sm text-gray-500">
       {item.bairro}
     </p>
+    {String(item.tipo || "").toLowerCase().trim() ===
+ String(data.tipo || "").toLowerCase().trim() && (
+  <div className="text-xs text-green-600 font-semibold mt-1">
+    ✔ Dentro do tipo desejado
+  </div>
+)}
   </div>
 
   {/* DIREITA */}
