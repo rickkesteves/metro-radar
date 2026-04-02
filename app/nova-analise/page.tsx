@@ -934,11 +934,7 @@ useEffect(() => {
   </div>
 )}
               <div className="grid grid-cols-2 gap-3"></div>
-              {data.tipo && (
-<div className="text-center text-sm text-gray-500 mt-3 transition-all duration-300 opacity-100">    Vamos priorizar <span className="font-medium">{data.tipo.toLowerCase()}</span>, 
-    mas também podemos sugerir melhores oportunidades
-  </div>
-)}
+              
             <button
               onClick={() => {
                 if (!user?.id) return
@@ -1103,11 +1099,7 @@ useEffect(() => {
         <p className="text-[13px] font-medium text-gray-500">Tipo de imóvel</p>
   
           <div className="grid grid-cols-2 gap-3">
-          {data.tipo && (
-  <div className="mt-3 bg-blue-50 border border-blue-100 text-blue-700 text-sm rounded-lg px-3 py-2 text-center transition-all duration-300">
-    ✔ Priorizando {data.tipo.toLowerCase()}
-  </div>
-)}
+          
             {["Apartamento", "Casa", "Lote", "Misto"].map((t) => (
               <button
                 key={t}
@@ -1122,6 +1114,11 @@ useEffect(() => {
               </button>
             ))}
           </div>
+          {data.tipo && (
+  <div className="mt-3 bg-blue-50 border border-blue-100 text-blue-700 text-sm rounded-lg px-3 py-2 text-center transition-all duration-300">
+    ✔ Priorizando {data.tipo.toLowerCase()}
+  </div>
+)}
   
           <p className="text-[13px] font-medium text-gray-500">Faixa de preço</p>
   
