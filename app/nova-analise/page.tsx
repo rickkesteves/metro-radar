@@ -649,7 +649,8 @@ useEffect(() => {
         )
         const sUrg = scoreUrgencia(cliente.urgencia || "", e.entrega || "")
         const base = sEsforco * 0.30 + sRenda * 0.20 + sLocal * 0.15 + sTipo * 0.02 + sPreco * 0.08
-          let final = base * 0.90 + sUrg * 0.10
+        const variacao = (Math.random() - 0.5) * 4 // -2 a +2
+          let final = base * 0.90 + sUrg * 0.10 + variacao
       
         return {
           ...e,
@@ -1517,12 +1518,7 @@ if (!jaTemTipo && doTipo.length > 0) {
             : "⚠ Localização diferente"}
         </div>
 
-        {/* TIPO */}
-        <div className={tipoOk ? "text-green-600" : "text-yellow-600"}>
-        {tipoOk
-          ? "✔ Dentro do tipo desejado"
-          : "💡 Tipo diferente, mas pode ser uma boa oportunidade"}
-        </div>
+        
 
         {/* RENDA */}
         <div className="relative group">
