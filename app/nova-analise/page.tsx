@@ -578,10 +578,8 @@ useEffect(() => {
       }
   
       function urgenciaMeses(u: string) {
-        if (u === "12") return 12
-        if (u === "24") return 24
-        if (u === "36") return 36
-        return 999
+        if (!u || u === "none") return 999
+        return Number(u)
       }
   
       function scoreUrgencia(u: string, entrega: string) {
@@ -871,29 +869,60 @@ useEffect(() => {
             </div>
           ))}
   
-          {/* URGÊNCIA ORIGINAL */}
-          <div>
-            <label className="text-[13px] font-medium text-gray-500 block mb-2">
-              Urgência
-            </label>
-  
-            <div className="mt-2">
-              <div className="grid grid-cols-2 gap-3 mb-4">
-              {["12", "24", "36", "none"].map((u) => (
-                <button
-                  key={u}
-                  onClick={() => setData({ urgencia: u })}
-                  className={`px-4 py-3 rounded-xl text-[14px] font-medium border transition ${
-                    data.urgencia === u
-                      ? "bg-[#0f172a] text-white border-[#0f172a]"
-                      : "bg-white border-gray-200 text-gray-700 hover:bg-gray-50"
-                  }`}
-                >
-                  {u === "none" ? "Sem urgência" : `Até ${u} meses`}
-                </button>
-              ))}
-            </div>
-          </div>
+          {/* URGÊNCIA SLIDER */}
+<div>
+  <label className="text-[13px] font-medium text-gray-500 block mb-2">
+    Urgência
+  </label>
+
+  <div className="mt-4">
+
+    {/* LABEL DINÂMICO */}
+    <div className="text-center text-sm text-gray-600 mb-2">
+      {data.urgencia === "none"
+        ? "Sem urgência"
+        : `Até ${data.urgencia} meses`}
+    </div>
+
+    {/* SLIDER */}
+    <input
+      type="range"
+      min={6}
+      max={36}
+      step={6}
+      value={data.urgencia === "none" ? 36 : Number(data.urgencia || 12)}
+      onChange={(e) =>
+        setData({ urgencia: String(e.target.value) })
+      }
+      className="w-full accent-[#0f172a]"
+    />
+
+    {/* MARCADORES */}
+    <div className="flex justify-between text-xs text-gray-400 mt-1 px-1">
+      <span>6</span>
+      <span>12</span>
+      <span>18</span>
+      <span>24</span>
+      <span>30</span>
+      <span>36</span>
+    </div>
+
+    {/* BOTÃO SEM URGÊNCIA */}
+    <button
+      onClick={() => setData({ urgencia: "none" })}
+      className={`mt-3 w-full py-2 rounded-lg text-sm border transition
+        ${
+          data.urgencia === "none"
+            ? "bg-[#0f172a] text-white border-[#0f172a]"
+            : "bg-white border-gray-200 text-gray-600 hover:bg-gray-50"
+        }
+      `}
+    >
+      Sem urgência
+    </button>
+
+  </div>
+</div>
   
           {/* BOTÕES */}
           <div className="mt-6">
