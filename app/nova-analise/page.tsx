@@ -934,6 +934,11 @@ useEffect(() => {
   </div>
 )}
               <div className="grid grid-cols-2 gap-3"></div>
+              {data.tipo && (
+  <div className="mt-3 bg-blue-50 border border-blue-100 text-blue-700 text-sm rounded-lg px-3 py-2 text-center">
+    ✔ Priorizando {data.tipo.toLowerCase()}
+  </div>
+)}
             <button
               onClick={() => {
                 if (!user?.id) return
