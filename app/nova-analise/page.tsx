@@ -578,8 +578,10 @@ useEffect(() => {
       }
   
       function urgenciaMeses(u: string) {
-        if (!u || u === "none") return 999
-        return Number(u)
+        if (u === "12") return 12
+        if (u === "24") return 24
+        if (u === "36") return 36
+        return 999
       }
   
       function scoreUrgencia(u: string, entrega: string) {
@@ -869,7 +871,7 @@ useEffect(() => {
             </div>
           ))}
   
-          {/* URGÊNCIA SLIDER */}
+         {/* URGÊNCIA SLIDER */}
 <div>
   <label className="text-[13px] font-medium text-gray-500 block mb-2">
     Urgência
