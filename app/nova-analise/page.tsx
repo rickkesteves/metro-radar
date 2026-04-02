@@ -578,10 +578,8 @@ useEffect(() => {
       }
   
       function urgenciaMeses(u: string) {
-        if (u === "12") return 12
-        if (u === "24") return 24
-        if (u === "36") return 36
-        return 999
+        if (!u || u === "none") return 999
+        return Number(u)
       }
   
       function scoreUrgencia(u: string, entrega: string) {
