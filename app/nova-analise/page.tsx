@@ -104,6 +104,14 @@ useEffect(() => {
     })
   }
 }, [])
+useEffect(() => {
+  if (typeof window !== "undefined") {
+    window.history.replaceState({}, "", window.location.pathname)
+  }
+}, [])
+useEffect(() => {
+  document.addEventListener("contextmenu", (e) => e.preventDefault())
+}, [])
   const [bairrosLista, setBairrosLista] = useState<string[]>([])
   const [step, setStep] = useState(0)
   const [loading, setLoading] = useState(0)
