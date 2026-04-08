@@ -1530,7 +1530,7 @@ if (!jaTemTipo && doTipo.length > 0) {
 
 </div>
               
-            )}
+            
           </div>
         </div>
 
