@@ -829,9 +829,23 @@ useEffect(() => {
   <div className="w-16 h-[2px] bg-gradient-to-r from-transparent via-gray-300 to-transparent mx-auto mb-6" />
 
   
-        <h1 className="text-2xl font-semibold">
-          Metro Radar
-        </h1>
+  <div className="flex flex-col items-center gap-1">
+
+<h1 className="text-2xl font-semibold">
+  Metro Radar
+</h1>
+
+<div className="flex items-center gap-2 text-xs text-gray-400">
+
+  <span className="bg-yellow-100 text-yellow-700 px-2 py-[2px] rounded-full font-medium">
+    Beta
+  </span>
+
+  <span>por Metro Square</span>
+
+</div>
+
+</div>
   
         <p className="text-[15px] text-gray-500 mt-3 leading-relaxed">
           O melhor imóvel para você, sem perder tempo.
@@ -1194,7 +1208,7 @@ useEffect(() => {
           </div>
           {data.preco && (
   <p className="text-xs text-gray-400 mt-2">
-    💡 Faixa sugerida automaticamente com base no seu perfil
+    💡 Faixa sugerida com base no seu perfil
   </p>
 )}
   
