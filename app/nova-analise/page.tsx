@@ -996,13 +996,7 @@ useEffect(() => {
               <div className="grid grid-cols-2 gap-3"></div>
               
             <button
-              onClick={() => {
-                if (!user?.id) return
-              
-                if (window.top) {
-                  window.top.location.href = `/historico?user_id=${user.id}`
-                }
-              }}
+              onClick={() => setAba("historico")}
               className="w-full py-3 rounded-xl text-[14px] font-medium text-gray-600 hover:bg-gray-100 transition"
             >
               Ver Histórico
@@ -1882,13 +1876,7 @@ if (!jaTemTipo && doTipo.length > 0) {
 </div>
 
 <button
-  onClick={() => {
-    if (!user?.id) return
-
-    router.push(
-      `/historico?user_id=${user.id}&email=${user.email}&name=${user.name}`
-    )
-  }}
+  onClick={() => setAba("historico")}
   className="bg-gray-100 py-2 rounded-lg text-sm hover:bg-gray-200 transition"
 >
   Histórico
