@@ -11,6 +11,7 @@ type AnalysisData = {
   tipo?: string;
   preco?: string;
   resultado?: any;
+  precoManual?: boolean
 };
 
 type AnalysisContextType = {
