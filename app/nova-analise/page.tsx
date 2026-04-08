@@ -110,26 +110,54 @@ useEffect(() => {
     // 🚫 bloqueia acesso direto (fora do iframe do WordPress)
     if (window.top === window.self) {
       document.body.innerHTML = `
-        <div style="
-          display:flex;
-          align-items:center;
-          justify-content:center;
-          height:100vh;
-          font-family:system-ui;
-          color:#0f172a;
-          text-align:center;
-          padding:20px;
-        ">
-          <div>
-            <h1 style="font-size:20px; margin-bottom:10px;">
-              Acesso restrito
-            </h1>
-            <p style="color:#64748b;">
-              Esta ferramenta está disponível apenas na área premium.
-            </p>
-          </div>
-        </div>
-      `
+  <div style="
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:100vh;
+    font-family:system-ui;
+    color:#0f172a;
+    text-align:center;
+    padding:20px;
+    background:#f8fafc;
+  ">
+    <div style="max-width:320px;">
+
+      <a href="https://metrosquare.com.br/assinar/" style="display:inline-block; margin-bottom:20px;">
+        <img 
+          src="https://metrosquare.com.br/wp-content/uploads/2025/08/Logo-Principal.svg" 
+          alt="Metro Square"
+          style="height:40px; opacity:0.9;"
+        />
+      </a>
+
+      <h1 style="font-size:20px; margin-bottom:10px;">
+        Acesso restrito
+      </h1>
+
+      <p style="color:#64748b; font-size:14px; margin-bottom:20px;">
+        Esta ferramenta está disponível apenas para assinantes da Metro Square.
+      </p>
+
+      <a 
+        href="https://metrosquare.com.br/assinar/"
+        style="
+          display:inline-block;
+          background:#0f172a;
+          color:#fff;
+          padding:12px 18px;
+          border-radius:10px;
+          text-decoration:none;
+          font-size:14px;
+          font-weight:500;
+        "
+      >
+        Assinar agora
+      </a>
+
+    </div>
+  </div>
+`
     }
   }
 }, [])
