@@ -1194,7 +1194,7 @@ useEffect(() => {
           </div>
           {data.preco && (
   <p className="text-xs text-gray-400 mt-2">
-    Faixa sugerida com base na renda
+    💡 Faixa sugerida automaticamente com base no seu perfil
   </p>
 )}
   
