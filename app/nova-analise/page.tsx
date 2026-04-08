@@ -500,16 +500,14 @@ useEffect(() => {
         )
       }
   
-      function scoreRenda(rendaCliente: number, rendaMinima: number) {
-        if (!rendaMinima || rendaMinima === 0) return 0
+      function scoreRenda(rendaCliente: number, rendaIdeal: number) {
+        const ratio = rendaCliente / rendaIdeal
       
-        const ratio = rendaCliente / rendaMinima
-      
-        if (ratio >= 1.3) return 100   // confortável
-        if (ratio >= 1.1) return 85    // ok
-        if (ratio >= 1) return 70      // no limite (aceitável)
-        if (ratio >= 0.8) return 50    // apertado
-        return 20                      // inviável
+        if (ratio >= 3) return 100
+        if (ratio >= 2) return 90
+        if (ratio >= 1.5) return 75
+        if (ratio >= 1) return 60
+        return 30
       }
   
       function scoreEntrada(e: number, min: number) {
@@ -666,7 +664,7 @@ useEffect(() => {
           debug: {
             renda: {
               informada: cliente.renda,
-              minima: e.renda_minima,
+              ideal: e.renda_minima,
               score: Math.round(sRenda)
             },
             esforco: {
@@ -710,7 +708,7 @@ useEffect(() => {
         console.log(
           "Renda:",
           item.debug.renda.score,
-          `(${item.debug.renda.informada} / ${item.debug.renda.minima})`
+          `(${item.debug.renda.informada} / ${item.debug.renda.ideal})`
         )
 
         console.log(
@@ -720,7 +718,7 @@ useEffect(() => {
         
         console.log(
           "Esforço:",
-          Math.round(item.debug.esforco.percentual) + "%"
+          Math.round(item.debug.esforco.percentual * 100) + "%"
         )
                   
         console.log(
@@ -1536,28 +1534,26 @@ if (!jaTemTipo && doTipo.length > 0) {
               ? "text-yellow-600"
               : "text-red-600"
           }>
-           {item.debug?.renda.score >= 85 ? (
-  "✔ Dentro da renda ideal"
-) : item.debug?.renda.score >= 70 ? (
-  "✔ Dentro do mínimo exigido"
-) : item.debug?.renda.score >= 50 ? (
-  "⚠ Financiamento pode ficar apertado"
-) : (
-  "❌ Fora do perfil de financiamento"
-)}
+            {item.debug?.renda.score >= 85 ? (
+              "✔ Dentro da renda ideal"
+              ) : (
+                <>
+                  {item.debug?.renda.score >= 65
+                    ? "💡 Pode exigir pequeno ajuste na renda"
+                    : "⚠ Acima do ideal de financiamento"}
 
 <div className="absolute hidden group-hover:block left-1/2 -translate-x-1/2 bottom-full mb-2 w-52 bg-white text-gray-700 text-xs rounded-md px-3 py-2 shadow-md border border-gray-200 z-50 transition-all duration-200 opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0">
 
 <div className="font-medium text-gray-900 mb-1">
-  Renda mínima exigida
+  Renda ideal
 </div>
 
 <div>
-  R$ {item.debug?.renda?.minima || "—"}
+  R$ {item.debug?.renda?.ideal || "—"}
 </div>
 
 </div>
-              
+              </>
             )}
           </div>
         </div>
