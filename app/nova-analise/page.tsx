@@ -46,6 +46,7 @@ export default function NovaAnalise() {
     )
   }
   const [tipoFiltro, setTipoFiltro] = useState("todos")
+  const [aba, setAba] = useState<"analise" | "historico">("analise")
   const [mensagemIndex, setMensagemIndex] = useState(0)
   const [ready, setReady] = useState(false)
   const [user, setUser] = useState<any>(null)
@@ -1360,8 +1361,37 @@ if (!jaTemTipo && doTipo.length > 0) {
   
         {/* BOTÕES */}
         
-  
+        <div className="flex gap-2 mb-6 justify-center">
+
+<button
+  onClick={() => setAba("analise")}
+
+
+  className={`px-4 py-2 rounded-full text-sm font-medium transition
+    ${aba === "analise"
+      ? "bg-[#0f172a] text-white"
+      : "bg-gray-100 text-gray-600"}
+  `}
+>
+  Análise do Cliente
+</button>
+
+<button
+  onClick={() => setAba("historico")}
+  className={`px-4 py-2 rounded-full text-sm font-medium transition
+    ${aba === "historico"
+      ? "bg-[#0f172a] text-white"
+      : "bg-gray-100 text-gray-600"}
+  `}
+>
+  Histórico
+</button>
+
+</div>
         <div id="resultado-pdf">
+
+{aba === "analise" && (
+  <>
 
   {user?.name && (
     <p className="text-sm text-gray-500 mb-1">
@@ -1865,9 +1895,16 @@ if (!jaTemTipo && doTipo.length > 0) {
 </button>
 
 </div>
+</>
+)}
 </div> {/* FECHA resultado-pdf */}
 
 </div> {/* FECHA CONTAINER */}
+{aba === "historico" && (
+  <div className="text-center py-10 text-gray-500">
+    Histórico (vamos carregar aqui depois)
+  </div>
+)}
 
 </>
 )
