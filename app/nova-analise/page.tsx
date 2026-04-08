@@ -685,17 +685,7 @@ useEffect(() => {
           item.debug.renda.score,
           `(${item.debug.renda.informada} / ${item.debug.renda.ideal})`
         )
-
-        console.log(
-          "Parcela:",
-          Math.round(item.debug.esforco.parcela)
-        )
-        
-        console.log(
-          "Esforço:",
-          Math.round(item.debug.esforco.percentual * 100) + "%"
-        )
-                  
+                
         console.log(
           "Localização:",
           item.debug.localizacao.score,
