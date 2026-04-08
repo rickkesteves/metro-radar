@@ -1691,7 +1691,7 @@ if (!jaTemTipo && doTipo.length > 0) {
             {item.debug?.renda.score >= 80 ? (
               "✔ Dentro do perfil mínimo exigido"
               ) : item.debug?.renda.score >= 50 ? (
-              "⚠ Pode exigir validação na simulação"
+              "⚠ Pode exigir ajuste de renda ou maior entrada"
               ) : (
               "❌ Renda abaixo do mínimo ideal exigido para este imóvel"
               )}
