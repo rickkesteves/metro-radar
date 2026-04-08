@@ -15,9 +15,20 @@ import radarAnimation from "@/lotties/animabot.json"
 
 
 export default function NovaAnalise() {
-  function renderStars(nota: number) {
-    const estrelasCheias = Math.floor(nota / 2)
-    const meia = nota % 2 >= 1 ? 1 : 0
+  function renderStars(nota: number, isMobile: boolean) {
+    const base = nota / 2
+  
+    // 📱 MOBILE → sem meia estrela
+    if (isMobile) {
+      const estrelasCheias = Math.round(base)
+      const vazias = 5 - estrelasCheias
+  
+      return "★".repeat(estrelasCheias) + "☆".repeat(vazias)
+    }
+  
+    // 💻 DESKTOP → com meia estrela
+    const estrelasCheias = Math.floor(base)
+    const meia = base % 1 >= 0.5 ? 1 : 0
     const vazias = 5 - estrelasCheias - meia
   
     return (
@@ -31,6 +42,19 @@ export default function NovaAnalise() {
   const [ready, setReady] = useState(false)
   const [user, setUser] = useState<any>(null)
   const [analiseId, setAnaliseId] = useState<string | null>(null)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+  
+    checkMobile()
+    window.addEventListener("resize", checkMobile)
+  
+    return () => window.removeEventListener("resize", checkMobile)
+  }, [])
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       const params = new URL(window.location.href).searchParams
@@ -1460,8 +1484,8 @@ if (!jaTemTipo && doTipo.length > 0) {
   {/* DIREITA */}
   <div className="flex flex-col items-end flex-shrink-0">
     
-    <div className="text-yellow-500 text-lg mt-1 whitespace-nowrap">
-      {renderStars(Number(item.noteMetro))}
+  <div className="text-yellow-500 text-lg mt-1 whitespace-nowrap leading-none tracking-tight" style={{ fontFamily: "system-ui" }}>
+      {renderStars(Number(item.noteMetro), isMobile)}
     </div>
 
   </div>
