@@ -500,14 +500,14 @@ useEffect(() => {
         )
       }
   
-      function scoreRenda(rendaCliente: number, rendaIdeal: number) {
-        const ratio = rendaCliente / rendaIdeal
+      function scoreRenda(rendaCliente: number, rendaMinima: number) {
+        if (!rendaMinima) return 100
       
-        if (ratio >= 3) return 100
-        if (ratio >= 2) return 90
-        if (ratio >= 1.5) return 85
-        if (ratio >= 1) return 70
-        return 30
+        const ratio = rendaCliente / rendaMinima
+      
+        if (ratio >= 1) return 100   // passou → ok
+        if (ratio >= 0.8) return 60  // quase
+        return 20                    // fora
       }
   
       function scoreEntrada(e: number, min: number) {
@@ -521,20 +521,7 @@ useEffect(() => {
         if (indice >= 0.2) return 40
         return 20
       }
-
-      function calcularParcela(valorImovel: number, entrada: number) {
-        const financiado = Math.max(valorImovel - entrada, 0)
-        return financiado * 0.0065
-      }
-
-      function scoreEsforco(percentual: number) {
-        if (percentual <= 5) return 100
-        if (percentual <= 10) return 85
-        if (percentual <= 15) return 70
-        if (percentual <= 20) return 50
-        return 20
-      }
-  
+        
       function scoreLocal(bairros: string[], bairro: string) {
         if (!bairros || bairros.length === 0) return 70 // 🔥 neutro
       
@@ -630,12 +617,6 @@ useEffect(() => {
         ) / 10
         const valorImovel = toNumber(e.preco)
         const entradaCalc = entradaEstimada(valorImovel)
-        const parcela = calcularParcela(valorImovel, entradaCalc) 
-        const percentualEsforco = cliente.renda
-          ? (parcela / cliente.renda) * 100
-          : 0
-
-        const sEsforco = scoreEsforco(percentualEsforco)
         const sRenda = scoreRenda(cliente.renda, e.renda_minima)
         const sLocal = scoreLocal(cliente.bairros || [], e.bairro || "")
         const sTipo = scoreTipo(cliente.tipo || "", e.tipo || "")                
@@ -647,11 +628,11 @@ useEffect(() => {
         const mesesEntrega = mesesAteEntrega(e.entrega)
         const sUrg = scoreUrgencia(mesesEntrega)
         const base =
-          sEsforco * 0.20 +
-          sRenda * 0.20 +
-          sLocal * 0.15 +
-          sTipo * 0.20 +
-          sPreco * 0.25
+          sPreco * 0.35 +
+          sTipo * 0.25 +
+          sLocal * 0.20 +
+          sUrg * 0.10 +
+          sRenda * 0.10
         const variacao = (Math.random() - 0.5) * 4 // -2 a +2
           let final = base * 0.80 + sUrg * 0.10 + variacao
           final = Math.max(0, Math.min(100, final))
@@ -666,12 +647,6 @@ useEffect(() => {
               informada: cliente.renda,
               ideal: e.renda_minima,
               score: Math.round(sRenda)
-            },
-            esforco: {
-              parcela: Math.round(parcela),
-              renda: cliente.renda,
-              percentual: cliente.renda ? (parcela / cliente.renda) : 0,
-              score: Math.round(sEsforco)
             },
             localizacao: {
               informada: cliente.bairros,
@@ -1534,13 +1509,14 @@ if (!jaTemTipo && doTipo.length > 0) {
               ? "text-yellow-600"
               : "text-red-600"
           }>
-            {item.debug?.renda.score >= 85 ? (
-              "✔ Dentro da renda ideal"
+            {item.debug?.renda.score >= 80 ? (
+              "✔ Dentro do perfil mínimo exigido"
+              ) : item.debug?.renda.score >= 50 ? (
+              "⚠ Pode exigir validação na simulação"
               ) : (
-                <>
-                  {item.debug?.renda.score >= 65
-                    ? "💡 Pode exigir pequeno ajuste na renda"
-                    : "⚠ Pode ficar fora do perfil de financiamento"}
+              "❌ Abaixo do perfil mínimo para este imóvel"
+              )}
+                       
 
 <div className="absolute hidden group-hover:block left-1/2 -translate-x-1/2 bottom-full mb-2 w-52 bg-white text-gray-700 text-xs rounded-md px-3 py-2 shadow-md border border-gray-200 z-50 transition-all duration-200 opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0">
 
