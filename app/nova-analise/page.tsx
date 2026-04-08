@@ -505,8 +505,8 @@ useEffect(() => {
       
         if (ratio >= 3) return 100
         if (ratio >= 2) return 90
-        if (ratio >= 1.5) return 75
-        if (ratio >= 1) return 60
+        if (ratio >= 1.5) return 85
+        if (ratio >= 1) return 70
         return 30
       }
   
@@ -1540,7 +1540,7 @@ if (!jaTemTipo && doTipo.length > 0) {
                 <>
                   {item.debug?.renda.score >= 65
                     ? "💡 Pode exigir pequeno ajuste na renda"
-                    : "⚠ Acima do ideal de financiamento"}
+                    : "⚠ Pode ficar fora do perfil de financiamento"}
 
 <div className="absolute hidden group-hover:block left-1/2 -translate-x-1/2 bottom-full mb-2 w-52 bg-white text-gray-700 text-xs rounded-md px-3 py-2 shadow-md border border-gray-200 z-50 transition-all duration-200 opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0">
 
