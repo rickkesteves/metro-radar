@@ -15,6 +15,14 @@ import radarAnimation from "@/lotties/animabot.json"
 
 
 export default function NovaAnalise() {
+  function sugerirFaixaPorRenda(renda: number) {
+    if (!renda) return null
+  
+    if (renda <= 3500) return "Até R$ 200.000"
+    if (renda <= 8000) return "R$ 200.000 - R$ 350.000"
+    if (renda <= 20000) return "R$ 350.000 - R$ 500.000"
+    return "Acima de R$ 500.000"
+  }
   function renderStars(nota: number, isMobile: boolean) {
     const base = nota / 2
   
@@ -109,7 +117,26 @@ useEffect(() => {
     if (!data.urgencia) {
       setData({ urgencia: "12" })
     }
-  }, [data.urgencia])
+  }, [data.urgencia]) 
+  useEffect(() => {
+    if (!data.renda) return
+  
+    const rendaNumero = Number(
+      String(data.renda)
+        .replace(/\./g, "")
+        .replace(",", ".")
+        .replace(/[^\d.]/g, "")
+    )
+  
+    if (!rendaNumero) return
+  
+    const faixaSugerida = sugerirFaixaPorRenda(rendaNumero)
+  
+    // ⚠️ NÃO sobrescreve se usuário já escolheu
+    if (!data.preco && faixaSugerida) {
+      setData({ preco: faixaSugerida })
+    }
+  }, [data.renda])
 
   const step1Disabled = !data.nome || !data.renda || !data.urgencia
   const step3Disabled = !data.tipo
@@ -1157,6 +1184,11 @@ useEffect(() => {
               </button>
             ))}
           </div>
+          {data.preco && (
+  <p className="text-xs text-gray-400 mt-2">
+    Faixa sugerida com base na renda
+  </p>
+)}
   
           <div className="flex gap-3">
             <button
