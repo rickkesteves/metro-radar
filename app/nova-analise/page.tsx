@@ -1528,7 +1528,7 @@ if (!jaTemTipo && doTipo.length > 0) {
               ) : item.debug?.renda.score >= 50 ? (
               "⚠ Pode exigir validação na simulação"
               ) : (
-              "❌ Abaixo do perfil mínimo para este imóvel"
+              "❌ Renda abaixo do mínimo ideal exigido para este imóvel"
               )}
                        
 
