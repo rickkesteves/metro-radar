@@ -133,8 +133,11 @@ useEffect(() => {
     const faixaSugerida = sugerirFaixaPorRenda(rendaNumero)
   
     // ⚠️ NÃO sobrescreve se usuário já escolheu
-    if (!data.preco && faixaSugerida) {
-      setData({ preco: faixaSugerida })
+    if (faixaSugerida && !data.precoManual) {
+      setData({
+        preco: faixaSugerida,
+        precoManual: false
+      })
     }
   }, [data.renda])
 
@@ -1173,7 +1176,12 @@ useEffect(() => {
             ].map((f) => (
               <button
                 key={f}
-                onClick={() => setData({ preco: f })}
+                onClick={() =>
+                  setData({
+                    preco: f,
+                    precoManual: true
+                  })
+                }
                 className={`w-full text-left px-4 py-3 rounded-xl border text-[14px] font-medium transition ${
                   data.preco === f
                     ? "bg-gray-100 border-[#0f172a]"
