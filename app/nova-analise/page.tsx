@@ -757,12 +757,25 @@ useEffect(() => {
         const variacao = (Math.random() - 0.5) * 4 // -2 a +2
         let final = base * 0.80 + sUrg * 0.10 + variacao
 
-        // 🚫 BLOQUEIO DE RENDA (ESSENCIAL)
-        if (cliente.renda < e.renda_minima) {
-          final = final * 0.3 // derruba score
-        }
-        
-        final = Math.max(0, Math.min(100, final))
+// 🎯 AJUSTE INTELIGENTE DE RENDA (SUBSTITUI O BLOQUEIO DURO)
+const rendaMin = e.renda_minima || 0
+const rendaCli = cliente.renda || 0
+
+if (rendaMin > 0) {
+  const ratio = rendaCli / rendaMin
+
+  if (ratio < 0.3) {
+    final = final * 0.1   // extremamente fora
+  } else if (ratio < 0.5) {
+    final = final * 0.25  // muito abaixo
+  } else if (ratio < 0.7) {
+    final = final * 0.5   // abaixo, mas possível
+  } else if (ratio < 1) {
+    final = final * 0.75  // quase lá
+  }
+}
+
+final = Math.max(0, Math.min(100, final))
           
       
         return {
