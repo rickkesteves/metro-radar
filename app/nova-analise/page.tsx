@@ -996,6 +996,7 @@ useEffect(() => {
               <div className="grid grid-cols-2 gap-3"></div>
               
             <button
+              type="button"
               onClick={() => setAba("historico")}
               className="w-full py-3 rounded-xl text-[14px] font-medium text-gray-600 hover:bg-gray-100 transition"
             >
@@ -1371,6 +1372,7 @@ if (!jaTemTipo && doTipo.length > 0) {
 </button>
 
 <button
+  type="button"
   onClick={() => setAba("historico")}
   className={`px-4 py-2 rounded-full text-sm font-medium transition
     ${aba === "historico"
@@ -1876,6 +1878,7 @@ if (!jaTemTipo && doTipo.length > 0) {
 </div>
 
 <button
+  type="button"
   onClick={() => setAba("historico")}
   className="bg-gray-100 py-2 rounded-lg text-sm hover:bg-gray-200 transition"
 >
