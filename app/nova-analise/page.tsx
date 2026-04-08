@@ -755,8 +755,14 @@ useEffect(() => {
           sUrg * 0.10 +
           sRenda * 0.10
         const variacao = (Math.random() - 0.5) * 4 // -2 a +2
-          let final = base * 0.80 + sUrg * 0.10 + variacao
-          final = Math.max(0, Math.min(100, final))
+        let final = base * 0.80 + sUrg * 0.10 + variacao
+
+        // 🚫 BLOQUEIO DE RENDA (ESSENCIAL)
+        if (cliente.renda < e.renda_minima) {
+          final = final * 0.3 // derruba score
+        }
+        
+        final = Math.max(0, Math.min(100, final))
           
       
         return {
