@@ -104,6 +104,36 @@ useEffect(() => {
     })
   }
 }, [])
+
+useEffect(() => {
+  if (typeof window !== "undefined") {
+    // 🚫 bloqueia acesso direto (fora do iframe do WordPress)
+    if (window.top === window.self) {
+      document.body.innerHTML = `
+        <div style="
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          height:100vh;
+          font-family:system-ui;
+          color:#0f172a;
+          text-align:center;
+          padding:20px;
+        ">
+          <div>
+            <h1 style="font-size:20px; margin-bottom:10px;">
+              Acesso restrito
+            </h1>
+            <p style="color:#64748b;">
+              Esta ferramenta está disponível apenas na área premium.
+            </p>
+          </div>
+        </div>
+      `
+    }
+  }
+}, [])
+
 useEffect(() => {
   if (typeof window !== "undefined") {
     window.history.replaceState({}, "", window.location.pathname)
