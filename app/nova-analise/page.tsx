@@ -1451,40 +1451,7 @@ const temMelhorFora =
   
         {/* BOTÕES */}
         
-        <div className="flex gap-2 mb-6 justify-center">
-
-<button
-  onClick={() => setAba("analise")}
-
-
-  className={`px-4 py-2 rounded-full text-sm font-medium transition
-    ${aba === "analise"
-      ? "bg-[#0f172a] text-white"
-      : "bg-gray-100 text-gray-600"}
-  `}
->
-  Análise do Cliente
-</button>
-
-<button
-  type="button"
-  onClick={() => {
-    if (user?.id) {
-      router.push(`/historico?user_id=${user.id}`)
-    } else {
-      alert("Usuário não identificado")
-    }
-  }}
-  className={`px-4 py-2 rounded-full text-sm font-medium transition
-    ${aba === "historico"
-      ? "bg-[#0f172a] text-white"
-      : "bg-gray-100 text-gray-600"}
-  `}
->
-  Histórico
-</button>
-
-</div>
+        
         <div id="resultado-pdf">
 
 {aba === "analise" && (
