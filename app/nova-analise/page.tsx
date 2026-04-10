@@ -52,7 +52,6 @@ export default function NovaAnalise() {
   const [user, setUser] = useState<any>(null)
   const [analiseId, setAnaliseId] = useState<string | null>(null)
   const [isMobile, setIsMobile] = useState(false)
-  const [wideMode, setWideMode] = useState(false)
 
   useEffect(() => {
     const checkMobile = () => {
@@ -63,12 +62,6 @@ export default function NovaAnalise() {
     window.addEventListener("resize", checkMobile)
   
     return () => window.removeEventListener("resize", checkMobile)
-  }, [])
-
-  useEffect(() => {
-    if (window.innerWidth > 1024) {
-      setWideMode(true)
-    }
   }, [])
 
   useEffect(() => {
@@ -1454,20 +1447,9 @@ const temMelhorFora =
     },
   }}
 />
-<div
-  className={`mx-auto px-4 py-10 bg-[#f8fafc] min-h-screen transition-all duration-300 ${
-    wideMode ? "max-w-6xl" : "max-w-md"
-  }`}
->
+      <div className="max-w-md mx-auto px-4 py-10 bg-[#f8fafc] min-h-screen">
   
-<div className="flex justify-end mb-4">
-  <button
-    onClick={() => setWideMode(!wideMode)}
-    className="text-xs px-3 py-1.5 rounded-lg bg-gray-100 hover:bg-gray-200 transition"
-  >
-    {wideMode ? "📱 Modo compacto" : "🖥 Expandir"}
-  </button>
-</div>
+        {/* BOTÕES */}
         
         
         <div id="resultado-pdf">
@@ -1590,11 +1572,7 @@ const temMelhorFora =
   </div>
 )}
   {/* TOP 3 */}
-  <div className={`mb-10 ${
-  wideMode
-    ? "grid grid-cols-2 gap-6"
-    : "flex flex-col gap-4"
-}`}>
+<div className="flex flex-col gap-4 mb-10">
     {top3.map((item, i) => {
 
     const tipoOk =
