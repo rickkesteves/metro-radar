@@ -52,6 +52,8 @@ export default function NovaAnalise() {
   const [user, setUser] = useState<any>(null)
   const [analiseId, setAnaliseId] = useState<string | null>(null)
   const [isMobile, setIsMobile] = useState(false)
+  const [bloqueado, setBloqueado] = useState(false)
+
 
   useEffect(() => {
     const checkMobile = () => {
@@ -105,59 +107,11 @@ useEffect(() => {
   }
 }, [])
 
+
 useEffect(() => {
   if (typeof window !== "undefined") {
-    // 🚫 bloqueia acesso direto (fora do iframe do WordPress)
     if (window.top === window.self) {
-      document.body.innerHTML = `
-  <div style="
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    height:100vh;
-    font-family:system-ui;
-    color:#0f172a;
-    text-align:center;
-    padding:20px;
-    background:#f8fafc;
-  ">
-    <div style="max-width:320px;">
-
-      <a href="https://metrosquare.com.br/assinar/" style="display:inline-block; margin-bottom:20px;">
-        <img 
-          src="https://metrosquare.com.br/wp-content/uploads/2025/08/Logo-Principal.svg" 
-          alt="Metro Square"
-          style="height:40px; opacity:0.9;"
-        />
-      </a>
-
-      <h1 style="font-size:20px; margin-bottom:10px;">
-        Acesso restrito
-      </h1>
-
-      <p style="color:#64748b; font-size:14px; margin-bottom:20px;">
-        Esta ferramenta está disponível apenas para assinantes da Metro Square.
-      </p>
-
-      <a 
-        href="https://metrosquare.com.br/assinar/"
-        style="
-          display:inline-block;
-          background:#0f172a;
-          color:#fff;
-          padding:12px 18px;
-          border-radius:10px;
-          text-decoration:none;
-          font-size:14px;
-          font-weight:500;
-        "
-      >
-        Assinar agora
-      </a>
-
-    </div>
-  </div>
-`
+      setBloqueado(true)
     }
   }
 }, [])
@@ -168,9 +122,7 @@ useEffect(() => {
   }
 }, [user])
 
-useEffect(() => {
-  document.addEventListener("contextmenu", (e) => e.preventDefault())
-}, [])
+
   const [bairrosLista, setBairrosLista] = useState<string[]>([])
   const [step, setStep] = useState(0)
   const [loading, setLoading] = useState(0)
@@ -896,9 +848,21 @@ final = Math.max(0, Math.min(100, final))
       toast.success("Análise salva com sucesso!")
     }
   }
+  if (bloqueado) {
+    return (
+      <div className="flex items-center justify-center min-h-screen p-5 text-center bg-gray-50">
+        <div className="max-w-xs">
+          <h1 className="text-lg font-semibold mb-2">Acesso restrito</h1>
+          <p className="text-sm text-gray-500">
+            Esta ferramenta está disponível apenas para assinantes.
+          </p>
+        </div>
+      </div>
+    )
+  }
   if (step === 0) {
     return (
-      <div className="max-w-md mx-auto px-4 py-14 text-center">
+      <div className="max-w-md mx-auto px-4 py-14 text-center min-h-screen overflow-y-auto">
   
   <div className="relative flex justify-center mb-6">
 
@@ -945,7 +909,7 @@ final = Math.max(0, Math.min(100, final))
         <button
           onClick={() => setStep(1)}
           className="mt-10 w-full bg-[#0f172a] text-white py-3 rounded-xl font-semibold 
-          hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-md"
+          hover:scale-[0.98] active:scale-[1.02] transition-all duration-200 shadow-md"
         >
           Ver Oportunidades
         </button>
@@ -962,7 +926,7 @@ final = Math.max(0, Math.min(100, final))
   if (step === 1) {
     const urgenciaValue = data.urgencia || "12"
     return (
-      <div className="max-w-md mx-auto px-4 py-6">
+      <div className="max-w-md mx-auto px-4 py-6 min-h-screen overflow-y-auto">
   
         <div className="text-center mb-10">
           <IconBox src="https://metrosquare.com.br/wp-content/uploads/2026/03/radar-1.svg" />
@@ -1120,7 +1084,7 @@ final = Math.max(0, Math.min(100, final))
   // ======================
   if (step === 2) {
     return (
-      <div className="max-w-md mx-auto px-4 py-6">
+      <div className="max-w-md mx-auto px-4 py-6 min-h-screen overflow-y-auto">
   
         <div className="text-center mb-10">
           <IconBox src="https://metrosquare.com.br/wp-content/uploads/2026/03/map-pin-line-1.svg" />
@@ -1226,7 +1190,7 @@ final = Math.max(0, Math.min(100, final))
   // ======================
   if (step === 3) {
     return (
-      <div className="max-w-md mx-auto px-4 py-6">
+      <div className="max-w-md mx-auto px-4 py-6 min-h-screen overflow-y-auto">
   
         <IconBox src="https://metrosquare.com.br/wp-content/uploads/2026/03/home-6.svg" />
   
@@ -1447,7 +1411,7 @@ const temMelhorFora =
     },
   }}
 />
-      <div className="max-w-md mx-auto px-4 py-10 bg-[#f8fafc] min-h-screen">
+<div className="max-w-md mx-auto px-4 py-10 bg-[#f8fafc] min-h-screen overflow-y-auto touch-pan-y">
   
         {/* BOTÕES */}
         
