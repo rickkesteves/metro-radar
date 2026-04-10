@@ -1406,6 +1406,11 @@ const temMelhorFora =
   
 let top3 = listaFiltrada.slice(0, 3)
 
+// 🔥 fallback se não tiver nada no filtro
+  if (top3.length === 0) {
+    top3 = ordenados.slice(0, 3)
+  }
+
 const doTipo = ordenados.filter(
   (e) =>
     String(e.tipo || "").toLowerCase().trim() ===
@@ -1423,14 +1428,7 @@ if (!jaTemTipo && doTipo.length > 0) {
 }
   const top10 = listaFiltrada.slice(3, 10)
   const qtdBoas = ordenados.filter(e => e.score >= 70).length
-  const listaExibida =
-  tipoFiltro === "todos"
-    ? ordenados
-    : ordenados.filter(
-        (e) =>
-          String(e.tipo || "").toLowerCase().trim() ===
-          String(tipoFiltro).toLowerCase().trim()
-      )
+  const listaExibida = listaFiltrada
         
     return (
       <>
@@ -1600,7 +1598,7 @@ if (!jaTemTipo && doTipo.length > 0) {
 )}
   {/* TOP 3 */}
 <div className="flex flex-col gap-4 mb-10">
-    {listaExibida.slice(0, 3).map((item, i) => {
+    {top3.map((item, i) => {
 
     const tipoOk =
       String(data.tipo || "").toLowerCase().trim() ===
