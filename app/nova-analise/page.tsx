@@ -1404,28 +1404,36 @@ const temMelhorFora =
   String(melhorGeral.tipo || "").toLowerCase().trim() !==
   String(data.tipo || "").toLowerCase().trim()
   
-let top3 = listaFiltrada.slice(0, 3)
+  let top3 = listaFiltrada.slice(0, 3)
 
-// 🔥 fallback se não tiver nada no filtro
+  // 🔥 fallback se não tiver nada no filtro
   if (top3.length === 0) {
     top3 = ordenados.slice(0, 3)
   }
+  
+  // 🔥 GARANTE coerência com o filtro (não com tipo original)
+  if (tipoFiltro !== "todos") {
+  
+    const doTipo = ordenados.filter(
+      (e) =>
+        String(e.tipo || "").toLowerCase().trim() ===
+        String(tipoFiltro).toLowerCase().trim()
+    )
+  
+    const jaTemTipo = top3.some(
+      (e) =>
+        String(e.tipo || "").toLowerCase().trim() ===
+        String(tipoFiltro).toLowerCase().trim()
+    )
+  
+    if (!jaTemTipo && doTipo.length > 0) {
+      const candidato = doTipo[0]
 
-const doTipo = ordenados.filter(
-  (e) =>
-    String(e.tipo || "").toLowerCase().trim() ===
-    String(data.tipo || "").toLowerCase().trim()
-  )
-  
-const jaTemTipo = top3.some(
-  (e) =>
-    String(e.tipo || "").toLowerCase().trim() ===
-    String(data.tipo || "").toLowerCase().trim()
-  )
-  
-if (!jaTemTipo && doTipo.length > 0) {
-  top3[2] = doTipo[0]
-}
+      if (!top3.find(e => e.id === candidato.id)) {
+        top3[2] = candidato
+      }
+    }
+  }
   const top10 = listaFiltrada.slice(3, 10)
   const qtdBoas = ordenados.filter(e => e.score >= 70).length
   const listaExibida = listaFiltrada
