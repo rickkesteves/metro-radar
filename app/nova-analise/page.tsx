@@ -163,10 +163,11 @@ useEffect(() => {
 }, [])
 
 useEffect(() => {
-  if (typeof window !== "undefined") {
+  if (user?.id) {
     window.history.replaceState({}, "", window.location.pathname)
   }
-}, [])
+}, [user])
+
 useEffect(() => {
   document.addEventListener("contextmenu", (e) => e.preventDefault())
 }, [])
@@ -1080,9 +1081,12 @@ final = Math.max(0, Math.min(100, final))
 )}
               <div className="grid grid-cols-2 gap-3"></div>
               
-            <button
-              type="button"
-              onClick={() => setAba("historico")}
+              <button
+  onClick={() => {
+    if (user?.id) {
+      router.push(`/historico?user_id=${user.id}`)
+    }
+  }}
               className="w-full py-3 rounded-xl text-[14px] font-medium text-gray-600 hover:bg-gray-100 transition"
             >
               Ver Histórico
@@ -1458,7 +1462,13 @@ if (!jaTemTipo && doTipo.length > 0) {
 
 <button
   type="button"
-  onClick={() => setAba("historico")}
+  onClick={() => {
+    if (user?.id) {
+      router.push(`/historico?user_id=${user.id}`)
+    } else {
+      alert("Usuário não identificado")
+    }
+  }}
   className={`px-4 py-2 rounded-full text-sm font-medium transition
     ${aba === "historico"
       ? "bg-[#0f172a] text-white"
@@ -1964,7 +1974,13 @@ if (!jaTemTipo && doTipo.length > 0) {
 
 <button
   type="button"
-  onClick={() => setAba("historico")}
+  onClick={() => {
+    if (user?.id) {
+      router.push(`/historico?user_id=${user.id}`)
+    } else {
+      alert("Usuário não identificado")
+    }
+  }}
   className="bg-gray-100 py-2 rounded-lg text-sm hover:bg-gray-200 transition"
 >
   Histórico
